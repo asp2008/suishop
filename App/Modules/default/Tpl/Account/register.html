@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新規会員登録 | KURA-ICHI</title>
+<link rel="stylesheet" href="__CSS__/theme.css">
+</head>
+<body data-page="register">
+
+<div class="notice-bar">{$site.notice|htmlspecialchars}</div>
+
+<header class="site-header">
+  <div class="header-row">
+    <a href="{:U('My/index')}" class="logo">
+      <img src="{$site.logo|htmlspecialchars}" alt="{$site.name|htmlspecialchars}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=\'seal\'>蔵</span><span>蔵市 KURA-ICHI</span>';">
+    </a>
+    <div style="flex:1;"></div>
+    <div class="header-actions">
+      <a href="{:U('Account/login')}">ログイン</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="auth-wrap">
+    <div class="seal" style="width:48px;height:48px;font-size:20px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;background:var(--bg-dark);color:#fff;border-radius:10px;">蔵</div>
+    <h1>新規会員登録</h1>
+    <p class="auth-sub">会員登録で初回500ポイントをプレゼント中</p>
+
+    <form id="registerForm" action="{:U('Account/register')}" method="post" novalidate>
+      <div class="field">
+        <label for="regUsername">ユーザー名<span class="req">必須</span></label>
+        <input type="text" id="regUsername" name="username" required placeholder="4文字以上、英数字とアンダースコア">
+        <div class="field-error">ユーザー名を入力してください</div>
+      </div>
+
+      <div class="field">
+        <label for="regEmail">メールアドレス<span class="req">必須</span></label>
+        <input type="email" id="regEmail" name="email" required placeholder="例）kuraichi@example.com">
+        <div class="field-error">メールアドレスを入力してください</div>
+      </div>
+
+      <div class="field">
+        <label for="regMobile">携帯電話番号</label>
+        <input type="tel" id="regMobile" name="mobile" placeholder="例）090-1234-5678">
+      </div>
+
+      <div class="field">
+        <label for="regPassword">パスワード<span class="req">必須</span></label>
+        <input type="password" id="regPassword" name="password" required placeholder="6文字以上（英数字混在）">
+        <div class="field-error">パスワードは6文字以上</div>
+      </div>
+
+      <div class="field">
+        <label for="regPasswordConfirm">パスワード（確認）<span class="req">必須</span></label>
+        <input type="password" id="regPasswordConfirm" name="password_confirm" required placeholder="同じパスワードを再入力">
+        <div class="field-error">パスワードを再入力してください</div>
+      </div>
+
+      <div class="checkbox-line">
+        <input type="checkbox" required style="width:14px;height:14px;accent-color:var(--blue);">
+        <span><a href="{:U('My/page', array('id'=>5))}">利用規約</a> および <a href="{:U('My/page', array('id'=>6))}">プライバシーポリシー</a> に同意します</span>
+      </div>
+
+      <button type="submit" class="btn btn-dark btn-block">登録する</button>
+    </form>
+
+    <p class="form-foot-link">すでに会員の方は <a href="{:U('Account/login')}">ログイン</a> へ</p>
+  </div>
+</main>
+
+<include file="Public:footer_min" />

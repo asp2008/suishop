@@ -1,0 +1,25 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>検索結果: <strong>{$q|htmlspecialchars}</strong>
+  </div>
+  <h1 style="font-size:24px;margin-bottom:6px;">「{$q|htmlspecialchars}」の検索結果</h1>
+  <p style="color:var(--ink-soft);font-size:13px;margin-bottom:18px;">{$count|intval} 件見つかりました</p>
+
+  <if condition="!empty($list)">
+    <div class="related-grid" style="margin-bottom:60px">
+      <volist name="list" id="r">
+        <include file="Public:_product_card" />
+      </volist>
+    </div>
+  <else />
+    <div style="text-align:center;padding:80px 20px;background:var(--bg-alt);border-radius:var(--radius-xl)">
+      <svg style="width:60px;height:60px;margin:0 auto 16px;color:var(--line)" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p style="color:var(--ink-soft);margin-bottom:18px">「{$q|htmlspecialchars}」に一致する商品はありません</p>
+      <a href="{:U('My/lists')}" class="btn btn-dark">すべての商品を見る</a>
+    </div>
+  </if>
+</main>
+
+<include file="Public:footer" />

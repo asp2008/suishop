@@ -1,0 +1,13 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span>{$page.title|htmlspecialchars}</div>
+
+  <article class="article-content">
+    <h1>{$page.title|htmlspecialchars}</h1>
+    <div class="meta">最終更新：{:format_date($page['updatetime']?:$page['createtime']?:time())}</div>
+    {$page.content|htmlspecialchars_decode|htmlspecialchars}
+  </article>
+</main>
+
+<include file="Public:footer" />

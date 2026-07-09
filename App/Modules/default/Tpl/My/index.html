@@ -1,0 +1,124 @@
+<include file="Public:header" />
+
+<if condition="!empty($hero)">
+<section class="hero" id="heroCarousel">
+  <div class="hero-slides">
+    <volist name="hero" id="h" key="k">
+      <div class="hero-slide <if condition='$k eq 1'>active</if>" style="background-image:url('{$h.pic|htmlspecialchars}')"></div>
+    </volist>
+  </div>
+  <div class="hero-arrows">
+    <button class="hero-prev" aria-label="前のスライド">
+      <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-next" aria-label="次のスライド">
+      <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+  <div class="hero-dots">
+    <volist name="hero" id="h" key="k">
+      <button <if condition='$k eq 1'>class="active"</if> data-slide="{$k-1}" aria-label="スライド{$k}"></button>
+    </volist>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">CRAFTSMANSHIP &amp; TRADITION</div>
+      <h1><b>Welcome to KURA-ICHI</b>蔵市 KURA-ICHI</h1>
+      <p>日本各地の蔵元・窯元・職人とつながるオンラインショップ。確かな品質と物語のある逸品をお届けします。</p>
+      <a href="{:U('My/lists')}" class="btn btn-vermilion">
+        商品をさがす
+        <svg class="icon" style="width:16px;height:16px" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="hero-stamp">
+      <span>EST. 1998</span>
+      蔵
+      <span>JAPAN</span>
+    </div>
+  </div>
+</section>
+</if>
+
+<main class="container">
+
+  <if condition="!empty($cats)">
+  <div class="cat-strip">
+    <volist name="cats" id="c">
+      <a class="cat-card" href="{:U('My/lists', array('catid'=>$c['id']))}">
+        <svg viewBox="0 0 24 24"><path d="M3 7l1-4h16l1 4M3 7h18M3 7v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7M9 11v3M15 11v3"/></svg>
+        <span>{$c.catname|htmlspecialchars}</span>
+      </a>
+    </volist>
+  </div>
+  </if>
+
+  <div class="section-head">
+    <div>
+      <span class="en">RECOMMEND</span>
+      <h2>編集部おすすめの逸品</h2>
+    </div>
+    <a href="{:U('My/lists')}" class="more">もっと見る</a>
+  </div>
+
+  <div class="product-grid">
+    <volist name="recommend" id="r">
+      <include file="Public:_product_card" />
+    </volist>
+  </div>
+
+  <if condition="!empty($brandsTile)">
+  <div class="section-head">
+    <div>
+      <span class="en">FEATURED BRANDS</span>
+      <h2>注目のブランド</h2>
+    </div>
+    <a href="{:U('My/brand')}" class="more">ブランド一覧</a>
+  </div>
+  <div class="brand-grid" style="grid-template-columns:repeat(4,1fr);">
+    <volist name="brandsTile" id="b">
+      <a class="brand-tile" href="{:U('My/brand_show', array('id'=>$b['id']))}">
+        <div class="logo-circle">
+          <if condition="!empty($b['thumb'])">
+            <img src="{:upload_url($b['thumb'])}" alt="{$b.title|htmlspecialchars}" style="width:100%;height:100%;object-fit:contain;padding:8px;border-radius:50%">
+          <else />
+            {$b.title|mb_substr=0,1,'utf-8'|htmlspecialchars}
+          </if>
+        </div>
+        <h4>{$b.title|htmlspecialchars}</h4>
+        <p>{$b.description|default='厳选日本逸品'|summary=30|htmlspecialchars}</p>
+      </a>
+    </volist>
+  </div>
+  </if>
+
+  <div class="section-head">
+    <div>
+      <span class="en">SEASONAL GIFT</span>
+      <h2>季節のギフト特集</h2>
+    </div>
+    <a href="{:U('My/lists', array('sort'=>'sale'))}" class="more">もっと見る</a>
+  </div>
+
+  <div class="product-grid">
+    <volist name="season" id="r">
+      <include file="Public:_product_card" />
+    </volist>
+  </div>
+
+  <div class="section-head">
+    <div>
+      <span class="en">BESTSELLERS</span>
+      <h2>热销ランキング</h2>
+    </div>
+    <a href="{:U('My/lists', array('sort'=>'sale'))}" class="more">ランキング</a>
+  </div>
+
+  <div class="product-grid">
+    <volist name="hot" id="r">
+      <include file="Public:_product_card" />
+    </volist>
+  </div>
+
+</main>
+
+<include file="Public:footer" />

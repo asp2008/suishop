@@ -1,0 +1,129 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span><a href="{:U('Account/dashboard')}">マイページ</a><span>›</span>お届け先住所</div>
+  <div class="mypage-layout">
+
+    <aside class="mypage-side">
+      <div class="mypage-profile">
+        <div class="avatar-ring">{$member.username|mb_substr=0,1,'utf-8'|htmlspecialchars|default='蔵'}</div>
+        <div class="name">{$member.realname|default=$member['username']|htmlspecialchars}</div>
+      </div>
+      <nav class="mypage-nav">
+        <a href="{:U('Account/dashboard')}"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>ダッシュボード</a>
+        <a href="{:U('Account/orders')}"><svg viewBox="0 0 24 24"><path d="M3 3h2l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>注文履歴</a>
+        <a href="{:U('Account/address')}" class="active"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>お届け先住所</a>
+        <a href="{:U('Account/favorite')}"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>お気に入り</a>
+        <a href="{:U('Account/point')}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>ポイント</a>
+        <a href="{:U('Account/message')}"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>メッセージ</a>
+        <a href="{:U('Account/profile')}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>会員情報</a>
+        <a href="{:U('Account/logout')}"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>ログアウト</a>
+      </nav>
+    </aside>
+
+    <section>
+      <h1 style="font-size:24px;margin-bottom:18px;">お届け先住所 <a href="javascript:void(0)" onclick="toggleAddrForm()" class="btn btn-dark btn-sm" style="float:right;font-size:13px;padding:8px 18px">+ 新しい住所</a></h1>
+
+      <div id="addrForm" class="checkout-section" style="display:none">
+        <h3>新しい住所を追加</h3>
+        <div class="body">
+          <form action="{:U('Account/address_save')}" method="post">
+            <div class="field-row">
+              <div class="field">
+                <label>お名前 <span class="req">必須</span></label>
+                <input type="text" name="consignee" required>
+              </div>
+              <div class="field">
+                <label>電話番号 <span class="req">必須</span></label>
+                <input type="tel" name="tel" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>省 <span class="req">必須</span></label>
+                <select id="selProvince" name="province" required>
+                  <option value="">请选择</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>市 <span class="req">必須</span></label>
+                <select id="selCity" name="city" required>
+                  <option value="">请选择</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>区/町</label>
+                <select id="selArea" name="area">
+                  <option value="">请选择</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label>詳細住所 <span class="req">必須</span></label>
+              <input type="text" name="address1" required placeholder="町名・番地">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>郵便番号</label>
+                <input type="text" name="zip">
+              </div>
+              <div class="field">
+                <label>タグ（家/会社/実家）</label>
+                <input type="text" name="title" placeholder="例：家">
+              </div>
+            </div>
+            <div class="checkbox-line" style="margin:14px 0">
+              <label style="display:flex;align-items:center;gap:8px">
+                <input type="checkbox" name="isdefault" value="1" checked>
+                デフォルト住所に設定
+              </label>
+            </div>
+            <button type="submit" class="btn btn-dark">保存</button>
+            <button type="button" class="btn btn-outline" onclick="toggleAddrForm()">キャンセル</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="mypage-panel">
+        <h3>登録済住所</h3>
+        <if condition="!empty($list)">
+          <volist name="list" id="a">
+            <div class="addr-card">
+              <if condition="$a['isdefault'] eq 1"><span class="tag">既定の住所</span></if>
+              <div class="name">{$a.consignee1|htmlspecialchars}　<span style="font-size:12px;color:var(--ink-soft);font-weight:400">{$a.tel1|htmlspecialchars}</span></div>
+              {$a.region|htmlspecialchars} {$a.address1|htmlspecialchars} {$a.address2|htmlspecialchars} {$a.address3|htmlspecialchars}<br>
+              <if condition="$a['zip']">〒 {$a.zip|htmlspecialchars}　</if>
+              <if condition="$a['title']"><span style="color:var(--blue);font-size:11px">({$a.title|htmlspecialchars})</span></if>
+              <div style="margin-top:10px;display:flex;gap:6px">
+                <if condition="$a['isdefault'] eq 0">
+                  <button class="btn btn-outline btn-sm" onclick="$.post('{:U('Account/address_set_default')}', {id:{$a.id}}, function(){location.reload();})">既定に設定</button>
+                </if>
+                <button class="btn btn-outline btn-sm" onclick="if(confirm('削除しますか？')){$.post('{:U('Account/address_del')}', {id:{$a.id}}, function(){location.reload();});}">削除</button>
+              </div>
+            </div>
+          </volist>
+        <else />
+          <div style="padding:30px 20px;text-align:center;color:var(--ink-soft)">まだ住所が登録されていません</div>
+        </if>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+function toggleAddrForm(){
+  var f = document.getElementById('addrForm');
+  f.style.display = (f.style.display==='none' || !f.style.display) ? 'block' : 'none';
+}
+$(function(){
+  // 加载省份
+  $.getJSON('{:U("Ajax/area")}', {parent:0}, function(r){
+    if(r.code===0){
+      var html = '<option value="">请选择</option>';
+      r.data.forEach(function(it){ html += '<option value="'+it.id+'">'+it.name+'</option>'; });
+      $('#selProvince').html(html);
+    }
+  });
+});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,123 @@
+<include file="Public:header" />
+
+<main class="container">
+
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span><a href="{:U('Account/orders')}">注文履歴</a><span>›</span>{$order.sn|htmlspecialchars}</div>
+
+  <h1 style="font-size:24px;margin-bottom:18px;">注文詳細</h1>
+
+  <div class="order-detail-head">
+    <div class="label">订单状态</div>
+    <div class="price">{:format_price($order['order_amount'])}</div>
+    <div><span class="status-pill {$order['status_label']['cls']}">{$order['status_label']['text']|htmlspecialchars}</span></div>
+    <div class="order-detail-flow">
+      <div class="node done">
+        <div class="dot"><svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="info"><strong>提交订单</strong>{:format_date($order['add_time'])}</div>
+      </div>
+      <div class="node <if condition='$order[pay_status] eq 1'>done<elseif condition='$order[status] gt 0' />active</if>">
+        <div class="dot">¥</div>
+        <div class="info"><strong>支払完了</strong><if condition="$order['pay_time']">{:format_date($order['pay_time'])}<else />-</if></div>
+      </div>
+      <div class="node <if condition='$order[shipping_status] eq 1'>active<elseif condition='$order[shipping_status] eq 2' />done</if>">
+        <div class="dot">●</div>
+        <div class="info"><strong>発送済み</strong><if condition="$order['shipping_time']">{:format_date($order['shipping_time'])}<else />-</if></div>
+      </div>
+      <div class="node <if condition='$order[status] eq 2'>done</if>">
+        <div class="dot">✓</div>
+        <div class="info"><strong>受取完了</strong><if condition="$order['confirm_time']">{:format_date($order['confirm_time'])}<else />-</if></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mypage-layout">
+    <aside class="mypage-side">
+      <div class="mypage-profile">
+        <div class="avatar-ring">{$member.username|mb_substr=0,1,'utf-8'|htmlspecialchars|default='蔵'}</div>
+        <div class="name">{$member.realname|default=$member['username']|htmlspecialchars}</div>
+      </div>
+      <nav class="mypage-nav">
+        <a href="{:U('Account/dashboard')}"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>ダッシュボード</a>
+        <a href="{:U('Account/orders')}" class="active"><svg viewBox="0 0 24 24"><path d="M3 3h2l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>注文履歴</a>
+        <a href="{:U('Account/address')}"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>お届け先</a>
+        <a href="{:U('Account/favorite')}"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>お気に入り</a>
+        <a href="{:U('Account/logout')}"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>ログアウト</a>
+      </nav>
+    </aside>
+
+    <section>
+      <div class="checkout-section">
+        <h3>商品一覧</h3>
+        <div class="body" style="padding:0">
+          <volist name="items" id="it">
+            <div class="cart-item" style="background:var(--white)">
+              <img src="{:upload_url($it['product_thumb'])}" alt="">
+              <div class="cart-item-meta">
+                <div class="cart-item-name"><a href="{:U('My/detail', array('id'=>$it['product_id']))}">{$it.product_name|htmlspecialchars}</a></div>
+                <div class="cart-item-opt">
+                  <if condition="!empty($it['color'])">{$it.color|htmlspecialchars} </if>
+                  <if condition="!empty($it['size'])">{$it.size|htmlspecialchars}</if>
+                </div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:12px;color:var(--ink-soft);">× {$it.number|intval}</div>
+                <div class="cart-item-price">{:format_price($it['price'])}</div>
+              </div>
+            </div>
+          </volist>
+        </div>
+      </div>
+
+      <div class="checkout-section">
+        <h3>お届け先情報</h3>
+        <div class="body">
+          <dl style="display:flex;font-size:13px;padding:4px 0">
+            <dt style="width:100px;color:var(--ink-soft)">お名前</dt>
+            <dd style="flex:1">{$order.consignee|htmlspecialchars}</dd>
+          </dl>
+          <dl style="display:flex;font-size:13px;padding:4px 0">
+            <dt style="width:100px;color:var(--ink-soft)">ご住所</dt>
+            <dd style="flex:1">{$order.address|htmlspecialchars}</dd>
+          </dl>
+          <dl style="display:flex;font-size:13px;padding:4px 0">
+            <dt style="width:100px;color:var(--ink-soft)">電話番号</dt>
+            <dd style="flex:1">{$order.tel|htmlspecialchars}</dd>
+          </dl>
+          <if condition="!empty($order['postmessage'])">
+          <dl style="display:flex;font-size:13px;padding:4px 0">
+            <dt style="width:100px;color:var(--ink-soft)">備考</dt>
+            <dd style="flex:1">{$order.postmessage|htmlspecialchars}</dd>
+          </dl>
+          </if>
+        </div>
+      </div>
+
+      <div class="checkout-section">
+        <h3>料金明細</h3>
+        <div class="body">
+          <div class="sum-row"><span>商品代金</span><span>{:format_price($order['amount'])}</span></div>
+          <div class="sum-row"><span>送料</span><span>{:format_price($order['shipping_fee'])}</span></div>
+          <if condition="$order['discount'] gt 0">
+            <div class="sum-row"><span>优惠</span><span style="color:var(--red)">-{:format_price($order['discount'])}</span></div>
+          </if>
+          <div class="sum-row total"><span>合計</span><span class="val">{:format_price($order['order_amount'])}</span></div>
+          <div class="sum-row"><span>お支払い方法</span><span>{$order.pay_name|htmlspecialchars}</span></div>
+          <div class="sum-row"><span>獲得予定ポイント</span><span>{$order.point|intval} ポイント</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;text-align:right;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap">
+        <a href="{:U('Account/orders')}" class="btn btn-outline">注文履歴に戻る</a>
+        <if condition="$order['status'] eq 0">
+          <button class="btn btn-vermilion" onclick="if(confirm('この注文をキャンセルしますか？')){$.post('{:U('Account/order_cancel')}', {id:{$order.id}}, function(){location.href='{:U('Account/orders')}';});}">注文をキャンセル</button>
+          <a href="{:U('Cart/pay', array('sn'=>$order['sn']))}" class="btn btn-dark">今すぐ支払う</a>
+        </if>
+        <if condition="$order['shipping_status'] eq 1">
+          <button class="btn btn-dark" onclick="if(confirm('受取を確認しますか？')){$.post('{:U('Account/order_confirm')}', {id:{$order.id}}, function(){location.reload();});}">受取確認</button>
+        </if>
+      </div>
+    </section>
+  </div>
+</main>
+
+<include file="Public:footer" />

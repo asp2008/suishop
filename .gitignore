@@ -1,0 +1,26 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ThinkPHP runtime（运行时缓存，部署前会自动重建）
+App/Runtime/*
+!App/Runtime/.gitkeep
+!App/Runtime/Cache/.gitkeep
+
+# 上传
+Public/theme/upload/*
+!Public/theme/upload/.gitkeep
+
+# 系统
+.DS_Store
+Thumbs.db
+*.log
+
+# 数据库（保留示例，导出文件不入）
+*.sql.bak
+
+# 凭据
+*.env
+config.local.php

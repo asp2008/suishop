@@ -1,0 +1,145 @@
+<include file="Public:header" />
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>
+    <a href="{:U('Cart/index')}">カート</a><span>›</span>レジへ進む
+  </div>
+
+  <div class="steps">
+    <div class="step done"><span class="num">✓</span>カート確認</div>
+    <div class="sep"></div>
+    <div class="step active"><span class="num">2</span>お届け先</div>
+    <div class="sep"></div>
+    <div class="step active"><span class="num">3</span>お支払い</div>
+    <div class="sep"></div>
+    <div class="step"><span class="num">4</span>注文完了</div>
+  </div>
+
+  <form action="{:U('Cart/submit')}" method="post" class="checkout-layout">
+
+    <div>
+      <div class="checkout-section">
+        <h3>お届け先 <a href="{:U('Account/address')}" style="font-size:12px;color:var(--blue);">住所を追加</a></h3>
+        <div class="body">
+          <if condition="!empty($addrList)">
+            <div class="addr-list">
+              <volist name="addrList" id="a">
+                <label class="addr-row <if condition='$a[isdefault] eq 1'>selected</if>" data-id="{$a.id}">
+                  <div class="check"></div>
+                  <div class="name">
+                    {$a.consignee1|htmlspecialchars}
+                    <if condition="$a['isdefault'] eq 1"><span class="badge badge-blue" style="position:static;margin-left:6px;font-size:10px;">默认</span></if>
+                    <if condition="$a['title']"><span style="font-size:11px;color:var(--ink-soft);font-weight:400;margin-left:6px;">({$a.title|htmlspecialchars})</span></if>
+                  </div>
+                  <div class="meta">
+                    {$a.region|htmlspecialchars} {$a.address1|htmlspecialchars} {$a.address2|htmlspecialchars}<br>
+                    TEL：{$a.tel1|htmlspecialchars}
+                  </div>
+                </label>
+              </volist>
+            </div>
+            <input type="hidden" name="address_id" value="{$defaultAddr.id|intval}">
+          <else />
+            <div style="text-align:center;padding:20px">
+              <p style="color:var(--ink-soft);margin-bottom:14px;">まだ收货地址がありません、追加してください：</p>
+              <a href="{:U('Account/address')}" class="btn btn-dark btn-sm">住所を追加する</a>
+            </div>
+          </if>
+        </div>
+      </div>
+
+      <div class="checkout-section">
+        <h3>配送方式</h3>
+        <div class="body">
+          <volist name="shippings" id="s" key="k">
+            <label class="shipping-option <if condition='$k eq 1'>selected</if>" data-id="{$s.id}">
+              <div class="info">
+                <strong>{$s.name|htmlspecialchars}</strong>
+                <small>{$s.description|default='3-5営業日で配送'|htmlspecialchars}</small>
+              </div>
+              <span class="fee <if condition='$summary[shipping_fee] eq 0'>free</if>">{$summary.shipping_text|htmlspecialchars}</span>
+            </label>
+          </volist>
+          <input type="hidden" name="shipping_id" value="{$shippings[0]['id']|intval}">
+        </div>
+      </div>
+
+      <div class="checkout-section">
+        <h3>お支払い方法</h3>
+        <div class="body">
+          <volist name="payments" id="p" key="k">
+            <label class="pay-option <if condition='$k eq 1'>selected</if>" data-id="{$p.id}">
+              <img src="__IMG__/pay-{$p.pay_code|default='online'}.svg" alt="" onerror="this.src='__IMG__/pay-alipay.svg'">
+              <div class="info">
+                <strong>{$p.pay_name|htmlspecialchars}</strong>
+                <small>{$p.pay_desc|default='注文完了後に支払画面に移動します'|htmlspecialchars}</small>
+              </div>
+            </label>
+          </volist>
+          <input type="hidden" name="pay_id" value="{$payments[0]['id']|intval}">
+        </div>
+      </div>
+
+      <div class="checkout-section">
+        <h3>備考（配送留言）</h3>
+        <div class="body">
+          <textarea class="note-input" name="note" placeholder="配送時に希望する時間帯などがあればご記入ください"></textarea>
+        </div>
+      </div>
+
+      <div class="checkout-section">
+        <h3>商品一覧（{$summary.count|intval}件）</h3>
+        <div class="body" style="padding:0;">
+          <volist name="items" id="it">
+            <div class="cart-item" style="background:var(--white);">
+              <img src="{$it.thumb_url|default='__IMG__/placeholder.svg'}" alt="{$it.product_name|htmlspecialchars}">
+              <div class="cart-item-meta">
+                <div class="cart-item-name"><a href="{:U('My/detail', array('id'=>$it['product_id']))}">{$it.product_name|htmlspecialchars}</a></div>
+                <if condition="!empty($it['color']) OR !empty($it['size'])">
+                  <div class="cart-item-opt">
+                    <if condition="!empty($it['color'])">{$it.color|htmlspecialchars} </if>
+                    <if condition="!empty($it['size'])">{$it.size|htmlspecialchars}</if>
+                  </div>
+                </if>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:12px;color:var(--ink-soft);">× {$it.number|intval}</div>
+                <div class="cart-item-price">{$it.subtotal_text|htmlspecialchars}</div>
+              </div>
+            </div>
+          </volist>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary-panel">
+      <h3>注文サマリー</h3>
+      <div class="cart-summary-body">
+        <div class="sum-row"><span>商品代金</span><span>{$summary.subtotal_text|htmlspecialchars}</span></div>
+        <div class="sum-row"><span>送料</span><span style="color:var(--blue);">{$summary.shipping_text|htmlspecialchars}</span></div>
+        <div class="sum-row"><span>ギフト包装</span><span>{$summary.gift_text|htmlspecialchars}</span></div>
+        <if condition="!empty($coupon_used)">
+          <div class="sum-row"><span>优惠（{$coupon_used.code|htmlspecialchars}）</span><span style="color:var(--red)">-{:format_price($coupon_used['discount'])}</span></div>
+        </if>
+        <div class="sum-row total"><span>合計（税込）</span><span class="val">{$summary.total_text|htmlspecialchars}</span></div>
+
+        <div class="cart-point-notice">
+          <svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          獲得予定 <strong>{$summary.point|intval} ポイント</strong>
+        </div>
+
+        <button type="submit" class="btn btn-dark btn-block" style="font-size:15px;padding:16px;">注文を確定する</button>
+        <a href="{:U('Cart/index')}" style="display:block;text-align:center;margin-top:10px;font-size:12.5px;color:var(--ink-soft);">← カートに戻る</a>
+
+        <div style="margin-top:18px;border-top:1px solid var(--line-soft);padding-top:14px;font-size:11.5px;color:var(--ink-soft);line-height:1.7;">
+          「注文を確定する」を押すことにより、<a href="{:U('My/page', array('id'=>5))}" style="color:var(--blue);">利用規約</a> および <a href="{:U('My/page', array('id'=>6))}" style="color:var(--blue);">プライバシーポリシー</a> に同意したものとみなされます。
+        </div>
+      </div>
+    </div>
+  </form>
+
+</main>
+
+<include file="Public:footer" />

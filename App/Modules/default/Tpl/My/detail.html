@@ -1,0 +1,214 @@
+<include file="Public:header" />
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>
+    <if condition="!empty($cat)">
+      <a href="{:U('My/lists', array('catid'=>$cat['parent']['id']?:$cat['id']))}">{$cat.parent.catname|default='カテゴリ'|htmlspecialchars}</a><span>›</span>
+      <a href="{:U('My/lists', array('catid'=>$cat['id']))}">{$cat.catname|htmlspecialchars}</a><span>›</span>
+    </if>
+    {$product.title|htmlspecialchars}
+  </div>
+
+  <div class="detail-layout">
+
+    <div class="gallery">
+      <div class="gallery-main" id="galleryMain">
+        <img src="{$product.pics_arr[0]|htmlspecialchars}" alt="{$product.title|htmlspecialchars}">
+      </div>
+      <div class="gallery-thumbs">
+        <volist name="product.pics_arr" id="p" key="k">
+          <button <if condition="$k eq 1">class="active"</if>>
+            <img src="{$p|htmlspecialchars}" alt="画像{$k}" data-full="{$p|htmlspecialchars}">
+          </button>
+        </volist>
+      </div>
+    </div>
+
+    <div class="detail-info">
+      <if condition="!empty($brand)">
+        <a href="{:U('My/brand_show', array('id'=>$brand['id']))}" class="detail-shop">{$brand.title|htmlspecialchars} 公式ショップ</a>
+      </if>
+      <h1>{$product.title|htmlspecialchars}</h1>
+      <div class="detail-rating">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+        </div>
+        <span>4.8（{$product.review_n|default=0}）</span>
+        <a href="#tabReview" onclick="$('.detail-tabs button').removeClass('active');$('.detail-tabs button[data-tab=tabReview]').addClass('active');$('.tab-panel').removeClass('active');$('#tabReview').addClass('active');return false;" style="color:var(--blue);">レビューを見る</a>
+      </div>
+
+      <div class="detail-price-box">
+        <div class="price-row">
+          <span class="price">{:format_price($product['pro_price'])}</span>
+          <if condition="(float)$product['pro_price'] gt 0">
+            <span class="price-before">{:format_price(round((float)$product['pro_price'] * 1.2, 0))}</span>
+            <span class="badge badge-gold" style="position:static;">20%OFF</span>
+          </if>
+        </div>
+        <div class="detail-tax">（税込・送料無料）</div>
+        <div class="detail-points">{:floor((float)$product['pro_price'] / 100)} ポイント獲得予定</div>
+      </div>
+
+      <form id="buyForm" action="{:U('Cart/add')}" method="post">
+        <input type="hidden" name="id" value="{$product.id}">
+
+        <div class="option-row">
+          <label>カラー</label>
+          <div class="option-chips">
+            <span class="chip active" data-name="color" data-value="黒">黒</span>
+            <span class="chip" data-name="color" data-value="白">白</span>
+            <span class="chip" data-name="color" data-value="赤">赤</span>
+            <span class="chip" data-name="color" data-value="紺">紺</span>
+          </div>
+          <input type="hidden" name="color" id="optColor" value="黒">
+        </div>
+
+        <div class="option-row">
+          <label>サイズ</label>
+          <div class="option-chips">
+            <span class="chip active" data-name="size" data-value="S">S</span>
+            <span class="chip" data-name="size" data-value="M">M</span>
+            <span class="chip" data-name="size" data-value="L">L</span>
+          </div>
+          <input type="hidden" name="size" id="optSize" value="S">
+        </div>
+
+        <div class="option-row">
+          <label for="qtyInput">数量</label>
+          <div class="qty-stepper">
+            <button type="button" class="minus" aria-label="減らす">−</button>
+            <input type="text" id="qtyInput" name="number" value="1" inputmode="numeric">
+            <button type="button" class="plus" aria-label="増やす">+</button>
+          </div>
+        </div>
+
+        <div class="detail-cta">
+          <button type="button" class="btn btn-outline" id="addCartBtn">
+            <svg class="icon" style="width:18px;height:18px" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            カートに入れる
+          </button>
+          <button type="submit" name="from" value="buy" class="btn btn-dark">今すぐ購入する</button>
+        </div>
+      </form>
+
+      <div class="shop-badges">
+        <span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8l2-5h14l2 5"/></svg>送料無料</span>
+        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg>あすつく対応</span>
+        <span><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>ギフト包装可</span>
+        <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>正品保証</span>
+      </div>
+
+      <dl class="detail-meta-list">
+        <div><dt>商品番号</dt><dd>KI-{$product.id|str_pad=5,0,'STR_PAD_LEFT'}</dd></div>
+        <if condition="!empty($product['cailiao'])">
+          <div><dt>素材</dt><dd>{$product.cailiao|htmlspecialchars}</dd></div>
+        </if>
+        <if condition="!empty($product['sextype'])">
+          <div><dt>サイズ</dt><dd>{$product.sextype|htmlspecialchars}</dd></div>
+        </if>
+        <if condition="!empty($product['wul'])">
+          <div><dt>物流</dt><dd>{$product.wul|htmlspecialchars}</dd></div>
+        </if>
+        <if condition="!empty($product['lipin'])">
+          <div><dt>包装</dt><dd>{$product.lipin|htmlspecialchars}</dd></div>
+        </if>
+        <if condition="!empty($product['pssm'])">
+          <div><dt>配送</dt><dd>{$product.pssm|htmlspecialchars}</dd></div>
+        </if>
+      </dl>
+    </div>
+  </div>
+
+  <div class="detail-tabs">
+    <button class="active" data-tab="tabDetail">商品詳細</button>
+    <button data-tab="tabSpec">仕様・サイズ</button>
+    <button data-tab="tabReview" id="tabReview">レビュー（{$product.review_n|default=0}）</button>
+    <button data-tab="tabShipping">配送・返品</button>
+  </div>
+
+  <div id="tabDetail" class="tab-panel active">
+    {$product.content|htmlspecialchars_decode|htmlspecialchars|nl2br}
+  </div>
+
+  <div id="tabSpec" class="tab-panel">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <tr><td style="padding:10px;border-bottom:1px solid var(--line-soft);width:160px;color:var(--ink-soft);">型番</td><td style="padding:10px;border-bottom:1px solid var(--line-soft);">KI-{$product.id|str_pad=5,0,'STR_PAD_LEFT'}</td></tr>
+      <tr><td style="padding:10px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft);">価格</td><td style="padding:10px;border-bottom:1px solid var(--line-soft);">{:format_price($product['pro_price'])}（税込）</td></tr>
+      <tr><td style="padding:10px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft);">送料</td><td style="padding:10px;border-bottom:1px solid var(--line-soft);">全国一律無料</td></tr>
+      <tr><td style="padding:10px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft);">支払方法</td><td style="padding:10px;border-bottom:1px solid var(--line-soft);">クレジット・コンビニ・代引き</td></tr>
+      <tr><td style="padding:10px;color:var(--ink-soft);">在庫</td><td style="padding:10px;">在庫あり</td></tr>
+    </table>
+  </div>
+
+  <div id="tabReview" class="tab-panel">
+    <if condition="!empty($reviews)">
+      <volist name="reviews" id="rv">
+        <div class="review-item">
+          <div class="review-head">
+            <strong>{$rv.uname|default='匿名'|htmlspecialchars}</strong>
+            <div class="stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+            </div>
+            <span>{:date('Y-m-d', $rv['createtime']?:time())}</span>
+          </div>
+          <p style="font-size:13px;color:var(--ink-soft);">{$rv.content|htmlspecialchars}</p>
+        </div>
+      </volist>
+    <else />
+      <div style="text-align:center;padding:40px 20px;color:var(--ink-soft)">まだレビューがありません</div>
+    </if>
+  </div>
+
+  <div id="tabShipping" class="tab-panel">
+    <p>ご注文確定後、3〜5営業日以内に発送いたします。沖縄・離島は別途追加送料がかかる場合があります。商品到着後7日以内の未使用品に限り、返品・交換を承ります。詳細は<a href="{:U('My/page', array('id'=>4))}" style="color:var(--blue);">返品・交換ポリシー</a>をご確認ください。</p>
+  </div>
+
+  <if condition="!empty($related)">
+  <div class="section-head">
+    <div>
+      <span class="en">RELATED ITEMS</span>
+      <h2>この商品と合わせて見られています</h2>
+    </div>
+  </div>
+  <div class="related-grid" style="margin-bottom:60px;">
+    <volist name="related" id="r">
+      <include file="Public:_product_card" />
+    </volist>
+  </div>
+  </if>
+</main>
+
+<script>
+// 规格 chip 切换
+$(function(){
+  $(document).on('click', '.option-chips .chip', function(){
+    var $chip = $(this);
+    $chip.siblings().removeClass('active');
+    $chip.addClass('active');
+    var name = $chip.data('name');
+    $('input[name=' + name + ']').val($chip.data('value'));
+  });
+  // 加入购物车
+  $('#addCartBtn').on('click', function(){
+    var $f = $('#buyForm');
+    $.post($f.attr('action'), $f.serialize(), function(r){
+      // 普通 form submit 也能直接跳到 cart
+      window.location.href = SUISHOP.root + '?m=Cart&a=index';
+    }).fail(function(){
+      window.location.href = SUISHOP.root + '?m=Cart&a=index';
+    });
+  });
+});
+</script>
+
+<include file="Public:footer" />

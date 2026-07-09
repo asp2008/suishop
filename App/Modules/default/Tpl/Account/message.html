@@ -1,0 +1,47 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span><a href="{:U('Account/dashboard')}">マイページ</a><span>›</span>メッセージ</div>
+  <div class="mypage-layout">
+    <aside class="mypage-side">
+      <div class="mypage-profile">
+        <div class="avatar-ring">{$member.username|mb_substr=0,1,'utf-8'|htmlspecialchars|default='蔵'}</div>
+        <div class="name">{$member.realname|default=$member['username']|htmlspecialchars}</div>
+      </div>
+      <nav class="mypage-nav">
+        <a href="{:U('Account/dashboard')}"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>ダッシュボード</a>
+        <a href="{:U('Account/orders')}"><svg viewBox="0 0 24 24"><path d="M3 3h2l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>注文履歴</a>
+        <a href="{:U('Account/address')}"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>お届け先</a>
+        <a href="{:U('Account/favorite')}"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>お気に入り</a>
+        <a href="{:U('Account/point')}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>ポイント</a>
+        <a href="{:U('Account/message')}" class="active"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>メッセージ</a>
+        <a href="{:U('Account/profile')}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>会員情報</a>
+        <a href="{:U('Account/logout')}"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>ログアウト</a>
+      </nav>
+    </aside>
+
+    <section>
+      <h1 style="font-size:24px;margin-bottom:18px;">站内メッセージ</h1>
+
+      <if condition="!empty($list)">
+        <volist name="list" id="m">
+          <a href="{:U('Account/message_detail', array('id'=>$m['id']))}" class="order-row" style="background:var(--white);color:inherit">
+            <div class="chat-avatar">蔵</div>
+            <div class="meta">
+              <div class="name">{$m.title|htmlspecialchars}</div>
+              <div class="date">{$m.last_message|htmlspecialchars}</div>
+            </div>
+            <span style="font-size:12px;color:var(--ink-soft)">{:format_time_ago($m['last_time'])}</span>
+          </a>
+        </volist>
+      <else />
+        <div class="mypage-panel">
+          <h3>メッセージ</h3>
+          <div style="padding:30px 20px;text-align:center;color:var(--ink-soft)">まだメッセージがありません</div>
+        </div>
+      </if>
+    </section>
+  </div>
+</main>
+
+<include file="Public:footer" />

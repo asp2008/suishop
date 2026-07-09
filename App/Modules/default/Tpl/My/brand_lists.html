@@ -1,0 +1,30 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span>ブランド一覧</div>
+  <h1 style="font-size:28px;margin-bottom:6px;">ブランド一覧</h1>
+  <p style="color:var(--ink-soft);font-size:13px;margin-bottom:24px;">蔵市 KURA-ICHI が厳選した日本全国のブランド。</p>
+
+  <if condition="!empty($brands)">
+    <div class="brand-grid">
+      <volist name="brands" id="b">
+        <a class="brand-card" href="{:U('My/brand_show', array('id'=>$b['id']))}">
+          <div class="logo-circle">
+            <if condition="!empty($b['thumb'])">
+              <img src="{:upload_url($b['thumb'])}" alt="{$b.title|htmlspecialchars}">
+            <else />
+              {$b.title|mb_substr=0,1,'utf-8'|htmlspecialchars}
+            </if>
+          </div>
+          <h3>{$b.title|htmlspecialchars}</h3>
+          <p>{$b.description|default='厳选日本逸品'|summary=40|htmlspecialchars}</p>
+          <div class="meta">商品 {$b.goods_count|intval} 件</div>
+        </a>
+      </volist>
+    </div>
+  <else />
+    <div style="text-align:center;padding:80px 20px;color:var(--ink-soft)">まだ登録されたブランドがありません</div>
+  </if>
+</main>
+
+<include file="Public:footer" />

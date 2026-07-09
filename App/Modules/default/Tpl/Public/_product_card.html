@@ -1,0 +1,39 @@
+<!-- 商品卡片 partial，变量 $r 单条商品记录 -->
+<article class="product-card">
+  <div class="product-thumb">
+    <if condition="!empty($r['badges'])">
+      <volist name="r['badges']" id="b">
+        <span class="badge <if condition='$b[cls] neq ""'>{$b.cls}</if>">{$b.text|htmlspecialchars}</span>
+      </volist>
+    </if>
+    <button class="fav-btn fav-ajax" data-id="{$r.id}" aria-label="お気に入りに追加">
+      <svg class="icon" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    </button>
+    <a href="{$r.url}"><img src="{$r.thumb_url|default='__IMG__/placeholder.svg'}" alt="{$r.title|htmlspecialchars}" loading="lazy"></a>
+  </div>
+  <div class="product-info">
+    <if condition="!empty($r['username'])">
+      <span class="product-shop">{$r.username|htmlspecialchars}</span>
+    </if>
+    <p class="product-name"><a href="{$r.url}">{$r.title|htmlspecialchars}</a></p>
+    <if condition="!empty($r['rating'])">
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.8 5.5 21 7.5 13.5 2 9 9 9"/></svg>
+        <span>{$r.rating}（{$r.review_n|default=0}）</span>
+      </div>
+    </if>
+    <div class="price-row">
+      <span class="price">{:format_price($r['price_num'])}</span>
+      <if condition="!empty($r['pro_price']) && (float)$r['pro_price'] > 0 && $r['pro_price'] neq $r['price_num']">
+        <span class="price-before">{:format_price($r['pro_price'])}</span>
+      </if>
+    </div>
+    <if condition="mt_rand(0,3) eq 1">
+      <span class="ship-free">送料無料</span>
+    </if>
+  </div>
+</article>

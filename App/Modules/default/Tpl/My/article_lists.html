@@ -1,0 +1,33 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>
+    <if condition="!empty($cat)">{$cat.catname|htmlspecialchars}<else />ジャーナル</if>
+  </div>
+  <h1 style="font-size:28px;margin-bottom:6px;">
+    <if condition="!empty($cat)">{$cat.catname|htmlspecialchars}<else />ジャーナル・読み物</if>
+  </h1>
+  <p style="color:var(--ink-soft);font-size:13px;margin-bottom:24px;">蔵市 KURA-ICHI 編集部からの最新情報とコラム</p>
+
+  <if condition="!empty($list)">
+    <div class="article-list">
+      <volist name="list" id="a">
+        <a class="article-card" href="{:U('My/article_show', array('id'=>$a['id']))}">
+          <div class="thumb">
+            <img src="{:upload_url($a['thumb'])}" alt="{$a.title|htmlspecialchars}">
+          </div>
+          <div class="body">
+            <h3>{$a.title|htmlspecialchars}</h3>
+            <div class="meta">{:format_date($a['createtime'])}</div>
+            <p>{$a.description|summary=60|htmlspecialchars}</p>
+          </div>
+        </a>
+      </volist>
+    </div>
+  <else />
+    <div style="text-align:center;padding:80px 20px;color:var(--ink-soft)">記事はまだありません</div>
+  </if>
+</main>
+
+<include file="Public:footer" />

@@ -1,0 +1,31 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span>友情链接</div>
+  <h1 style="font-size:28px;margin-bottom:6px;">友情链接</h1>
+  <p style="color:var(--ink-soft);font-size:13px;margin-bottom:24px;">合作伙伴の関連サイト</p>
+
+  <if condition="!empty($list)">
+    <div class="related-grid" style="margin-bottom:60px">
+      <volist name="list" id="l">
+        <a class="article-card" href="{$l.siteurl|htmlspecialchars}" target="_blank" rel="nofollow">
+          <div class="thumb" style="aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#fff">
+            <if condition="!empty($l['logo'])">
+              <img src="{:upload_url($l['logo'])}" alt="{$l.name|htmlspecialchars}" style="width:auto;max-width:60%;max-height:60%">
+            <else />
+              <span style="font-size:36px;font-weight:700;color:var(--ink-soft);">{$l.name|mb_substr=0,1,'utf-8'|htmlspecialchars}</span>
+            </if>
+          </div>
+          <div class="body">
+            <h3>{$l.name|htmlspecialchars}</h3>
+            <p>{$l.siteinfo|default=$l['siteurl']|summary=40|htmlspecialchars}</p>
+          </div>
+        </a>
+      </volist>
+    </div>
+  <else />
+    <div style="text-align:center;padding:80px 20px;color:var(--ink-soft)">まだ友情链接がありません</div>
+  </if>
+</main>
+
+<include file="Public:footer" />

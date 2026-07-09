@@ -1,0 +1,22 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span>よくあるご質問</div>
+  <h1 style="font-size:28px;margin-bottom:6px;">よくあるご質問</h1>
+  <p style="color:var(--ink-soft);font-size:13px;margin-bottom:24px;">ご注文・配送・会員について、よくいただくご質問をまとめました</p>
+
+  <if condition="!empty($list)">
+    <div class="mypage-panel" style="margin-bottom:60px">
+      <volist name="list" id="f">
+        <div class="accordion-item">
+          <button class="accordion-head">{$f.title|htmlspecialchars}</button>
+          <div class="accordion-body">{$f.content|htmlspecialchars_decode|htmlspecialchars}</div>
+        </div>
+      </volist>
+    </div>
+  <else />
+    <div style="text-align:center;padding:80px 20px;color:var(--ink-soft)">FAQはまだありません</div>
+  </if>
+</main>
+
+<include file="Public:footer" />

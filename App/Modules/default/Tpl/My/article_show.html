@@ -1,0 +1,33 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>
+    <if condition="!empty($cat)"><a href="{:U('My/article_lists', array('catid'=>$cat['id']))}">{$cat.catname|htmlspecialchars}</a><span>›</span></if>
+    {$article.title|htmlspecialchars}
+  </div>
+
+  <article class="article-content">
+    <h1>{$article.title|htmlspecialchars}</h1>
+    <div class="meta">
+      {:format_date($article['createtime'])}
+      <if condition="!empty($article['username'])">｜ 編集：{$article.username|htmlspecialchars}</if>
+    </div>
+    {$article.content|htmlspecialchars_decode|htmlspecialchars}
+  </article>
+
+  <nav class="article-nav">
+    <if condition="!empty($prev)">
+      <a href="{:U('My/article_show', array('id'=>$prev['id']))}">← {$prev.title|htmlspecialchars}</a>
+    <else />
+      <span></span>
+    </if>
+    <if condition="!empty($next)">
+      <a href="{:U('My/article_show', array('id'=>$next['id']))}">{$next.title|htmlspecialchars} →</a>
+    <else />
+      <span></span>
+    </if>
+  </nav>
+</main>
+
+<include file="Public:footer" />

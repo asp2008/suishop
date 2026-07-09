@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ログイン | KURA-ICHI</title>
+<link rel="stylesheet" href="__CSS__/theme.css">
+</head>
+<body data-page="login">
+
+<div class="notice-bar">{$site.notice|htmlspecialchars}</div>
+
+<header class="site-header">
+  <div class="header-row">
+    <a href="{:U('My/index')}" class="logo">
+      <img src="{$site.logo|htmlspecialchars}" alt="{$site.name|htmlspecialchars}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=\'seal\'>蔵</span><span>蔵市 KURA-ICHI</span>';">
+    </a>
+    <div style="flex:1;"></div>
+    <div class="header-actions">
+      <a href="{:U('Account/register')}">新規登録</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="auth-wrap">
+    <div class="seal" style="width:48px;height:48px;font-size:20px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;background:var(--bg-dark);color:#fff;border-radius:10px;">蔵</div>
+    <h1>ログイン</h1>
+    <p class="auth-sub">会員様はアカウントでログインしてください</p>
+
+    <form id="loginForm" action="{:U('Account/login')}" method="post" novalidate>
+      <div class="field">
+        <label for="loginUsername">ユーザー名 / メール<span class="req">必須</span></label>
+        <input type="text" id="loginUsername" name="username" autocomplete="username" placeholder="例）kuraichi@example.com">
+        <div class="field-error">ユーザー名またはメールを入力してください</div>
+      </div>
+      <div class="field">
+        <label for="loginPassword">パスワード<span class="req">必須</span></label>
+        <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="6文字以上で入力してください">
+        <div class="field-error">パスワードは6文字以上で入力してください</div>
+      </div>
+      <div class="checkbox-line">
+        <label style="display:flex;align-items:center;gap:8px;margin:0;">
+          <input type="checkbox" style="width:14px;height:14px;accent-color:var(--blue);"> ログイン状態を保持する
+        </label>
+        <span style="flex:1;"></span>
+        <a href="javascript:toast('请联系客服重置密码')">パスワードをお忘れですか？</a>
+      </div>
+      <button type="submit" class="btn btn-dark btn-block">ログイン</button>
+    </form>
+
+    <div class="divider-or">または</div>
+
+    <div class="sns-login">
+      <button type="button" onclick="toast('LINE連携は近日公開')">
+        <svg class="icon" style="width:16px;height:16px" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-2.8-.4L4 21l1.3-3.8A8.2 8.2 0 0 1 3 11.5 8.4 8.4 0 0 1 11.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg>
+        LINEでログイン
+      </button>
+      <button type="button" onclick="toast('微信連携は近日公開')">
+        <svg class="icon" style="width:16px;height:16px" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm6 0c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5z"/></svg>
+        微信でログイン
+      </button>
+    </div>
+
+    <p class="form-foot-link">会員登録がまだの方は <a href="{:U('Account/register')}">新規会員登録</a> へ</p>
+  </div>
+</main>
+
+<include file="Public:footer_min" />

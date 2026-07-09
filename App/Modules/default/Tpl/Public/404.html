@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ページが見つかりません | KURA-ICHI</title>
+<link rel="stylesheet" href="__CSS__/theme.css">
+</head>
+<body data-page="404">
+<div class="notice-bar">ご不便をおかけいたします</div>
+<header class="site-header">
+  <div class="header-row">
+    <a href="{:U('My/index')}" class="logo"><span class="seal">蔵</span><span>{$site.name|htmlspecialchars}</span></a>
+  </div>
+</header>
+<main class="container">
+  <div class="error-page">
+    <h1>404</h1>
+    <p>お探しのページが見つかりません。 URLをご確認のうえ再度お試しください。</p>
+    <a href="{:U('My/index')}" class="btn btn-dark">トップへ戻る</a>
+  </div>
+</main>
+<include file="Public:footer_min" />
+</body>
+</html>

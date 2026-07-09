@@ -1,0 +1,204 @@
+<include file="Public:header" />
+
+<main class="container">
+
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span>マイページ</div>
+  <h1 style="font-size:26px;margin-bottom:20px;">マイページ</h1>
+
+  <div class="mypage-layout">
+
+    <aside class="mypage-side">
+      <div class="mypage-profile">
+        <div class="avatar-ring">{$member.username|mb_substr=0,1,'utf-8'|htmlspecialchars|default='蔵'}</div>
+        <div class="name">{$member.realname|default=$member['username']|htmlspecialchars} 様</div>
+        <div class="rank"><if condition="!empty($level)">{$level.level_name|htmlspecialchars}<else />レギュラー会員</if></div>
+      </div>
+      <nav class="mypage-nav">
+        <a href="{:U('Account/dashboard')}" class="active" data-page="dashboard">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          ダッシュボード
+        </a>
+        <a href="{:U('Account/orders')}">
+          <svg viewBox="0 0 24 24"><path d="M3 3h2l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          注文履歴
+        </a>
+        <a href="{:U('Account/favorite')}">
+          <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          お気に入り
+        </a>
+        <a href="{:U('Account/point')}">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          ポイント履歴
+        </a>
+        <a href="{:U('Account/address')}">
+          <svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+          お届け先住所
+        </a>
+        <a href="{:U('Account/message')}">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          メッセージ
+        </a>
+        <a href="{:U('Account/profile')}">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h0a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v0a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.6 1z"/></svg>
+          会員情報設定
+        </a>
+        <a href="javascript:void(0)" onclick="if(confirm('ログアウトしますか？')) location.href='{:U('Account/logout')}'">
+          <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          ログアウト
+        </a>
+      </nav>
+    </aside>
+
+    <section class="mypage-main">
+
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="num"><em>{$point|intval}</em></div>
+          <div class="label">保有ポイント</div>
+        </div>
+        <div class="summary-card">
+          <div class="num">{$orderCount|intval}</div>
+          <div class="label">注文件数（累計）</div>
+        </div>
+        <div class="summary-card">
+          <div class="num">{$favCount|intval}</div>
+          <div class="label">お気に入り商品</div>
+        </div>
+      </div>
+
+      <div class="mypage-panel">
+        <h3>最近の注文 <a href="{:U('Account/orders')}" class="link">すべて見る</a></h3>
+        <if condition="!empty($orders)">
+          <volist name="orders" id="o">
+            <a href="{:U('Account/order_detail', array('id'=>$o['id']))}" class="order-row" style="color:inherit">
+              <img src="{:upload_url($o['thumb'])}" alt="">
+              <div class="meta">
+                <div class="date">{:format_date($o['add_time'])}注文 ／ 注文番号 {$o.sn|htmlspecialchars}</div>
+                <div class="name">{$o['status_label']['text']|htmlspecialchars}</div>
+              </div>
+              <span class="status-pill {$o['status_label']['cls']}">{$o['status_label']['text']|htmlspecialchars}</span>
+            </a>
+          </volist>
+        <else />
+          <div style="padding:30px 20px;text-align:center;color:var(--ink-soft);font-size:13px">まだ注文がありません。<a href="{:U('My/lists')}" style="color:var(--blue);">商品を見る</a></div>
+        </if>
+      </div>
+
+      <div class="mypage-panel">
+        <h3>注文に関するお問い合わせ <span style="font-size:12px;color:var(--ink-soft);font-weight:400;">返品・配送・キャンセルなどご相談ください</span></h3>
+
+        <div class="inquiry-form-wrap" id="inquiryStep1">
+          <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px;">お問い合わせに関連する注文を選んでください</p>
+          <volist name="orders" id="o">
+            <div class="inquiry-select-order <if condition='$i eq 0'>selected</if>" data-order="{$o.id}">
+              <img src="{:upload_url($o['thumb'])}" alt="">
+              <div class="meta">
+                <strong>注文 {$o.sn|htmlspecialchars}</strong>
+                {:format_date($o['add_time'])}　{$o['status_label']['text']|htmlspecialchars}
+              </div>
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
+            </div>
+          </volist>
+
+          <p style="font-size:13px;color:var(--ink-soft);margin:20px 0 12px;">お問い合わせの種類を選んでください</p>
+          <div class="inquiry-type-grid">
+            <button class="inquiry-type-btn selected" data-type="return">
+              <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.5 15A9 9 0 1 0 5.64 5.64L1 10"/></svg>
+              返品・交換
+            </button>
+            <button class="inquiry-type-btn" data-type="delivery">
+              <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              配送・お届け
+            </button>
+            <button class="inquiry-type-btn" data-type="cancel">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              キャンセル
+            </button>
+            <button class="inquiry-type-btn" data-type="other">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              その他
+            </button>
+          </div>
+
+          <button class="btn btn-dark btn-block" id="startChat" style="margin-top:18px;">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            チャットでお問い合わせを開始する
+          </button>
+        </div>
+
+        <div id="inquiryStep2" style="display:none;">
+          <div class="chat-box">
+            <div class="chat-head">
+              <svg viewBox="0 0 24 24" stroke="#EFE7D2" style="width:18px;height:18px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              蔵市 カスタマーサポート
+            </div>
+            <div class="chat-status-bar">
+              <span class="status-dot"></span> オペレーターが対応中です（平均応答時間：3分）
+            </div>
+            <div class="chat-messages" id="chatMessages">
+              <div class="chat-msg">
+                <div class="chat-avatar">蔵</div>
+                <div>
+                  <div class="chat-bubble">{$member.realname|default=$member['username']|htmlspecialchars}様、こんにちは。蔵市カスタマーサポートです。<br>ご注文についてのお問い合わせですね。詳しい状況をお聞かせいただけますか？</div>
+                  <div class="chat-time">{:date('H:i')}</div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-input-row">
+              <textarea id="chatInput" placeholder="メッセージを入力してください…" rows="2"></textarea>
+              <button type="button" id="chatSend" aria-label="送信">
+                <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+          <p style="font-size:11.5px;color:var(--ink-soft);padding:0 22px 16px;text-align:center;">
+            受付時間：月〜土 9:00〜18:00（祝日除く）　担当者が確認後に返信いたします
+          </p>
+          <div style="padding:0 22px 18px;">
+            <button class="btn btn-outline btn-sm" id="backToForm">
+              <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+              お問い合わせ内容を変更する
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mypage-panel">
+        <h3>よくあるご質問</h3>
+        <div class="accordion-item">
+          <button class="accordion-head">注文後のキャンセルはできますか？</button>
+          <div class="accordion-body">発送準備前であればキャンセル可能です。注文履歴ページの「キャンセル申請」よりお手続きください。</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">ポイントの有効期限はありますか？</button>
+          <div class="accordion-body">付与日より1年間有効です。期限が近いポイントはポイント履歴ページでご確認いただけます。</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">会員ランクはどのように決まりますか？</button>
+          <div class="accordion-body">直近1年間のお買い物累計金額に応じて、レギュラー／シルバー／ゴールド／プラチナの4段階でランクが決定します。</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">配送日時の指定はできますか？</button>
+          <div class="accordion-body">ご注文時に備考欄でご希望日時をお知らせください。発送元（蔵元）から直送のため、地域によりご希望に沿えない場合があります。</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">ギフト包装は対応していますか？</button>
+          <div class="accordion-body">商品ページで「ギフト包装可」と表示されている商品は対応可能です。カートで「ギフト包装あり」をご選択ください。</div>
+        </div>
+      </div>
+
+      <div class="mypage-panel">
+        <h3>おすすめ商品 <a href="{:U('My/lists')}" class="link">もっと見る</a></h3>
+        <div class="related-grid" style="padding:18px;">
+          <volist name="recom" id="r">
+            <include file="Public:_product_card" />
+          </volist>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<include file="Public:footer" />

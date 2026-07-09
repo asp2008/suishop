@@ -1,0 +1,51 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb"><a href="{:U('My/index')}">トップ</a><span>›</span><a href="{:U('Account/message')}">メッセージ</a><span>›</span>{$message.title|htmlspecialchars}</div>
+
+  <h1 style="font-size:24px;margin-bottom:18px;">{$message.title|htmlspecialchars}</h1>
+
+  <div class="chat-box" style="max-width:760px;margin:0 auto">
+    <div class="chat-head">
+      <svg viewBox="0 0 24 24" stroke="#EFE7D2" style="width:18px;height:18px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      蔵市 カスタマーサポート
+    </div>
+    <div class="chat-messages" id="chatMessages" style="max-height:none;min-height:200px">
+      <volist name="detail" id="d">
+        <div class="chat-msg <if condition='$d[is_admin] eq 0'>me</if>">
+          <div class="chat-avatar <if condition='$d[is_admin] eq 0'>me</if>"><if condition="$d['is_admin'] eq 0">私<else />蔵</if></div>
+          <div>
+            <div class="chat-bubble">{$d.content|htmlspecialchars}</div>
+            <div class="chat-time">{:date('Y-m-d H:i', $d['createtime'])}</div>
+          </div>
+        </div>
+      </volist>
+    </div>
+    <div class="chat-input-row">
+      <textarea id="chatInput" placeholder="返信を入力してください..." rows="2"></textarea>
+      <button type="button" onclick="sendMsg()" aria-label="送信">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <p style="text-align:center;margin-top:18px"><a href="{:U('Account/message')}" class="btn btn-outline">戻る</a></p>
+</main>
+
+<script>
+function sendMsg(){
+  var text = $.trim($('#chatInput').val());
+  if(!text) return;
+  var now = new Date();
+  var time = now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+  var html = '<div class="chat-msg me"><div class="chat-avatar me">私</div><div><div class="chat-bubble"></div><div class="chat-time">'+time+'</div></div></div>';
+  var $msg = $(html);
+  $msg.find('.chat-bubble').text(text);
+  $('#chatMessages').append($msg);
+  $('#chatInput').val('');
+  var $cm = $('#chatMessages');
+  $cm.scrollTop($cm[0].scrollHeight);
+  // 演示：不实际发送
+}
+</script>
+<include file="Public:footer" />

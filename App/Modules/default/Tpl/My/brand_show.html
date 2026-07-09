@@ -1,0 +1,25 @@
+<include file="Public:header" />
+
+<main class="container">
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>
+    <a href="{:U('My/brand')}">ブランド一覧</a><span>›</span>{$brand.title|htmlspecialchars}
+  </div>
+
+  <div class="brand-hero">
+    <h1>{$brand.title|htmlspecialchars}</h1>
+    <p>{$brand.description|default='蔵市 KURA-ICHI 精选品牌'|htmlspecialchars}</p>
+  </div>
+
+  <if condition="!empty($list)">
+    <div class="related-grid" style="margin-bottom:60px">
+      <volist name="list" id="r">
+        <include file="Public:_product_card" />
+      </volist>
+    </div>
+  <else />
+    <div style="text-align:center;padding:80px 20px;color:var(--ink-soft)">このブランドの商品はまだありません</div>
+  </if>
+</main>
+
+<include file="Public:footer" />

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>エラー</title>
+</head>
+<body>
+<script>
+setTimeout(function(){location.href='{$jumpUrl|default="javascript:history.back()"}';}, {$waitSecond|default=3} * 1000);
+</script>
+<div style="text-align:center;padding:80px 20px;font-family:-apple-system,sans-serif">
+  <div style="font-size:60px;color:#FF3B30">✕</div>
+  <h2 style="font-weight:600">{$message|htmlspecialchars}</h2>
+  <p style="color:#6E6E73">{$waitSecond|default=3} 秒後に自動的に戻ります…</p>
+  <p><a href="{$jumpUrl|default="javascript:history.back()"}" style="color:#0071E3">立即返回</a></p>
+</div>
+</body>
+</html>

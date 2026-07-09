@@ -1,0 +1,128 @@
+<include file="Public:header" />
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>ショッピングカート
+  </div>
+
+  <div class="steps">
+    <div class="step active"><span class="num">1</span>カート確認</div>
+    <div class="sep"></div>
+    <div class="step"><span class="num">2</span>お届け先</div>
+    <div class="sep"></div>
+    <div class="step"><span class="num">3</span>お支払い</div>
+    <div class="sep"></div>
+    <div class="step"><span class="num">4</span>注文完了</div>
+  </div>
+
+  <if condition="$empty">
+    <div class="cart-items-panel">
+      <div class="cart-empty" id="cartEmpty">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <p>カートに商品がありません</p>
+        <a href="{:U('My/lists')}" class="btn btn-dark">商品を探す</a>
+      </div>
+    </div>
+  <else />
+    <div class="cart-layout" id="cartLayout">
+
+      <div>
+        <div class="cart-items-panel">
+          <div class="cart-panel-head">
+            <span>カートの商品 <span id="cartItemCount">{$summary.count|intval}</span>点</span>
+            <a href="{:U('My/lists')}" style="font-size:13px;color:var(--blue);">買い物を続ける</a>
+          </div>
+
+          <volist name="items" id="it">
+            <div class="cart-item" data-id="{$it.id}" data-price="{$it.price_num}">
+              <a href="{:U('My/detail', array('id'=>$it['product_id']))}">
+                <img src="{$it.thumb_url|default='__IMG__/placeholder.svg'}" alt="{$it.product_name|htmlspecialchars}">
+              </a>
+              <div class="cart-item-meta">
+                <div class="cart-item-shop">蔵市 KURA-ICHI</div>
+                <div class="cart-item-name"><a href="{:U('My/detail', array('id'=>$it['product_id']))}">{$it.product_name|htmlspecialchars}</a></div>
+                <if condition="!empty($it['color']) OR !empty($it['size'])">
+                  <div class="cart-item-opt">
+                    <if condition="!empty($it['color'])">カラー: {$it.color|htmlspecialchars} </if>
+                    <if condition="!empty($it['size'])">サイズ: {$it.size|htmlspecialchars}</if>
+                    <if condition="!empty($it['attr'])">({$it.attr|htmlspecialchars})</if>
+                  </div>
+                </if>
+                <div class="cart-item-row">
+                  <div class="qty-stepper">
+                    <button type="button" class="minus" aria-label="減らす">−</button>
+                    <input type="text" class="qty-val" value="{$it.number|intval}" inputmode="numeric" data-min="1">
+                    <button type="button" class="plus" aria-label="増やす">+</button>
+                  </div>
+                  <span class="cart-item-price">{$it.subtotal_text|htmlspecialchars}</span>
+                </div>
+                <div style="text-align:right;margin-top:6px;">
+                  <button class="cart-remove">
+                    <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+                    削除
+                  </button>
+                </div>
+              </div>
+            </div>
+          </volist>
+        </div>
+
+        <div style="margin-top:18px;text-align:right;">
+          <a href="{:U('My/lists')}" class="btn btn-outline btn-sm">買い物を続ける</a>
+        </div>
+      </div>
+
+      <div class="cart-summary-panel">
+        <h3>ご注文合計</h3>
+        <div class="cart-summary-body">
+          <div class="sum-row"><span>商品代金（{$summary.count|intval}点）</span><span id="sumSubtotal">{$summary.subtotal_text|htmlspecialchars}</span></div>
+          <div class="sum-row"><span>送料</span><span style="color:var(--blue);" id="sumShipping">{$summary.shipping_text|htmlspecialchars}</span></div>
+          <div class="sum-row"><span>ギフト包装</span><span>{$summary.gift_text|htmlspecialchars}</span></div>
+          <div class="sum-row"><span>优惠</span><span id="sumDiscount">-{$summary.discount_text|htmlspecialchars}</span></div>
+          <div class="sum-row total"><span>合計（税込）</span><span class="val" id="sumTotal">{$summary.total_text|htmlspecialchars}</span></div>
+
+          <div class="cart-point-notice">
+            <svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            このご注文で <strong id="pointNum">{$summary.point|intval} ポイント</strong> 獲得予定
+          </div>
+
+          <div class="coupon-row">
+            <input type="text" placeholder="クーポンコード（例：KURA10）">
+            <button type="button">適用</button>
+          </div>
+
+          <a href="{:U('Cart/checkout')}" class="btn btn-dark btn-block" style="font-size:15px;padding:16px;">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            レジへ進む
+          </a>
+
+          <div style="display:flex;gap:10px;margin-top:12px;">
+            <button class="btn btn-outline btn-block btn-sm">
+              <svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              クレジット
+            </button>
+            <button class="btn btn-outline btn-block btn-sm">
+              <svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              コンビニ払い
+            </button>
+          </div>
+
+          <div style="margin-top:18px;border-top:1px solid var(--line-soft);padding-top:14px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-soft);margin-bottom:8px;">
+              <svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              SSL暗号化通信で安全に保護されています
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-soft);">
+              <svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              30日間返品保証
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </if>
+
+</main>
+
+<include file="Public:footer" />

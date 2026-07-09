@@ -1,0 +1,131 @@
+<include file="Public:header" />
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="{:U('My/index')}">トップ</a><span>›</span>
+    <if condition="!empty($curCat)">
+      <a href="{:U('My/lists', array('catid'=>$curCat['parent']['id']?:$curCat['id']))}">{$curCat.parent.catname|default='カテゴリ'|htmlspecialchars}</a><span>›</span>{$curCat.catname|htmlspecialchars}
+    <elseif condition="!empty($q)" />
+      検索: <strong>{$q|htmlspecialchars}</strong>
+    <else />
+      すべての商品
+    </if>
+  </div>
+
+  <h1 style="font-size:28px;margin-bottom:6px;">
+    <if condition="!empty($curCat)">{$curCat.catname|htmlspecialchars}<else />すべての商品</if>
+  </h1>
+  <p style="color:var(--ink-soft);font-size:13px;margin-bottom:18px;">
+    {$curCat['description']|default='全国严选好物'}</p>
+
+  <div class="tag-chip-row">
+    <if condition="$brand gt 0">
+      <span class="tag-chip">ブランド: {$curBrand.title|htmlspecialchars} <button aria-label="解除"><svg class="icon" style="width:13px;height:13px" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg></button></span>
+    </if>
+    <if condition="$min gt 0 OR $max gt 0">
+      <span class="tag-chip">価格 ¥{$min|intval}〜¥{$max|intval} <button aria-label="解除"><svg class="icon" style="width:13px;height:13px" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg></button></span>
+    </if>
+    <if condition="!empty($q)">
+      <span class="tag-chip">検索: {$q|htmlspecialchars} <a href="{:U('My/lists')}" aria-label="解除"><svg class="icon" style="width:13px;height:13px" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg></a></span>
+    </if>
+  </div>
+
+  <div class="list-layout">
+
+    <section class="list-main">
+      <div class="list-toolbar">
+        <span class="count">{$count|intval} 件中　表示中</span>
+        <select id="sortSelect" aria-label="並び替え">
+          <option value="rec"  <if condition='$sort eq "rec"'>selected</if>>おすすめ順</option>
+          <option value="new"  <if condition='$sort eq "new"'>selected</if>>新着順</option>
+          <option value="price_a" <if condition='$sort eq "price_a"'>selected</if>>価格が安い順</option>
+          <option value="price_d" <if condition='$sort eq "price_d"'>selected</if>>価格が高い順</option>
+          <option value="sale" <if condition='$sort eq "sale"'>selected</if>>热销順</option>
+        </select>
+      </div>
+
+      <div class="list-product-grid">
+        <volist name="list" id="r">
+          <include file="Public:_product_card" />
+        </volist>
+      </div>
+
+      <if condition="empty($list)">
+        <div style="text-align:center;padding:80px 20px;color:var(--ink-soft)">
+          <svg style="width:60px;height:60px;margin:0 auto 16px;color:var(--line)" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <p>条件に一致する商品はありません</p>
+        </div>
+      </if>
+
+      <nav class="pagination" aria-label="ページネーション">{$pager}</nav>
+    </section>
+
+    <aside class="filter-sidebar">
+      <form id="filterForm" method="get">
+        <input type="hidden" name="m" value="My">
+        <input type="hidden" name="a" value="lists">
+        <if condition="!empty($catid)"><input type="hidden" name="catid" value="{$catid}"></if>
+        <if condition="!empty($q)"><input type="hidden" name="q" value="{$q|htmlspecialchars}"></if>
+
+        <div class="filter-box">
+          <h3>カテゴリ</h3>
+          <div class="filter-body">
+            <volist name="subCats" id="sc">
+              <label>
+                <input type="radio" name="catid" value="{$sc.id}" onchange="this.form.submit()" <if condition="$catid eq $sc['id']">checked</if>>
+                {$sc.catname|htmlspecialchars}
+              </label>
+            </volist>
+            <if condition="empty($subCats)">
+              <volist name="catsAll" id="ca">
+                <label>
+                  <input type="radio" name="catid" value="{$ca.id}" onchange="this.form.submit()" <if condition="$catid eq $ca['id']">checked</if>>
+                  {$ca.catname|htmlspecialchars}
+                </label>
+              </volist>
+            </if>
+          </div>
+        </div>
+
+        <div class="filter-box">
+          <h3>価格帯</h3>
+          <div class="filter-body">
+            <div class="price-inputs">
+              <input type="number" name="min" placeholder="¥下限" value="{$min|intval}">
+              <span>〜</span>
+              <input type="number" name="max" placeholder="¥上限" value="{$max|intval}">
+            </div>
+            <button type="submit" class="btn btn-outline btn-sm btn-block" style="margin-top:12px;">適用する</button>
+          </div>
+        </div>
+
+        <if condition="!empty($brandsAll)">
+        <div class="filter-box">
+          <h3>ブランド</h3>
+          <div class="filter-body">
+            <volist name="brandsAll" id="bd">
+              <label>
+                <input type="radio" name="brand" value="{$bd.id}" onchange="this.form.submit()" <if condition="$brand eq $bd['id']">checked</if>>
+                {$bd.title|htmlspecialchars}
+              </label>
+            </volist>
+          </div>
+        </div>
+        </if>
+
+        <div class="filter-box">
+          <h3>配送・条件</h3>
+          <div class="filter-body">
+            <label><input type="checkbox" checked> 送料無料</label>
+            <label><input type="checkbox"> あすつく対応</label>
+            <label><input type="checkbox"> ギフト包装可</label>
+          </div>
+        </div>
+      </form>
+    </aside>
+
+  </div>
+</main>
+
+<include file="Public:footer" />

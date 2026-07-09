@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F5F5F7"/>
+  <g fill="#D2D2D7">
+    <rect x="120" y="160" width="160" height="120" rx="8"/>
+    <circle cx="170" cy="200" r="14"/>
+    <path d="M120 260 l40 -36 l32 28 l28 -22 l60 50 v20 h-160 z"/>
+  </g>
+  <text x="200" y="320" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif"
+        font-size="16" fill="#6E6E73">暂无图片</text>
+</svg>
