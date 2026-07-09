@@ -71,8 +71,8 @@
           <div class="cart-item-meta">
             <div class="cart-item-name">{$it.product_name}</div>
             <div class="cart-item-opt">
-              <if condition="!empty($it['color'])">{$it.color} </if>
-              <if condition="!empty($it['size'])">{$it.size}</if>
+              <notempty name="it.color">{$it.color} </notempty>
+              <notempty name="it.size">{$it.size}</notempty>
             </div>
             <div class="cart-item-row" style="margin-top:8px">
               <span style="color:var(--ink-soft);font-size:12.5px;">× {$it.number|intval}</span>

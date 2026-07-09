@@ -41,7 +41,7 @@
           </div>
           <div class="body" style="padding:14px 18px">
 
-            <if condition="!empty($addressList)">
+            <notempty name="addressList">
               <div class="addr-list" style="grid-template-columns:1fr;gap:10px;">
                 <volist name="addressList" id="a">
                   <label class="addr-row <if condition='$a[isdefault] eq 1'>selected</if>" data-id="{$a.id}">
@@ -67,7 +67,7 @@
               <p style="text-align:center;padding:20px;color:var(--ink-soft);font-size:13px">
                 まだ登録された住所がありません、下のフォームから入力してください。
               </p>
-            </if>
+            </notempty>
 
             <!-- 新規住所入力（折畳フォーム） -->
             <div id="addrForm" style="display:none;margin-top:14px;border-top:1px solid var(--line-soft);padding-top:14px">
@@ -293,12 +293,14 @@
             <img src="{$vo['product_thumb']|default='__STYLE__/css/suni_logo-041.png'}" alt="{$vo['product_name']}" class="item-img">
             <div class="cart-item-meta">
               <div class="cart-item-name"><a href="{$vo.product_url}">{$vo['product_name']}</a></div>
-              <if condition="!empty($vo['color']) OR !empty($vo['size'])">
+              <notempty name="vo.color">
+                <notempty name="vo.size">
                 <div class="cart-item-opt">
-                  <if condition="!empty($vo['color'])">カラー: {$vo['color']} </if>
-                  <if condition="!empty($vo['size'])">サイズ: {$vo['size']}</if>
+                  <notempty name="vo.color">カラー: {$vo['color']} </notempty>
+                  <notempty name="vo.size">サイズ: {$vo['size']}</notempty>
                 </div>
-              </if>
+                </notempty>
+              </notempty>
               <div class="cart-item-row">
                 <span class="cart-item-price" style="color:var(--ink)">¥{:number_format((float)$vo['price']*(int)$vo['number'],0,'.',',')}</span>
                 <span style="font-size:12px;color:var(--ink-soft);">× {$vo['number']|intval}</span>

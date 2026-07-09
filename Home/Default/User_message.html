@@ -44,7 +44,7 @@
     <include file="User:aside"/>
     <section>
       <h1 style="font-size:24px;margin-bottom:18px;">站内メッセージ</h1>
-      <if condition="!empty($list)">
+      <notempty name="list">
         <volist name="list" id="m">
           <a href="{:U('My/messageDetail', array('id'=>$m['id']))}" class="order-row" style="background:var(--white);color:inherit">
             <div class="chat-avatar">蔵</div>
@@ -55,12 +55,12 @@
             <span style="font-size:12px;color:var(--ink-soft)">{$m.updated_at|date="Y-m-d H:i",###}</span>
           </a>
         </volist>
-      <else />
+      <else/>
         <div class="mypage-panel">
           <h3>メッセージ</h3>
           <div style="padding:30px 20px;text-align:center;color:var(--ink-soft)">まだメッセージがありません</div>
         </div>
-      </if>
+      </notempty>
     </section>
   </div>
 </main>

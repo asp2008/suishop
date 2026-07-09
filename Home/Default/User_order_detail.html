@@ -77,8 +77,8 @@
           <div class="cart-item-meta">
             <div class="cart-item-name">{$it.product_name}</div>
             <div class="cart-item-opt">
-              <if condition="!empty($it['color'])">{$it.color} </if>
-              <if condition="!empty($it['size'])">{$it.size}</if>
+              <notempty name="it.color">{$it.color} </notempty>
+              <notempty name="it.size">{$it.size}</notempty>
             </div>
           </div>
           <div style="text-align:right">
@@ -96,9 +96,9 @@
       <dl style="display:flex;font-size:13px;padding:4px 0"><dt style="width:100px;color:var(--ink-soft)">お名前</dt><dd style="flex:1">{$order.consignee}</dd></dl>
       <dl style="display:flex;font-size:13px;padding:4px 0"><dt style="width:100px;color:var(--ink-soft)">ご住所</dt><dd style="flex:1">{$order.address}</dd></dl>
       <dl style="display:flex;font-size:13px;padding:4px 0"><dt style="width:100px;color:var(--ink-soft)">電話番号</dt><dd style="flex:1">{$order.tel|default=$order['mobile']}</dd></dl>
-      <if condition="!empty($order['postmessage'])">
+      <notempty name="order.postmessage">
       <dl style="display:flex;font-size:13px;padding:4px 0"><dt style="width:100px;color:var(--ink-soft)">備考</dt><dd style="flex:1">{$order.postmessage}</dd></dl>
-      </if>
+      </notempty>
     </div>
   </div>
 

@@ -1,8 +1,22 @@
 <aside class="mypage-side">
   <div class="mypage-profile">
-    <div class="avatar-ring"><if condition="!empty($user['username'])">{$user.username|mb_substr=0,1,'utf-8'}<else />蔵</if></div>
-    <div class="name"><if condition="!empty($user['realname'])">{$user.realname}<elseif condition="!empty($user['username'])">{$user.username}<else />ゲスト</if> 様</div>
-    <div class="rank"><if condition="!empty($level)">{$level.level_name}<else />レギュラー会員</if></div>
+    <div class="avatar-ring">
+      <notempty name="user.username">{$user.username|mb_substr=0,1,'utf-8'}<else/>蔵</notempty>
+    </div>
+    <div class="name">
+      <notempty name="user.realname">{$user.realname}
+        <else/>
+        <notempty name="user.username">{$user.username}
+          <else/>ゲスト
+        </notempty>
+      </notempty>
+       様
+    </div>
+    <div class="rank">
+      <notempty name="level">{$level.level_name}
+        <else/>レギュラー会員
+      </notempty>
+    </div>
   </div>
   <nav class="mypage-nav">
     <a href="{:U('My/dashboard')}" <if condition="$nav_curr eq 'dashboard'">class="active"</if>>
