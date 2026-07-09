@@ -1,272 +1,331 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<include file="Home:head"/> 
-</head>
-<style>
-.steps {
-  display: flex;
-  width: 100%;
-  background: #e6e6e6;
-  font-size: 14px;
-  line-height: 40px;
-}
+<include file="Home:head"/>
+<body data-page="cart-checkout">
 
-.step {
-  position: relative;
-  flex: 1;
-  padding-left: 20px;
-  background: #d9d9d9;
-  color: #333;
-}
+<div class="notice-bar">期間限定：全品送料無料キャンペーン実施中｜会員登録で500ポイントプレゼント</div>
 
-/* 箭头效果 */
-.step::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -20px;
-  width: 0;
-  height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-left: 20px solid #d9d9d9;
-  z-index: 2;
-}
-
-.step::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -21px;
-  width: 0;
-  height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-left: 20px solid #e6e6e6;
-  z-index: 1;
-}
-
-/* 最后一个不需要箭头 */
-.step:last-child::after,
-.step:last-child::before {
-  display: none;
-}
-
-/* 当前步骤 */
-.step.active {
-  background: #bfbfbf;
-  font-weight: bold;
-}
-
-.step.active::after {
-  border-left-color: #bfbfbf;
-}
-
-.num {
-  margin-right: 4px;
-}
-</style>
-<body >
-
-<div class="nar-wrapper">
-
-<nav id="breadCrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-    <ul class="clearfix">
-        <li><font itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/"  itemprop="item"><span itemprop="name">{$site_name}</span></a> <meta itemprop="position" content="1" /></font> >お客様情報入力</li>
-    </ul>
-</nav>
-<div class="steps">
-  <div class="step">
-    <span class="num">1.</span> 商品リスト
-  </div>
-  <div class="step  active">
-    <span class="num">2.</span> お客様情報入力
-  </div>
-  <div class="step">
-    <span class="num">3.</span> 入力内容確認
-  </div>
-</div>
-
-
-<style>
-.form-wrap{margin:auto;background:#fff;padding:20px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); border-radius: 10px;}
-.form-title{padding:2px 10px;font-weight:bold}
-.form-row{display:flex;align-items:center;padding:8px 2px;flex-wrap:nowrap}
-.form-row.error{background:#fff5f5}
-.form-label{width:180px;min-width:180px;font-size:14px;white-space:nowrap}
-.required{color:#c00;font-size:10px;margin-left:4px}
-.form-input{flex:1}
-.form-input input,.form-input select,.form-input textarea{width:100%;padding:3px 5px;font-size:14px;border:1px solid #ccc;box-sizing:border-box}
-.inline-inputs{display:flex;gap:8px}
-.gender{display:flex;align-items:center;gap:20px;flex-wrap:nowrap}
-.radio-item{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-textarea{height:40px;resize:vertical}
-.note{font-size:12px;color:#666;margin-top:4px}
-.error-msg{font-size:12px;color:#c00;margin-top:4px}
-.submit-area{padding:16px;text-align:center}
-button{padding:10px 32px;font-size:16px;border:none;background:#333;color:#fff;cursor:pointer}
-@media (max-width:640px){.form-label{width:110px;min-width:110px;font-size:13px}
-.form-label.addbox{width:180px}
-.form-input input,.form-input select,.form-input textarea{font-size:13px}
-}
-.newsletter-block{ display: none!important;}
-</style>
-<form method="post" action="{:URL('Home-Cart/done')}" id="myform" name="myform">
-<div class="form-wrap">
-    	<?php if($_COOKIE['TP_userid']){
-            $user=M('User')->find($_COOKIE['TP_userid']);
-        ?>
-            <include file="Cart:login"/>
-        <?php }else{?>
-            <div style="width:100%; padding: 5px;border-bottom: 1px solid #f0f0f0; margin-bottom: 10px;"><p class="text-left"><em class="border-title">お客様情報入力</em></p></div>
-            <include file="Cart:unlogin"/>
-        <?php }?>
-    <div  class="form-line">
-        <div   style="width: 100%;">注文附註</div>
-        <div   style="width: 100%; flex: auto;">
-        <textarea id="zipcode" rows="4" cols="60" name="zipcode" style="width:100%;"></textarea>
-        </div>
+<header class="site-header">
+  <div class="header-row">
+    <a href="/" class="logo">
+      <img src="__STYLE__/css/suni_logo-041.png" alt="SUNISUKI">
+    </a>
+    <form class="search-form" role="search">
+      <input type="text" placeholder="商品名・キーワードで検索">
+      <button type="submit" aria-label="検索">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </form>
+    <div class="header-actions">
+      <a href="{:U('My/dashboard')}">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="{:U('Cart/index')}">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cart-count"></span>
+      </a>
     </div>
-    <input type="hidden" id="token" name="token" value="<?php echo $token;?>">
-    <div  class="form-line"> <div class="note"><span style="width:100%;font-size: 12px;">(<font color="#FF0000">※</font> 商品のサイズ/カラーなど。メンズ/レディース)</span></div></div>
-    <div  class="form-line"> <div class="note"><span style="width:100%;font-size: 12px;">(<font color="#FF0000">※</font> よりフィット感なサイズ選びのために、洋服購入時に身長と体重をお知らせください。)</span></div></div>
-</div>
-<include file="Cart:goods"/>
-</form>
- <script src="<?php echo $site_url;?>/style/assets/address.js"></script>
+  </div>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="/">トップ</a></li>
+      <li><a href="{:U('Product/list')}">商品一覧</a></li>
+      <li><a href="{:U('My/brand')}">ブランド</a></li>
+      <li><a href="{:U('My/article')}">ジャーナル</a></li>
+      <li><a href="{:U('My/faq')}">よくあるご質問</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="/">トップ</a><span>›</span>
+    <a href="{:U('Cart/index')}">カート</a><span>›</span>レジへ進む
+  </div>
+
+  <div class="steps">
+    <div class="step done"><span class="num">✓</span>カート確認</div>
+    <div class="sep"></div>
+    <div class="step active"><span class="num">2</span>お届け先・支払い</div>
+    <div class="sep"></div>
+    <div class="step"><span class="num">3</span>注文確認</div>
+    <div class="sep"></div>
+    <div class="step"><span class="num">4</span>注文完了</div>
+  </div>
+
+  <form method="post" action="{:U('Cart/done')}" id="checkoutForm" class="checkout-layout">
+
+    <!-- 左侧：地址 / 配送 / 支付 / 备注 / 商品 -->
+    <div>
+
+      <!-- ログイン状態なら Cart:login、未ログインなら Cart:unlogin -->
+      <if condition="$_COOKIE['TP_userid']">
+        <include file="Cart:login"/>
+      <else />
+        <include file="Cart:unlogin"/>
+      </if>
+
+      <!-- お届け先 -->
+      <div class="checkout-section">
+        <h3>お届け先住所
+          <a href="javascript:void(0)" onclick="toggleAddrForm()" class="btn btn-dark btn-sm" style="font-size:12px;padding:6px 14px;">+ 新しい住所</a>
+        </h3>
+        <div class="body">
+
+          <!-- 既存地址列表（ログイン時） -->
+          <if condition="$_COOKIE['TP_userid'] && !empty($addressList)">
+            <div class="addr-list">
+              <volist name="addressList" id="a">
+                <label class="addr-row <if condition='$a[isdefault] eq 1'>selected</if>" data-id="{$a.id}">
+                  <div class="check"></div>
+                  <div class="name">
+                    {$a.consignee1}
+                    <if condition="$a['isdefault'] eq 1">
+                      <span class="badge badge-blue" style="position:static;margin-left:6px;font-size:10px;">既定</span>
+                    </if>
+                    <if condition="$a['title']">
+                      <span style="font-size:11px;color:var(--ink-soft);font-weight:400;margin-left:6px;">({$a.title})</span>
+                    </if>
+                  </div>
+                  <div class="meta">
+                    <if condition="$Area[$a['province']]">{$Area[$a['province']]} </if>
+                    <if condition="$Area[$a['city']]">{$Area[$a['city']]} </if>
+                    <if condition="$Area[$a['area']]">{$Area[$a['area']]} </if>
+                    {$a.address1} {$a.address2} {$a.address3}<br>
+                    TEL：{$a.tel1|default=$a['mobile']}
+                  </div>
+                </label>
+              </volist>
+            </div>
+            <input type="hidden" name="address_id" value="{$addressList[0]['id']|intval}">
+          </if>
+
+          <!-- 詳細住所入力 -->
+          <div id="addrForm" style="<if condition="$_COOKIE['TP_userid'] && !empty($addressList)">display:none</if>">
+            <div class="field-row">
+              <div class="field">
+                <label>お名前 <span class="req">必須</span></label>
+                <input type="text" name="consignee1" value="{$address.realname}" required>
+              </div>
+              <div class="field">
+                <label>フリガナ</label>
+                <input type="text" name="consignee2" value="{$address.consignee2}">
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>郵便番号</label>
+                <input type="text" name="zip" value="{$address.zip}" placeholder="例：530-0001">
+              </div>
+              <div class="field">
+                <label>電話番号 <span class="req">必須</span></label>
+                <input type="tel" name="tel1" value="{$address.tel1|default=$address['mobile']}" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>都道府県 <span class="req">必須</span></label>
+                <select id="selProvince" name="province" required>
+                  <option value="">请选择</option>
+                  <volist name="Area" id="aname" key="aid">
+                    <option value="{$aid}" <if condition="$address['province'] eq $aid">selected</if>>{$aname}</option>
+                  </volist>
+                </select>
+              </div>
+              <div class="field">
+                <label>市区町村 <span class="req">必須</span></label>
+                <select id="selCity" name="city" required>
+                  <option value="">请选择</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>区/町</label>
+                <select id="selArea" name="area">
+                  <option value="">请选择</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label>詳細住所 <span class="req">必須</span></label>
+              <input type="text" name="address1" value="{$address.address1}" required placeholder="町名・番地・建物名など">
+            </div>
+            <div class="field">
+              <label>性別</label>
+              <select name="sex">
+                <option value="0" <if condition="$address['sex'] eq 0">selected</if>>未選択</option>
+                <option value="1" <if condition="$address['sex'] eq 1">selected</if>>男性</option>
+                <option value="2" <if condition="$address['sex'] eq 2">selected</if>>女性</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 配送方式 -->
+      <div class="checkout-section">
+        <h3>配送方式</h3>
+        <div class="body">
+          <volist name="shipping" id="s" key="k">
+            <label class="shipping-option <if condition='$k eq 1'>selected</if>" data-id="{$s.id}">
+              <div class="info">
+                <strong>{$s.name}</strong>
+                <small>{$s.description|default='3-5営業日で配送'}</small>
+              </div>
+              <span class="fee">¥{:number_format((float)$s['first_price'],0,'.',',')}</span>
+            </label>
+          </volist>
+          <input type="hidden" name="shipping_id" value="{$shipping[0]['id']|intval}">
+        </div>
+      </div>
+
+      <!-- 支払方式 -->
+      <div class="checkout-section">
+        <h3>お支払い方法</h3>
+        <div class="body">
+          <volist name="payment" id="p" key="k">
+            <label class="pay-option <if condition='$k eq 1'>selected</if>" data-id="{$p.id}">
+              <img src="__STYLE__/css/pay-{$p.pay_code|default='online'}.png"
+                   onerror="this.onerror=null;this.src='__STYLE__/css/suni_logo-041.png'" alt="">
+              <div class="info">
+                <strong>{$p.pay_name}</strong>
+                <small>{$p.pay_desc|default='注文完了後に支払画面へ移動します'}</small>
+              </div>
+            </label>
+          </volist>
+          <input type="hidden" name="pay_id" value="{$payment[0]['id']|intval}">
+        </div>
+      </div>
+
+      <!-- 配送留言 -->
+      <div class="checkout-section">
+        <h3>配送留言・備考</h3>
+        <div class="body">
+          <textarea class="note-input" name="zipcode" placeholder="希望する配送時間帯や特別なご要望があればご記入ください（300文字以内）"></textarea>
+          <p style="font-size:11.5px;color:var(--ink-soft);margin-top:8px;margin-bottom:0;">
+            ※ 商品のサイズ / カラー指定 / 身長・体重など、ショップへのご要望もご記入ください。
+          </p>
+        </div>
+      </div>
+
+      <!-- 商品一覧 -->
+      <div class="checkout-section">
+        <h3>商品一覧（<span id="cartItemCount"><?php echo count($cart);?></span>件）</h3>
+        <div class="body" style="padding:0">
+          <volist name="cart" id="it">
+            <div class="cart-item" style="background:var(--white)">
+              <img src="{$it.product_thumb|default='__STYLE__/css/suni_logo-041.png'}" alt="{$it.product_name}">
+              <div class="cart-item-meta">
+                <div class="cart-item-name">{$it.product_name}</div>
+                <div class="cart-item-opt">
+                  <if condition="!empty($it['color'])">カラー: {$it.color} </if>
+                  <if condition="!empty($it['size'])">サイズ: {$it.size}</if>
+                </div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:12px;color:var(--ink-soft);">× {$it.number|intval}</div>
+                <div class="cart-item-price">¥{:number_format((float)$it['price']*(int)$it['number'],0,'.',',')}</div>
+              </div>
+            </div>
+          </volist>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 右侧：サマリー + 送信 -->
+    <div class="cart-summary-panel">
+      <h3>注文サマリー</h3>
+      <div class="cart-summary-body">
+        <div class="sum-row"><span>商品代金</span><span>¥{:number_format((float)$amount,0,'.',',')}</span></div>
+        <div class="sum-row"><span>送料</span><span style="color:var(--blue);">¥{:number_format((float)$shipping[0]['first_price'],0,'.',',')}</span></div>
+        <if condition="$discount gt 0">
+          <div class="sum-row"><span>优惠</span><span style="color:var(--red)">-¥{:number_format((float)$discount,0,'.',',')}</span></div>
+        </if>
+        <if condition="$reward gt 0">
+          <div class="sum-row"><span>ポイント使用</span><span style="color:var(--red)">-¥{:number_format((float)$reward,0,'.',',')}</span></div>
+        </if>
+        <div class="sum-row total"><span>合計（税込）</span><span class="val">¥{:number_format((float)$total,0,'.',',')}</span></div>
+
+        <div class="cart-point-notice">
+          <svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          獲得予定 <strong>{:intval(floor($total/100))} ポイント</strong>
+        </div>
+
+        <input type="hidden" id="token" name="token" value="{$token}">
+        <input type="hidden" name="consignee2" value="">
+        <input type="hidden" name="address2" value="">
+        <input type="hidden" name="address3" value="">
+
+        <button type="submit" class="btn btn-dark btn-block" style="font-size:15px;padding:16px;">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          注文を確定する
+        </button>
+        <a href="{:U('Cart/index')}" style="display:block;text-align:center;margin-top:10px;font-size:12.5px;color:var(--ink-soft);">← カートに戻る</a>
+
+        <div style="margin-top:18px;border-top:1px solid var(--line-soft);padding-top:14px;font-size:11.5px;color:var(--ink-soft);line-height:1.7;">
+          「注文を確定する」を押すことにより、<a href="{:U('My/page', array('id'=>5))}" style="color:var(--blue);">利用規約</a> および <a href="{:U('My/page', array('id'=>6))}" style="color:var(--blue);">プライバシーポリシー</a> に同意したものとみなされます。
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:8px;font-size:12px;color:var(--ink-soft);align-items:center;">
+          <svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          SSL暗号化通信で安全に保護
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+</main>
+
 <script>
-function validate_isAddress(txt){
-	var e = txt
-	, t = e.match(/[0-9]/g)
-	, i = e.match(/[０-９]/g);
-	t || i || 2;
-	if(t || i){
-		return 1;
-	}else{
-		return 2;
-	}
-}
-window.$yubin = function (t) {};
-$(".zipcode").click(function(){
-    var zip1=$("#zip1").val();
-    var zip2=$("#zip2").val();
-    var zip=zip1+zip2;
-    if(zip1.length !=3){
-        layer.tips('郵便番号', 'input[name="zip1"]', { tips: [1, 'red'], time: 3000});
-        return false;
-    }
-    if(zip2.length !=4){
-        layer.tips('郵便番号', 'input[name="zip2"]', { tips: [1, 'red'], time: 3000});
-    }
-    if(zip1.length ==3){
-        var t=zip1;
-        var xhr = new XMLHttpRequest(); 
-        xhr.open('GET', "<?php echo $site_url;?>/style/assets/data/"+t+".js", true); 
-        xhr.onreadystatechange = function() { 
-            if (xhr.readyState === 4 && xhr.status === 200) { 
-                var  addressFunctionString = xhr.responseText;
-                var addressMap = JSON.parse(addressFunctionString.replace("$yubin(", "").replace(");", ""));
-                var addressData = addressMap[zip];
-                if(addressData === undefined){
-                    art.dialog({ lock:true,icon: 'error',time:'2',content: '郵便番号が分からない方はこちら'});
-                    layer.tips('郵便番号が分からない方はこちら', 'input[name="zip2"]', { tips: [1, 'red'], time: 3000});
-                    return false;
-                }
-                var  prefecture = PREFECTURES[addressData[0]];
-                $("#province").find("option").each(function(){
-                if($(this).text() == prefecture)    {
-                    $(this).prop("selected","selected");
-                }
-                });
-                $("#zip").val(zip);
-                $("#address1").val(addressData[1]);
-                $("#address2").val(addressData[2]);
-                if(addressData[3] != undefined){
-                $("#address3").val(addressData[3]);
-                }
-                }
-            }; 
-        xhr.send(null);
-    }
+$(function(){
+  // 切換地址選中
+  $(document).on('click', '.addr-row', function(){
+    $('.addr-row').removeClass('selected');
+    $(this).addClass('selected');
+    $('input[name=address_id]').val($(this).data('id'));
+  });
+  // 切換支付
+  $(document).on('click', '.pay-option', function(){
+    $('.pay-option').removeClass('selected');
+    $(this).addClass('selected');
+    $('input[name=pay_id]').val($(this).data('id'));
+  });
+  // 切換配送
+  $(document).on('click', '.shipping-option', function(){
+    $('.shipping-option').removeClass('selected');
+    $(this).addClass('selected');
+    $('input[name=shipping_id]').val($(this).data('id'));
+  });
+  // 新規住所フォーム
+  window.toggleAddrForm = function(){
+    var f = document.getElementById('addrForm');
+    if (f) f.style.display = (f.style.display==='none'||!f.style.display) ? 'block' : 'none';
+  };
+  // 省市区联动
+  $(document).on('change', '#selProvince', function(){
+    loadArea($(this).val(), '#selCity');
+    $('#selArea').html('<option value="">请选择</option>');
+  });
+  $(document).on('change', '#selCity', function(){
+    loadArea($(this).val(), '#selArea');
+  });
+  function loadArea(parent, target){
+    $.getJSON('{:U("Ajax/area")}', {parent:parent}, function(r){
+      var html = '<option value="">请选择</option>';
+      if (r.code===0 && r.data) {
+        r.data.forEach(function(it){ html += '<option value="'+it.id+'">'+it.name+'</option>'; });
+      }
+      $(target).html(html);
+    });
+  }
+  // 初次进页面：若已选省，加载市
+  var pVal = $('#selProvince').val();
+  var cVal = '{$address.city|intval}';
+  if (pVal) {
+    loadArea(pVal, '#selCity');
+  }
 });
 </script>
-<script>
-$(".doneorder").click(function(){
-	var mail = $('#email').val();
-	var szReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-	if (!szReg.test(mail)) {
-        layer.tips('電子メールアドレス', 'input[name="email"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="email"]').focus();
-		return false;
-	}
-	var email=$('input[name="cfemail"]').val();
-	if (mail != email) {
-         layer.tips('再度メール確認', 'input[name="cfemail"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="cfemail"]').focus();
-		return false;
-	}
-	if($('input[name="consignee1"]').val()==''){
-         layer.tips('姓を入力してください', 'input[name="consignee1"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="consignee1"]').focus();
-		return false;
-	}
-	if($('input[name="consignee2"]').val()==''){
-        layer.tips('氏名 姓を入力してください ！', 'input[name="consignee2"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="consignee2"]').focus();
-		return false;
-	}
-	if($('input[name="tel1"]').val()==''){
-        layer.tips('姓を入力してください', 'input[name="tel1"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="tel1"]').focus();
-		return false;
-	}
-	if($('input[name="tel2"]').val()==''){
-        layer.tips('氏名（フリガナ） 姓を入力してください', 'input[name="tel2"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="tel2"]').focus();
-		return false;
-	}
-	if($('input[name="mobile"]').val()==''){
-        layer.tips('お電話番号を入力してください！', 'input[name="mobile"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="mobile"]').focus();
-		return false;
-	}
-	var zip1=$("#zip1").val();
-    var zip2=$("#zip2").val();
-	var zip=zip1+zip2;
-	if(zip.length == 7){
-		$("#zip").val(zip);
-	}
-	if($('input[name="zip"]').val()==''){
-		$('input[name="zip"]').focus();
-        layer.tips('郵便番号は数字を書き込むことしかできません', 'input[name="zip1"]', { tips: [1, 'red'], time: 3000});
-		return false;
-	}
-	if($('select[name="province"]').val()<1){
-        layer.tips('選択してください', 'select[name="province"]', { tips: [1, 'red'], time: 3000});
-		$('select[name="province"]').focus();
-		return false;
-	}
-	if($('input[name="address1"]').val()==''){
-        layer.tips('荷受人の詳しい住所を書き込んで下さい！', 'input[name="address1"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="address1"]').focus();
-		return false;
-	}
-	if(validate_isAddress($("#address2").val())==2){
-        layer.tips('丁番地を数字で入力してください', 'input[name="address2"]', { tips: [1, 'red'], time: 3000});
-		$('input[name="address2"]').focus();
-		return false;
-	}
-	$('#myform').submit();
-});
-$(".submitorder").click(function(){
-    $('#myform').submit();
-});
-
-</script>
-
-
-</div>
-
+<include file="Home:footer"/>
 </body>
 </html>

@@ -87,6 +87,17 @@ class CartAction extends BaseAction{
 		$payment = M('Payment')->field('id,pay_code,pay_name,pay_fee,pay_fee_type,pay_desc,is_cod,is_online')->where("status=1")->select();
 		$address = M('User')->where("id='{$this->_userid}'")->find();
 		$this->assign('address',$address);
+		// Apple 风格 - 已登录会员的可选地址列表
+		$addressList = array();
+		if ($this->_userid) {
+			$addressList = M('UserAddress')->where('userid='.(int)$this->_userid)
+				->order('isdefault DESC, id DESC')->select();
+		}
+		$this->assign('addressList', $addressList);
+		// Apple 风格 - 购物车数量（用于顶导小徽章）
+		$cartCount = 0;
+		foreach ((array)$cart as $ci) $cartCount += (int)$ci['number'];
+		$this->assign('cartCount', $cartCount);
 		$this->assign('payment',$payment);
 		$this->assign('Area',$Area);
 		$this->assign('shipping',$shipping);
