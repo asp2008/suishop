@@ -1,0 +1,20 @@
+feat(checkout): Cart/checkout 改用与 Cart_index 一致的骨架
+
+整体结构完全沿用 Cart_index:
+- 顶部 4 步进度条 (step 1 done, step 2 active)
+- cart-layout (left 1fr / right 320px)
+- 左侧使用 cart-items-panel 多区块 (地址 / 配送 / 支付 / 留言 / 商品)
+- 右侧 cart-summary-panel (商品代金 / 送料 / 优惠 / ポイント / 合計)
+- 底部 SSL + 30日返品保証
+
+地址区块根据登录态分两种渲染:
+- 已登录: 从 addressList 渲染可点选地址 (addr-row + 既定 badge),
+  右上角加新地址按钮 折畳新地址表单
+- 未登录: 直接在 cart-items-panel 中展示 guest 填写表单,
+  保留 zip1-zip2 双栏 + 住所自动入力 按钮 + 性别 radio,
+  顶部链接 ログインはこちら -> Account/login
+
+Action 增强 (Home/CartAction.class.php):
+- checkout() 多 assign $user (给已登录新地址表单预填)
+
+字段名保持与 Cart/done 完全一致 (确保旧业务逻辑不被破坏)

@@ -101,6 +101,12 @@ class CartAction extends BaseAction{
 		$this->assign('payment',$payment);
 		$this->assign('Area',$Area);
 		$this->assign('shipping',$shipping);
+		// Apple 风格 - 会员默认值（给“新しい住所”折畳表单预填）
+		$userRow = array();
+		if ($this->_userid) {
+			$userRow = M('User')->find((int)$this->_userid);
+		}
+		$this->assign('user', $userRow);
 		if($_REQUEST['do']){
 			$this->assign('buy',2);
 		}
