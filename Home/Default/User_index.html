@@ -1,0 +1,260 @@
+﻿<include file="Home:header"/>
+<main class="container">
+
+  <div class="breadcrumb"><a href="index.html">トップ</a><span>&rsaquo;</span>マイページ</div>
+  <h1 style="font-size:26px;margin-bottom:20px;">マイページ</h1>
+
+  <div class="mypage-layout">
+
+   <include file="User:aside"/>
+
+    <section class="mypage-main">
+
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="num"><em style="color:var(--blue)">2,480</em></div>
+          <div class="label">保有ポイント</div>
+        </div>
+        <div class="summary-card">
+          <div class="num">12</div>
+          <div class="label">注文件数（累計）</div>
+        </div>
+        <div class="summary-card">
+          <div class="num">7</div>
+          <div class="label">お気に入り商品</div>
+        </div>
+      </div>
+
+      <div class="mypage-panel">
+        <h3>最近の注文 <a href="orders.html" class="link">すべて見る</a></h3>
+        <div class="order-row">
+          <img src="https://picsum.photos/seed/kura1/120/120" alt="有田焼 染付 小鉢セット">
+          <div class="meta">
+            <div class="date">2026年6月18日注文 ／ 注文番号 KI20260618-003</div>
+            <div class="name">有田焼 染付 小鉢セット（5枚組）</div>
+          </div>
+          <span class="status-pill">配送完了</span>
+        </div>
+        <div class="order-row">
+          <img src="https://picsum.photos/seed/kura2/120/120" alt="純米吟醸酒「月読」">
+          <div class="meta">
+            <div class="date">2026年6月10日注文 ／ 注文番号 KI20260610-011</div>
+            <div class="name">純米吟醸酒「月読」720ml ギフト箱入り</div>
+          </div>
+          <span class="status-pill shipping">配送中</span>
+        </div>
+        <div class="order-row">
+          <img src="https://picsum.photos/seed/kura4/120/120" alt="南部鉄器 急須">
+          <div class="meta">
+            <div class="date">2026年5月29日注文 ／ 注文番号 KI20260529-007</div>
+            <div class="name">南部鉄器 急須 0.6L アラレ模様</div>
+          </div>
+          <span class="status-pill">配送完了</span>
+        </div>
+      </div>
+
+      <div class="mypage-panel">
+        <h3>お届け先住所 <a href="addresses.html" class="link">新しい住所を追加</a></h3>
+        <div class="addr-card">
+          <span class="tag" style="background:var(--blue);color:#fff;border-radius:980px;font-size:11px;padding:2px 9px;">既定の住所</span>
+          <div class="name">山田 花子</div>
+          〒530-0001　大阪府大阪市北区梅田1-1-1　蔵市マンション101<br>
+          TEL：090-1234-5678
+        </div>
+        <div class="addr-card">
+          <div class="name">山田 花子（実家）</div>
+          〒060-0001　北海道札幌市中央区北1条西2-3-4<br>
+          TEL：011-123-4567
+        </div>
+      </div>
+
+      <div class="mypage-panel">
+        <h3>注文に関するお問い合わせ <span style="font-size:12px;color:var(--ink-soft);font-weight:400;font-family:var(--font-body);">返品・配送・キャンセルなどご相談ください</span></h3>
+
+        <!-- step 1: select order -->
+        <div class="inquiry-form-wrap" id="inquiryStep1">
+          <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px;">お問い合わせに関連する注文を選んでください</p>
+          <div class="inquiry-select-order selected" data-order="1">
+            <img src="https://picsum.photos/seed/kura1/120/120" alt="">
+            <div class="meta">
+              <strong>有田焼 染付 小鉢セット（5枚組）</strong>
+              2026年6月18日　注文番号 KI20260618-003
+            </div>
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
+          </div>
+          <div class="inquiry-select-order" data-order="2" style="margin-top:10px;">
+            <img src="https://picsum.photos/seed/kura2/120/120" alt="">
+            <div class="meta">
+              <strong>純米吟醸酒「月読」720ml</strong>
+              2026年6月10日　注文番号 KI20260610-011
+            </div>
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+
+          <p style="font-size:13px;color:var(--ink-soft);margin:20px 0 12px;">お問い合わせの種類を選んでください</p>
+          <div class="inquiry-type-grid">
+            <button class="inquiry-type-btn selected" data-type="return">
+              <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.5 15A9 9 0 1 0 5.64 5.64L1 10"/></svg>
+              返品・交換
+            </button>
+            <button class="inquiry-type-btn" data-type="delivery">
+              <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              配送・お届け
+            </button>
+            <button class="inquiry-type-btn" data-type="cancel">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              キャンセル
+            </button>
+            <button class="inquiry-type-btn" data-type="other">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              その他
+            </button>
+          </div>
+
+          <button class="btn btn-indigo btn-block" id="startChat" style="margin-top:18px;background:var(--bg-dark);border-color:var(--blue);color:#fff;">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            チャットでお問い合わせを開始する
+          </button>
+        </div>
+
+        <!-- step 2: chat UI (hidden initially) -->
+        <div id="inquiryStep2" style="display:none;">
+          <div class="chat-box">
+            <div class="chat-head">
+              <svg viewBox="0 0 24 24" stroke="#EFE7D2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              蔵市 カスタマーサポート
+            </div>
+            <div class="chat-status-bar">
+              <span class="status-dot"></span> オペレーターが対応中です（平均応答時間：3分）
+            </div>
+            <div class="chat-messages" id="chatMessages">
+              <!-- support message -->
+              <div class="chat-msg">
+                <div class="chat-avatar">蔵</div>
+                <div>
+                  <div class="chat-bubble">山田様、こんにちは。蔵市カスタマーサポートです。<br>「有田焼 染付 小鉢セット」の<strong>返品・交換</strong>についてのお問い合わせですね。詳しい状況をお聞かせいただけますか？</div>
+                  <div class="chat-time">14:02</div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-input-row">
+              <textarea id="chatInput" placeholder="メッセージを入力してください…" rows="2"></textarea>
+              <button type="button" id="chatSend" aria-label="送信">
+                <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+          <p style="font-size:11.5px;color:var(--ink-soft);padding:0 22px 16px;text-align:center;">
+            受付時間：月〜土 9:00〜18:00（祝日除く）　担当者が確認後に返信いたします
+          </p>
+          <div style="padding:0 22px 18px;">
+            <button class="btn btn-outline btn-sm" id="backToForm">
+              <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+              お問い合わせ内容を変更する
+            </button>
+          </div>
+        </div>
+
+      </div>
+        <div class="accordion-item">
+          <button class="accordion-head">注文後のキャンセルはできますか？</button>
+          <div class="accordion-body">発送準備前であればキャンセル可能です。注文履歴ページの「キャンセル申請」よりお手続きください。</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">ポイントの有効期限はありますか？</button>
+          <div class="accordion-body">付与日より1年間有効です。期限が近いポイントはポイント履歴ページでご確認いただけます。</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">会員ランクはどのように決まりますか？</button>
+          <div class="accordion-body">直近1年間のお買い物累計金額に応じて、レギュラー／シルバー／ゴールド／プラチナの4段階でランクが決定します。</div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+<script src="{$site_url}__STYLE__/js/jquery-3.7.1.min.js" charset="UTF-8"></script>
+<script src="{$site_url}__STYLE__/js/dialog.js"></script>
+<script src="{$site_url}__STYLE__/js/main.js"></script>
+<script>
+/* ---- Inquiry chat ---- */
+(function(){
+
+  // order selection toggle
+  $(".inquiry-select-order").on("click", function(){
+    $(".inquiry-select-order").removeClass("selected");
+    $(this).addClass("selected");
+    // update check icon
+    $(".inquiry-select-order svg").each(function(){ $(this).html('<circle cx="12" cy="12" r="10"/>'); });
+    $(this).find("svg").html('<circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/>');
+  });
+
+  // inquiry type toggle
+  $(".inquiry-type-btn").on("click", function(){
+    $(".inquiry-type-btn").removeClass("selected");
+    $(this).addClass("selected");
+  });
+
+  // start chat
+  $("#startChat").on("click", function(){
+    var order = $(".inquiry-select-order.selected").find(".meta strong").text();
+    var type  = $(".inquiry-type-btn.selected").text().trim();
+    if(!order){ alert("注文を選んでください"); return; }
+    // update opener message
+    var msg = "「" + order + "」の<strong>" + type + "</strong>についてのお問い合わせですね。詳しい状況をお聞かせいただけますか？";
+    $(".chat-bubble").first().html("山田様、こんにちは。蔵市カスタマーサポートです。<br>" + msg);
+    $("#inquiryStep1").slideUp(200, function(){
+      $("#inquiryStep2").slideDown(200);
+    });
+  });
+
+  // back button
+  $("#backToForm").on("click", function(){
+    $("#inquiryStep2").slideUp(180, function(){
+      $("#inquiryStep1").slideDown(180);
+    });
+  });
+
+  // send message
+  function sendMsg(){
+    var text = $.trim($("#chatInput").val());
+    if(!text) return;
+    var now = new Date();
+    var time = now.getHours() + ":" + String(now.getMinutes()).padStart(2,"0");
+    var $msg = $('<div class="chat-msg me">'+
+      '<div class="chat-avatar me"><svg viewBox="0 0 24 24" width="16" height="16" stroke="#888" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>'+
+      '<div><div class="chat-bubble"></div><div class="chat-time">'+time+'</div></div>'+
+      '</div>');
+    $msg.find(".chat-bubble").text(text);
+    $("#chatMessages").append($msg);
+    $("#chatInput").val("");
+    var $cm = $("#chatMessages");
+    $cm.scrollTop($cm[0].scrollHeight);
+
+    // auto-reply after 1.5s
+    setTimeout(function(){
+      var replies = [
+        "ご連絡ありがとうございます。内容を確認し、担当者よりご案内いたします。",
+        "詳細をお伺いしました。対応方法について折り返しご連絡いたします。",
+        "お手数をおかけいたします。営業時間内に担当者よりご連絡いたします。"
+      ];
+      var r = replies[Math.floor(Math.random() * replies.length)];
+      var t2 = new Date();
+      var time2 = t2.getHours() + ":" + String(t2.getMinutes()).padStart(2,"0");
+      var $reply = $('<div class="chat-msg">'+
+        '<div class="chat-avatar">蔵</div>'+
+        '<div><div class="chat-bubble">'+r+'</div><div class="chat-time">'+time2+'</div></div>'+
+        '</div>');
+      $("#chatMessages").append($reply);
+      $cm.scrollTop($cm[0].scrollHeight);
+    }, 1500);
+  }
+
+  $("#chatSend").on("click", sendMsg);
+  $("#chatInput").on("keydown", function(e){
+    if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMsg(); }
+  });
+
+})();
+</script>
+<include file="Home:footer"/>

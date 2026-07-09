@@ -1,0 +1,681 @@
+<nav id="breadCrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ul class="clearfix">
+        <li><font itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/"  itemprop="item"><span itemprop="name">{$site_name}</span></a> <meta itemprop="position" content="1" /></font> >{$catname}</li>
+    </ul>
+</nav>
+{if $bbg}
+<style>
+    .xmasMenu {
+        width: 100%;
+        background-color:{$tbg};
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .lp-layout {
+        position: relative;
+        background-color: {$bbg};
+        padding-bottom: 10px;
+    }
+
+    .xmas__section {
+        padding: 0 5px;
+    }
+
+    .xmasMenu__list {
+        max-width: 100%;
+        height: 56px;
+        margin: 0 auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+    }
+
+    .xmasMenu__list>li {
+        text-align: center;
+        line-height: 56px;
+        padding: 0 auto;
+    }
+
+    .xmasMenu__list>li>a {
+        display: block;
+        height: 100%;
+        font-size: 14px;
+        font-weight: bold;
+        color: #eeebde;
+        background-color:{$tbg};
+        -webkit-transition: 0.1s ease-out;
+        transition: 0.1s ease-out;
+    }
+
+    .xmas__heading {
+        color: {$mbg};
+        font-size: 20px;
+        font-weight: bold;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 32px 0;
+    }
+
+    .xmas__heading::before {
+        content: "";
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        height: 2px;
+        background: {$mbg};
+        display: block;
+        margin-right: .4em;
+    }
+
+    .xmas__heading::after {
+        content: "";
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        height: 2px;
+        background: {$mbg};
+        display: block;
+        margin-left: .4em;
+    }
+
+    .xmas__title {
+        padding-bottom: 24px;
+        text-align: center;
+    }
+
+    .xmas__subheading {
+        color: {$mbg};
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        line-height: 1.625;
+        padding: 0;
+        background: -webkit-linear-gradient(transparent 70%, #dbd8c2 70%);
+        background: linear-gradient(transparent 70%, #dbd8c2 70%);
+        display: inline-block;
+    }
+
+    .xmasCardList {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .xmasCardList .xmasCardList__item {
+        width: 24%;
+        margin-bottom: 15px;
+    }
+
+    .xmasCard>a {
+        display: block;
+        border-radius: 0.4rem;
+        color:#000;
+        opacity: 1;
+        -webkit-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+        background-color: #fff;
+    }
+
+    .minne-lazyload.lazyloaded {
+        opacity: 1;
+        height: 167px;
+    }
+
+
+    .xmasCardProduct__media>div {
+        border-radius: 0.4rem 0.4rem 0 0;
+    }
+
+    .minne-lazyload {
+        display: block;
+        height: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0;
+        -webkit-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+    }
+
+    .minne-lazyload img {
+        width: 100%;
+    }
+
+    .xmasIntroduction {
+        color: #1b4d39;
+        padding: 20px 15px 0;
+    }
+
+    .xmasCardProduct__body {
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    .xmasCardProduct__name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .xmasCardProduct__price {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 0.4rem;
+        font-size: 12px;
+    }
+
+    .xmas__action {
+        margin: 15px auto;
+    }
+
+    .xmas__action a {
+        border-radius: 0;
+    }
+
+    .lp-button {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        color: #eeebde !important;
+        background-color:{$mbg};
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 24px;
+        opacity: 1;
+        -webkit-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+    }
+
+    #item02 img {
+        max-width: 100%;
+    }
+    .dualprice{color: #e62b4f; font-weight: bold;}
+</style>
+{else}
+<style>
+    .xmasMenu {
+        width: 100%;
+        background-color: #93805a;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .lp-layout {
+        position: relative;
+        background-color: #eeebde;
+        padding-bottom: 10px;
+    }
+
+    .xmas__section {
+        padding: 0 5px;
+    }
+
+    .xmasMenu__list {
+        max-width: 100%;
+        height: 56px;
+        margin: 0 auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+    }
+
+    .xmasMenu__list>li {
+        text-align: center;
+        line-height: 56px;
+        padding: 0 auto;
+    }
+
+    .xmasMenu__list>li>a {
+        display: block;
+        height: 100%;
+        font-size: 14px;
+        font-weight: bold;
+        color: #eeebde;
+        background-color: #93805a;
+        -webkit-transition: 0.1s ease-out;
+        transition: 0.1s ease-out;
+    }
+
+    .xmas__heading {
+        color: #1b4d39;
+        font-size: 20px;
+        font-weight: bold;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 32px 0;
+    }
+
+    .xmas__heading::before {
+        content: "";
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        height: 2px;
+        background: #1b4d39;
+        display: block;
+        margin-right: .4em;
+    }
+
+    .xmas__heading::after {
+        content: "";
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        height: 2px;
+        background: #1b4d39;
+        display: block;
+        margin-left: .4em;
+    }
+
+    .xmas__title {
+        padding-bottom: 24px;
+        text-align: center;
+    }
+
+    .xmas__subheading {
+        color: #1b4d39;
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        line-height: 1.625;
+        padding: 0;
+        background: -webkit-linear-gradient(transparent 70%, #dbd8c2 70%);
+        background: linear-gradient(transparent 70%, #dbd8c2 70%);
+        display: inline-block;
+    }
+
+    .xmasCardList {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .xmasCardList .xmasCardList__item {
+        width: 24%;
+        margin-bottom: 15px;
+    }
+
+    .xmasCard>a {
+        display: block;
+        border-radius: 0.4rem;
+        color: #1b4d39;
+        opacity: 1;
+        -webkit-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+        background-color: #fff;
+    }
+
+    .minne-lazyload.lazyloaded {
+        opacity: 1;
+        height: 167px;
+    }
+
+
+    .xmasCardProduct__media>div {
+        border-radius: 0.4rem 0.4rem 0 0;
+    }
+
+    .minne-lazyload {
+        display: block;
+        height: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0;
+        -webkit-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+    }
+
+    .minne-lazyload img {
+        width: 100%;
+    }
+
+    .xmasIntroduction {
+        color: #1b4d39;
+        padding: 20px 15px 0;
+    }
+
+    .xmasCardProduct__body {
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    .xmasCardProduct__name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .xmasCardProduct__price {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 0.4rem;
+        font-size: 12px;
+    }
+
+    .xmas__action {
+        margin: 15px auto;
+    }
+
+    .xmas__action a {
+        border-radius: 0;
+    }
+
+    .lp-button {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        color: #eeebde !important;
+        background-color: #1b4d39;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 24px;
+        opacity: 1;
+        -webkit-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+    }
+
+    #item02 img {
+        max-width: 100%;
+    }
+    .dualprice{color: #e62b4f;font-weight: bold;}
+</style>
+
+{/if}
+
+<div class="nar-wrapper">
+<?php 
+    $protypes=F('Protype');
+	$parr=get_arrparentid($_GET['protype'],$protypes);
+	$parr=explode(',', $parr);
+	$parr[]=$_GET['protype'];
+ ?>
+<div id="content" class="twoColumun">
+    <div class="sectionHeader clearfix">
+        <h1>{$catname}</h1>
+    </div>
+       <div class="clearfix">
+
+    
+            <div class="contactny1">
+                {if $thumb}
+                <img src="{$thumb}" style="max-width:100%;" alt="{$catname}">
+                {/if}
+                <?php $tarr=explode("\r",$ptitle);?>
+                <?php $parr=explode("\r",$product);?>
+                <?php $uarr=explode("\r",$purl);?>
+                <?php $sarr=explode("\r",$stitle);?>
+                <?php $darr=explode("\r",$sdes);?>
+                <?php $mgt=explode("\r",$mgtxt);?>
+                <div class="lp-layout">
+                    <div class="xmas__menu">
+                        <div class="xmasMenu">
+                            <ul class="xmasMenu__list">
+                                <?php if(!empty($tarr)){
+                                    foreach($tarr as $v=>$k){
+                                    ?>
+                                <li>
+                                    <a href="#copy<?php echo $v;?>"><?php echo $k;?></a>
+                                </li>
+                                <?php }
+                             } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <section class="xmasIntroduction">
+                        <p class="xmasIntroduction__description">
+                            {$content}
+                            
+                        </p>
+                    </section>
+    
+    
+                    {if $videos}
+                    <style>
+                .video-list-box {
+                   padding: 0 5px
+                }
+               .video-list .card-box {
+                   display: -webkit-box;
+                   display: -ms-flexbox;
+                   display: flex;
+                   -ms-flex-wrap: wrap;
+                   flex-wrap: wrap;
+               }
+               .video-list .card-box .v-card {
+                   width:25%;
+                   padding: 10px;
+                   display: inline-block;
+               }
+               .v-card .card {
+                   position: relative;
+                   background-color: #f3f3f3;
+                   background-size: 36%;
+                   background-repeat: no-repeat;
+                   background-position: 50%;
+                   border-radius: 0.53333vw;
+                   overflow: hidden;
+               }
+               .v-card .card .pic {
+                   position: absolute;
+                   top: 0;
+                   left: 0;
+                   width: 100%;
+                   height: 100%;
+                   border-radius: 3px;
+               }
+               .m-bfs-pic {
+                   -o-object-fit: cover;
+                   object-fit: cover;
+               }
+               .v-card .card:before {
+                   display: block;
+                   width: 100%;
+                   padding-bottom: 56.25%;
+                   content: "";
+               }
+               .v-card .card .count {
+                   position: absolute;
+                   bottom: 0;
+                   left: 0;
+                   width: 100%;
+                   font-size: 3.2vw;
+                   padding: 1.33333vw 1.6vw;
+                   display: -webkit-box;
+                   display: -ms-flexbox;
+                   display: flex;
+                   -webkit-box-pack: justify;
+                   -ms-flex-pack: justify;
+                   justify-content: space-between;
+                   color: #fff;
+                   background: -webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,.85)),to(transparent));
+                   background: linear-gradient(0deg,rgba(0,0,0,.85),transparent);
+               }
+               .v-card .card .count span {
+                   display: -webkit-box;
+                   display: -ms-flexbox;
+                   display: flex;
+                   -webkit-box-align: center;
+                   -ms-flex-align: center;
+                   align-items: center;
+               }
+               .v-card .card .count .iconfont {
+                margin-right: 1.33333vw;
+                }
+               .v-card .title {
+                   font-size:12px;
+                   color: #212121;
+                   margin-top:10px;
+                   overflow: hidden;
+                   text-overflow: ellipsis;
+                   display: -webkit-box;
+                   -webkit-line-clamp: 2;
+                   -webkit-box-orient: vertical;
+               }
+               .quick-player-btn {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 25px;
+                height: 25px;
+                background-size: cover;
+                background-image: url(__STYLE__/wap/style/player.svg);
+                z-index: 1;
+            }
+            </style>
+            <?php  $videolist=M('Video')->where('status = 1 and id in ('.$videos.')')->field('id,title,url,thumb')->order('field("id","'.$videos.'")')->select(); ?>
+            <div class="video-list-box">
+                <div class="video-list">
+                  <div class="card-box">
+                   <volist name="videolist" id="vo" key="k">   
+                    <div class="v-card">
+                   
+                      <div class="card">
+                        <picture>
+                          <img src="{$vo.thumb}" alt="{$vo.title}" onload="" class="m-bfs-pic pic">
+                          <a href="{$vo.url}" class="quick-player-btn"></a>
+                        </picture>
+                      </div>
+                      <?php if($vo['product_id']){
+                       $url=MD('Product','id='.$vo[product_id],'url');
+                       }else{
+                           $url=$vo['url'];
+                       }
+                       ?>
+               <p class="title"><a href="{$url}">{$vo.title}</a></p>
+                   </div>
+                   </volist>
+               </div>
+                </div>
+              </div>
+              <div class="xmas__action" style="margin: 0 5px;">
+                <a class="lp-button" href="/videos.html">実物動画一覧</a>
+            </div>
+            
+                   {/if}
+            
+    
+    
+                    <?php if(!empty($tarr)){
+                        foreach($tarr as $v=>$k){
+                        ?>
+    
+                    <section class="xmas__section" id="copy<?php echo $v;?>">
+                        <h2 class="xmas__heading">
+                            <?php echo $k;?>
+                        </h2>
+                        <div class="xmas__title">
+                            <h3 class="xmas__subheading">
+                                <?php echo $sarr[$v];?>
+                            </h3>
+                            <p class="xmas__description">
+                                <?php echo $darr[$v];?>
+                            </p>
+                        </div>
+                        <ul class="xmasCardList">
+                            <?php  $plist=$parr[$v];if($plist){
+                                $prolist=M('Product')->where('status = 1 and id in ('.$plist.')')->field('id,title,pro_price,url,thumb,sales')->order('FIELD(id,'.$plist.')')->select(); 
+                                ?>
+                                <volist name="prolist" id="r" key="i" mod="3">
+                            <li class="xmasCardList__item"  data-id="{$r.id}">
+                                <div class="xmasCard">
+                                    <a class="js-click-tracking"href="{$site_url}{$r.url}">
+                                        <div class="xmasCardProduct__media">
+                                            <div class="minne-lazyload minne-lazyload--square lazyloaded">
+                                                <img src="{$site_url}{$r.thumb}" alt="{$r.title}">
+                                            </div>
+                                        </div>
+                                        <div class="xmasCardProduct__body">
+                                            <div class="xmasCardProduct__name">
+                                                {$r.title}
+                                            </div>
+                                            <div class="xmasCardProduct__price">
+                                                <?php echo number_format($r['pro_price']);?>円 <?php if($r['sales']){?><span class="dualprice">(<?php echo (100-round(($r['pro_price']/$r['sales'])*100));?>%OFF)</span><?php }?>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </volist>
+    
+                            <?php }?>
+                        </ul>
+                        <?php if($uarr[$v]){?>
+                        <div class="xmas__action">
+                            <a class="lp-button" href="<?php echo $uarr[$v];?>"><?php echo $mgt[$v]?$mgt[$v]:$k;?></a>
+                        </div>
+                        <?php }?>
+                    </section>
+                    <?php }
+                } ?>
+
+        
+                <section class="xmasIntroduction">
+                    <p class="xmasIntroduction__description">
+                        {$descs}
+                        
+                    </p>
+                </section>
+
+    
+                </div>
+            </div>
+            </div>
+
+</div>
+<include file="Home:slidebar" />
+</div>

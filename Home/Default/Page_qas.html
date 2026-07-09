@@ -1,0 +1,471 @@
+<link rel="stylesheet" href="__STYLE__/style/search_result.css?v=332">
+
+<style>
+    .unlock1 {
+        float: right;
+        cursor: pointer;
+        z-index: 555;
+        padding: 7px 0 6px 0;
+    }
+
+    #pages a,
+    #pages span {
+        line-height: 22px;
+    }
+    .imglist { padding-top: 10px;}
+.imglist a {
+    margin-right: 5px;
+    display: inline!important;
+}
+.imglist  img {
+    max-height: 80px;
+    min-width: 75px;
+    border-radius: 5px;
+    float: left;
+    max-width: 75px; margin-bottom: 5px; margin-right: 5px;}
+    .category_txt{
+        padding: 5px;
+        background-color: #f2f2f2;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .searchFilter__navItem {
+        display: inline-block;
+        font-size: 12px;
+        line-height: 1.25;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    .searchFilter__navList a.curr{ color: #e73656;}
+
+    .qqq{width: 100%; margin:20px auto 20px auto;}
+    .qqq input{width: 100%; margin: 0 auto;}
+    .qqq  .inpems{height: 40px; line-height: 40px; padding: 5px 0; border-radius: 5px; background: none; border: 1px solid #ddd; margin-bottom: 20px;    text-indent: 10px;}
+    .qqq  .submitBtnSS{line-height: 40px; padding: 5px; border-radius: 5px; background: #000; border: 1px solid #000; margin-bottom: 20px; color: #fff;}
+    .qqq  .card_message{ width: 100%; height:75px; line-height:25px; text-indent: 0;}
+
+    .answer-right {
+        width: 100%;
+    }
+
+    .answer-right .respond-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .answer-right .respondent-nickname {
+        font-size: 14px;
+        line-height: 20px;
+        color: rgb(255, 111, 34);
+        margin-bottom: 4px;
+        vertical-align: middle;
+    }
+
+    .answer-right .respond-time {
+        font-size: 12px;
+        line-height: 18px;
+        color: rgb(119, 123, 126);
+    }
+
+    .answer-right .respond-content {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 12px;
+    }
+
+    .markdown-body p {
+        font-size: 14px;
+        line-height: 26px;
+        text-indent: 0px !important;
+    }
+
+    .markdown-body section {
+        padding: 5px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: rgb(246, 248, 250);
+        border-radius: 3px;
+    }
+    .msg{ margin-top: 20px;}
+    @media only screen and (max-width: 750px) {
+      .msg{ margin: 5px;}
+      .qqq{width:calc(100% - 10px); margin: 5px;}
+    }
+
+    .pp1 .com {
+            background-color: #4fabc0;
+            padding: 5px 8px;
+            display: inline-block;
+            border-radius: 4px;
+            margin: 0px 0 10px 10px;
+            position: relative;
+            top: -8px;
+            font-size: 12px;
+            color: #fff;
+            width:calc(100% - 28px);
+
+        }
+
+        .pp1 p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .lis {
+            width: 100%;
+            clear: both;
+        }
+
+        .pp1 .lis.qs .com {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        .pp1 .lis.qs .com::after {
+            content: '';
+            border: 8px solid #ffffff00;
+            border-right: 8px solid #f0f0f0;
+            position: absolute;
+            top: 10px;
+            left: -16px;
+        }
+
+        .pp1 .com::after {
+            content: '';
+            border: 8px solid #ffffff00;
+            border-bottom: 8px solid #4fabc0;
+            position: absolute;
+            top: -15px;
+            left: 10px;
+        }
+        p.on{ height: auto!important;}
+        h2{border-color:#000!important;}
+h3{background-color:#4F4F4F!important;}
+h2{font-size:17px;font-weight:bold;border-left:solid #ddd 8px;padding:3px 8px;margin:0 0 15px;}
+h3{font-size:15px;font-weight:bold;background:#000;color:#fff;text-align:center;padding:7px;letter-spacing:.5px;}
+.float50{ width: 100%;}
+.float50 ul{ margin-bottom: 10px;}
+.last{margin-right:0;}
+.toggle{display:block;cursor:pointer;position:relative;padding:10px 32px;background:#eee;border-radius:2px;margin-top:8px;font-size:14px;}
+.toggle:before{font-family:"century gothic";font-weight:bold;content:'Q.';font-size:16px;position:absolute;top:8px;left:8px;}
+.toggle:after{position:absolute;top:50%;right:8px;margin-top:-9px;content:url(__STYLE__/images/arrow.svg);-moz-transition:all, 0.25s, linear;-o-transition:all, 0.25s, linear;-webkit-transition:all, 0.25s, linear;transition:all, 0.25s, linear;}
+.toggle.active:after{margin-top:-15px;-moz-transform:translate(0, 50%);-ms-transform:translate(0, 50%);-webkit-transform:translate(0, 50%);transform:translate(0, 50%);-moz-transform:rotate(-180deg);-ms-transform:rotate(-180deg);-webkit-transform:rotate(-180deg);transform:rotate(-180deg);}
+.child{display:none;padding:2px 0 20px;}
+.child p{margin-top:8px;margin-right:8px;margin-left:30px;}
+.red{color:#E60012;}
+.bold{font-weight:bold;}
+.child p.answer{font-size:14px;color:#E60012;position:relative;}
+.child p.answer:before{font-family:"century gothic";font-weight:bold;content:'A.';position:absolute;font-size:16px;top:-2px;left:-21px;}
+.child p.red{color:#E60012;position:relative;}
+.child p.paragraph{margin-top:15px;padding-top:15px;border-top:1px solid #ccc;}
+.child p a{color:blue;text-decoration:underline;}
+</style>
+<include file="Home:mcatpos" />
+<div id="body" class="twoColumun clearfix ">
+    <div id="nov">
+        <?php $protype=F('Protype'); ?>
+    </div>
+    <?php 
+                $parr=get_arrparentid($_GET['protype'],$protype);
+                $parr=explode(',', $parr);
+                $parr[]=$_GET['protype'];
+
+                if(isset($_COOKIE['safe'])){
+                    $safe=$_COOKIE['safe'];
+                }else{
+                    $safe=1;
+                }
+            
+                if(isset($_COOKIE['sn_id'])){
+                    $sn_id=$_COOKIE['sn_id'];
+                }else{
+                    $sn_id=1;
+                }
+                if(isset($_COOKIE['sn_id']) && isset($_COOKIE['safe'])){
+                    $msg=get_order_msgs($_COOKIE['sn_id']);
+                }else{
+                    $msg=array();
+                }
+                if(isset($_COOKIE['uemail']) && isset($_COOKIE['uemail'])){
+                  $faq=get_pro_faq($_COOKIE['uemail']);
+                }else{
+                  $faq=array();
+                }
+             ?>
+    <div id="content">
+  
+        <div class="commlist">
+            <h3 style="font-weight: bold; border-bottom: 2px solid #000;padding: 10px 0; background: #fff!important; color: #000!important;">お問い合わせ</h3>
+
+            <form method="post" id="stepsuserinfo" name="f1"  action="respond.php">
+                {if $safe==1}
+      
+                <div class="qqq">
+                  <div style="line-height: 23px; margin-bottom: 10px; font-size: 14px;">{$content}</div>
+                    <div class="clear"></div>
+                  <input type="text" class="inpems" name="sn" placeholder="入力 注文番号またはメールまたは電話番号">
+                  <div style="width: 100%; clear: both;">
+                  <input type="text" class="inpems" id="safe" name="safe" style="width:120px;" placeholder="検証コード">
+                  <img src="{:U('Home/Index/verify')}" onclick="javascript:resetVerifyCode();" class="checkcode commcaptch" align="absmiddle" style="position: relative;margin-left: 10px;  height: 52px;border-radius: 5px;top: -20px;"  title="{:L('resetVerifyCode')}" id="verifyImage"/>
+                  </div>
+                  <input  type="button" name="ok" value="確認する" class="submitBtnSS"></div>
+                  <script>
+                      $('.submitBtnSS').click(function(){
+                      var sn=$(".inpems").val();
+                      var safe=$("#safe").val();
+                      var arr=$("#stepsuserinfo").serialize();
+                      if (sn.length < 1) {
+                        layer.tips('入力 注文番号', $('input[name="sn"]'), { tips: 1 });
+                        return false;
+                      }
+                      if (safe.length < 1) {
+                        layer.tips('入力 検証コード', $('input[name="sn"]'), { tips: 1 });
+                        return false;
+                      }
+                      $.ajax({
+                          url:"/index.php?g=home&m=ajax&a=respond",
+                          data:arr,
+                          type:"post",
+                          success: function(res){
+                            if(res==1){
+                              layer.msg('検証コード');
+                            }else{
+                              window.location.reload();
+                            }
+                          }
+                        })
+                    });
+                  </script>
+                  {else}
+                  <div class="msg">
+   
+                    <div id="faq">
+                        {if $faq}
+                      <div class="float50">
+                        <h3>ご注文前のご質問</h3>
+                        <ul class="accordion switch">
+                        
+                          <volist name="faq" id="r" key="i">
+                          <li><a class="toggle">{$r.title} {$r.post_time}</a>
+                            {if $r['feedback'] != "未回复" && $r['feedback'] != " " }
+                            <div class="child" style="display: none;">
+                              <p class="answer"> {$r.feedback}</p>
+                            </div>
+                            {/if}
+                          </li>
+      
+                        </volist>
+                        </ul>
+                      </div>
+                      {/if}
+                      {if $msg}
+                      <div class="float50 last">
+                        <h3>ご注文後のご質問</h3>
+                        <ul class="accordion switch">   
+                         <volist name="msg" id="r" key="i">
+                          <li><a class="toggle">{$r.content} {$r.post_time}</a>
+                            {if $r['feedback'] != "未回复" && $r['feedback'] != " " }
+                            <div class="child" style="display: none;">
+                              <p class="answer"> {$r.feedback}</p>
+                            </div>
+                            {/if}
+                          </li>
+                        </volist>
+                        </ul>
+                      </div>
+                      {/if}
+                      <div class="clear"></div>
+                    </div>
+                 
+      
+                  </div>
+
+
+
+
+                  <div class="qqq">
+                    <input type="text" class="inpems msg_name" name="msg_name" placeholder="例：振り込みについて（件名）">
+                    <textarea name="message" cols="60" rows="3" class="inpems card_message" placeholder="附註"></textarea>
+                     <input  type="button" name="ok" value="確認する" class="submitBtnSS">
+                     <input type="hidden" id="act" name="act" value="send">
+                     <input type="hidden" id="sn_id" name="sn_id" value="{$sn_id}">
+                </div>
+      
+                <script>
+                    $("a.so").click(function(){
+                        $(this).parent().next("p").toggleClass("on");
+                    })
+                  $('.submitBtnSS').click(function(){
+                  var sn=$(".card_message").val();
+                  var msg_name=$(".msg_name").val();
+                  var arr=$("#stepsuserinfo").serialize();
+                  if (msg_name.length < 1) {
+                    layer.tips('入力 お名前', $('input[name="msg_name"]'), { tips: 1 });
+                    return false;
+                  }
+                  if (sn.length < 1) {
+                    layer.tips('入力 附註', $('textarea[name="message"]'), { tips: 1 });
+                    return false;
+                  }
+      
+                  $.ajax({
+                      url:"/index.php?g=home&m=ajax&a=send",
+                      data:arr,
+                      type:"post",
+                      success: function(res){
+                        if(res==1){
+                          $("#info").html("<font style=\"color:red;display: inline-block;text-align: center;width: 100%;\">発送準備中とは</font>");
+                        }else{
+                          window.location.reload();
+                        }
+                      }
+                    })
+                });
+              </script>
+                {/if}
+               
+                <input type="hidden" id="token" name="token" value="">
+              </form>
+
+            
+        </div>
+    </div>
+
+    <div id="searchResultSidebar" class="aSide">
+        <div id="floatingWrapper">
+            <div id="floatingBox">
+                <section id="searchResultNum" class="nozzle">
+                    <div class="inner">
+                        <h2 id="resultNum">取扱レビュー<br>
+                            <span>{$count}</span> 件</h2>
+                    </div>
+                </section>
+
+                <section id="categoryList" class="menuBox section menuCategory" style="width: 182px;">
+                    <h2 style="font-size: 18px;border-bottom: 1px solid #ccc;"><b>カテゴリ</b></h2>
+                    <ul class="lists">
+                        <volist name="protype" id="r">
+                            {if $r['parentid']==0 && $r['status']==1}
+                            <li class=""><a href="{$site_url}/{$r['catdir']}/" title="{$r.name}"><b>{$r.name}</b></a>
+                                <div>
+                                    <?php $sctpes=M('protype')->where('status = 1 and parentid = '.$r['id'])->field('id,name,parentid,keyid,catdir')->order('listorder asc')->select();$count=count($sctpes); ?>
+                                    {if $count>0}
+                                    <ul class="clearfix">
+                                        <volist name="sctpes" id="rs">
+                                            <li><a href="{$site_url}/{$rs['catdir']}/">{$rs.name}</a></li>
+                                        </volist>
+                                    </ul>
+                                    {/if}
+                                </div>
+                            </li>
+                            {/if}
+                        </volist>
+                    </ul>
+                </section>
+
+                </section>
+                <section id="searchBrand" class="sideBox ovFavListBrand ovFavList clearfix">
+                    <h2><b>人気ブランド</b></h2>
+                    <ul class="selectList">
+                        <?php $brand=F('Brand');  ?>
+                        <volist name="brand" id="rs" key="k" offset="0" length="10">
+                            <li {if $_GET['brand']==$rs['id']}class="selected" {/if}><a  href="{$site_url}/brand_{$rs['bdurl']}/" style="padding-right:0;" {if  $_GET['brand']==$r['id']}class="select" {/if}>{$rs.title}</a> </li>
+                        </volist>
+                        <div style="clear:both;"></div>
+                    </ul>
+
+                    <p class="more" style="margin:10px 0; text-align:center;"><a href="/brand/">ブランド一覧を見る</a></p>
+                </section>
+
+            </div>
+            <script>
+                $('#brand_more').click(function () {
+                    $('#searchBrand li').show();
+                    $(this).hide();
+                })
+            </script>
+
+            <div id="sideBanners">
+                <div id="giftLeftBanner">
+                    <div class="ads" style="margin-bottom: 15px;">
+
+                        <?php if($_GET['protype']){?>
+                        <?php $cat=$protype[$_GET['protype']];?>
+
+                        <?php if($cat['topicsid']){?>
+
+                        <?php $topicsids=$cat['topicsid'];?>
+
+                        <?php }else{?>
+                        <?php $parentid=$cat['parentid'];
+                         $parentinfo=$protype[$parentid];
+                         $topicsids=$parentinfo['topicsid'];
+                    ?>
+                        <?php }?>
+
+                        <?php if($topicsids[0]>0){?>
+                        <?php $tjprols=M('Topics')->where('status = 1 and id in ('.$topicsids.')')->field('id,title,url,thumb')->order('listorder asc,createtime desc')->limit(2)->select(); ?>
+                      
+                        <span style="color:#4876FF;"><b>特集 :</b></span>
+
+                        <volist name="tjprols" id="r" key="i">
+                            <a href="{$site_url}{$r.url}"><img src="{$site_url}{$r.thumb}" alt="{$r.title}"></a>
+                            <div  style="height: 40px; line-height: 20px; overflow: hidden;">
+                                <a href="{$site_url}{$r.url}">{$r.title}</a>
+                            </div>
+                           
+                        </volist>
+
+                        <?php }?>
+                        <?php }?>
+                    </div>
+                    <tp:block pos="pclbutton" />
+
+
+                    <?php    $htrids=cookie('htrids'); if($htrids){?>
+                        <section id="searchBrand" class="sideBox ovFavListBrand ovFavList clearfix">
+                            <h2 style="font-size: 14px;"><b>最近チェックした商品</b></h2>
+                                <div class="ads" style="margin:0 auto; width: 90%;">
+                                    <?php 
+                                    $prolist=M('Product')->where('status = 1 and id in ('.$htrids.')')->field('id,title,pro_price,url,thumb')->limit(6)->select(); 
+                                    ?>
+                                   <volist name="prolist" id="r">
+                                        <a href="{$site_url}{$r.url}"><img src="{$site_url}{$r.thumb}" style="width: 100%;" alt="{$r.title}"></a>
+                                        <div  style="height: 40px; line-height: 20px; overflow: hidden;">
+                                            <a href="{$site_url}{$r.url}">{$r.title}</a>
+                                        </div>
+                                    </volist>
+                                </div>
+                        </section>
+                        <?php }?>
+                        
+
+   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.menuCategory .lists li').hover(function () {
+            $(this).addClass("current");
+        }).mouseleave(function () {
+            $(this).removeClass("current");
+        })
+        function resetVerifyCode(){
+            var timenow = new Date().getTime();
+            document.getElementById('verifyImage').src= ROOT+'/index.php?g=Home&m=Index&a=verify#'+timenow;
+        }
+        $.get("/index.php?g=home&m=ajax&a=makeToken", function (result) {
+	    	$("#token").val(result);
+	    });
+        function accordion() {
+    $(this).toggleClass("active").next().slideToggle(300);
+}
+
+$(".switch .toggle").click(accordion);
+    </script>
+</div>
+</div>

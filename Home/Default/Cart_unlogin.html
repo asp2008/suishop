@@ -1,0 +1,99 @@
+<div class="form-row">
+        <div class="form-label">メール<span class="required">(必填)</span></div>
+        <div class="form-input">
+            <input type="email" id="email" name="email">
+           
+        </div>
+    </div>
+    <div  class="form-line"> <div class="note">※メール必須資料。再度ご確認お願いいたします。</div></div>
+
+    <div class="form-row">
+        <div class="form-label">確認メール<span class="required">(必填)</span></div>
+        <div class="form-input">
+            <input type="email" name="cfemail"  id="cfemail">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">氏名 漢字<span class="required">(必填)</span></div>
+        <div class="form-input inline-inputs">
+            <input placeholder="例）山田" name="consignee1"> - 
+            <input placeholder="例）太郎" name="consignee2">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">氏名 カナ<span class="required">(必填)</span></div>
+        <div class="form-input inline-inputs">
+            <input placeholder="例）ヤマダ" name="tel1"> - 
+            <input placeholder="例）タロウ" name="tel2">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">電話番号<span class="required">(必填)</span></div>
+        <div class="form-input">
+            
+            <input placeholder="09012345678" name="mobile">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">郵便番号<span class="required">(必填)</span></div>
+        <div class="form-input inline-inputs">
+            <input placeholder="584" name="zip1" id="zip1"  maxlength="3"> - 
+            <input placeholder="0086" name="zip2" id="zip2" maxlength="4">
+             <input type="button" name="" class="loginInput zipcode" style="width:120px; border-radius: 4px; background: #000 ; color: #fff;" value="➤住所を自動入力">
+        </div>
+        <input name="zip"  id="zip" type="hidden" value="" />
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">都道府県<span class="required">(必填)</span></div>
+        <div class="form-input">
+             <select name="province" id="province"  >
+                <option value="0">選択してください</option>
+                <?php $arlist=M('Area')->where('parentid = 0')->field('id,name')->select(); ?>
+                <volist name="arlist" id="rs">
+                <option value="{$rs.id}" {if $address['province']==$rs['id']} selected{/if}>{$rs.name}</option>
+
+                </volist>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label addbox">住所1 （市区町村）<span class="required">(必填)</span></div>
+        <div class="form-input">
+            <input name="address1" id="address1" type="text">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label addbox">住所2（番地）<span class="required">(必填)</span></div>
+        <div class="form-input">
+            <input  name="address2" id="address2" type="text">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label addbox">住所3（建物名）</div>
+        <div class="form-input">
+            <input  name="address3" id="address3" type="text">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">性別<span class="required">(必填)</span></div>
+        <div class="form-input gender">
+            <label class="radio-item">
+                <input type="radio" name="sex" value="2" checked>
+                <span>女性</span>
+            </label>
+            <label class="radio-item">
+                <input type="radio" name="sex" value="1">
+                <span>男性</span>
+            </label>
+        </div>
+    </div>
+   

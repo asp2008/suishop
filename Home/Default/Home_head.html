@@ -1,0 +1,33 @@
+<meta name="keywords" content="{if $mseo_keywords}{$mseo_keywords}{else}{$seo_keywords}{/if}" />
+{if $module=='Product'}
+{if $seo_description}
+<meta name="description" content="{$off}{$seo_description},{$mseo_description}" />
+{else}
+<meta name="description" content="{$off}{$title} {$mseo_description}" />
+{/if}
+{elseif $module=='News'}
+<meta name="description" content="{if $mseo_description}{$mseo_description}{else}{$seo_description}{/if}" />
+{else}
+<meta name="description" content="{if $mseo_description}{$mseo_description}{else}{$seo_description}{/if}" />
+{/if}
+<meta name="author" content="スーパーコピー">
+<?php $urls='https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];$url=explode('?', $urls);$url=$url[0];?>
+<?php if((strpos($url, 'review')  !== false) && $wurl && $module=='Product'){?>
+<link rel="canonical" href="<?php echo $site_url;?>/pro-<?php echo $wurl;?>.html">
+<?php }elseif($_REQUEST['cid']){?>
+<link rel="canonical" href="<?php echo $url;?>?cid=<?php echo $_REQUEST['cid'];?>">
+<?php }else{?>
+<link rel="canonical" href="<?php echo $url;?>">
+<?php }?>
+{if $page_seo_title}
+<title>{if $title}{$title}{elseif $mseo_title}{$mseo_title}{elseif  $seo_title}{$seo_title}{else}{$site_name}{/if}{$off} {$page_seo_title}</title>
+{elseif $page_user_title}
+<title>{$page_user_title}</title>
+{else}
+<title>{if $title}{$title}{elseif $mseo_title}{$mseo_title}{elseif  $seo_title}{$seo_title}{else}{$site_name}{/if}{$off}｜{$site_name}</title>
+{/if}
+
+
+<link rel="stylesheet" href="{$site_url}__STYLE__/css/apple.css">
+<link rel="stylesheet" href="{$site_url}__STYLE__/css/dialog.css">
+<?php if($structured){ echo $structured;}?>

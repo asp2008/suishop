@@ -1,0 +1,56 @@
+<nav id="breadCrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ul class="clearfix">
+        <li><font itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/"  itemprop="item"><span itemprop="name">{$site_name}</span></a> <meta itemprop="position" content="1" /></font> >{$catname}</li>
+    </ul>
+</nav>
+<div class="nar-wrapper">
+<?php 
+    $protypes=F('Protype');
+	$parr=get_arrparentid($_GET['protype'],$protypes);
+	$parr=explode(',', $parr);
+	$parr[]=$_GET['protype'];
+ ?>
+<div id="content" class="twoColumun">
+    <div class="sectionHeader clearfix">
+        <h1>{$title}</h1>
+    </div>
+    <section class="cat_description">
+     	{$content}
+    </section>
+
+      <div class="commlist">
+                        <p class="date">{$createtime|toDate='Y年m月d日 H时'}</p><br>
+                       
+                        <div class="textContents">
+
+                            <?php
+
+                                $topicsid=implode(',',unserialize($product_id));
+                                if($topicsid){ 
+                                    $topicsid=$topicsid;
+                                 }else{
+                                    $topicsid=$product_id;
+                                 }?>
+
+
+
+                            <?php $proliss=M('Product')->where('status = 1 and id in ('.$topicsid.')')->field('id,thumb,title,content')->order('field("id","'.$topicsid.'")')->select();?>
+                        
+                            <volist name="proliss" id="r">
+                                <p>{$r.content}</p>
+                                <p><a href="{$site_url}{:MD('Product','id='.$r[id],'url')}" title="{$r.title}"><img src="{$site_url}{$r.thumb}" alt="{$r.title}"  class="imgCompleat"></a></p>
+
+
+                                <div class="more"><a href="{$site_url}{:MD('Product','id='.$r[id],'url')}">商品をチェックする</a></div>
+
+                            </volist>
+                        </div>
+
+
+
+
+                    </div>
+
+</div>
+<include file="Home:slidebar" />
+</div>

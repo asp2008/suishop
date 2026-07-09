@@ -1,0 +1,89 @@
+﻿<link rel="stylesheet" href="{$site_url}__STYLE__/user/user.css"/>
+<div id="mypage">
+    <ul class="bread clearfix">
+        <li><a href="/">TOP</a></li>
+        <li>お届け先 </li>
+    </ul>
+    <h2>お届け先</h2>
+    <!-- マイページメイン Start -->
+    <div id="mypage_main" class="clearfix">
+        <include file="User:menu" />
+
+        <!--  右カラム Start  -->
+        <div id="right_box">
+            <include file="User:nav" />
+            <h3>お届け先 一覧</h3>
+            <div class="input_delivery">
+                <p>
+                    アドレス帳にご登録の内容を変更された場合、次回以降からの注文について変更内容が反映されます。<br>
+                    ご注文済み商品の配送先・請求先については変更されませんのでご注意下さい。
+                </p>
+                <table border="0" cellspacing="0" cellpadding="0" class="separate">
+                    <tbody>
+                        <tr>
+                            <td class="select">
+                                購入者情報
+                            </td>
+                            <td class="address">
+                                <p>〒{$user.zip}</p>
+                                <p>{$province}{$user.address1}{$user.address2}{$user.address3}</p>
+                                <p>宛名 ： {$user.tel1} {$user.tel2}</p>
+                                <p>電話番号 ： {$user.mobile}</p>
+                            </td>
+                            <td class="edit_address"><a href="{$site_url}/home/user/updater.html">お届け先修正</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <volist name="list" id="vo">
+                <table border="0" cellspacing="0" cellpadding="0" class="separate">
+                    <tbody>
+                        <tr>
+                            <td class="select">
+                                {$vo.title}
+                            </td>
+                            <td class="address">
+                                <p>〒{$vo.zip}</p>
+                                <p>{$vo.province|getArea}{$vo.address1}{$vo.address2}{$vo.address3}</p>
+                                <p>宛名 ： {$vo.tel1} {$vo.tel2}</p>
+                                <p>電話番号 ： {$vo.mobile}</p>
+                            </td>
+                            <td class="edit_address"><a
+                                    href="{$site_url}/index.php?m=user&a=newaddress&aid={$vo.id}">お届け先修正</a><a
+                                    href="javascript:;" onclick="disp({$vo.id})">削除する</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </volist>
+                <!-- お届け先追加 -->
+                <table border="0" cellspacing="0" cellpadding="0" class="add_address">
+                    <tbody>
+                        <tr>
+                            <td class="select"><a href="{$site_url}/index.php?m=user&a=newaddress"><img   src="__STYLE__/user/plus.gif" width="28" height="28" border="0" alt="お届け先の新規追加">お届け先の新規追加</a></td>
+                            <td class="address">5件まで住所を登録することができます。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--  右カラム End  -->
+    </div>
+    <!-- マイページメイン Start -->
+</div>
+<script>
+    function disp(id){
+        $.ajax({
+            url: '/index.php?m=user&a=deladdress&id='+id,
+            type: 'post',
+            dataType:'json',
+            success: function(res){
+                if(res.status==2){
+                    layer.msg('删除成功');
+                    window.location.reload();
+                }else{
+                    layer.msg(res.msg);
+                }
+            }
+        });
+    }
+</script>

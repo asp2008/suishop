@@ -1,0 +1,328 @@
+﻿<?php 
+$Category1=F('Category');
+$info=$Category1[$catid];
+?>
+<nav id="breadCrumb" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+	<ul class="clearfix">
+		<li>
+			<font itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a href="/"
+					itemprop="item"><span itemprop="name">{$site_name}</span></a>
+				<meta itemprop="position" content="1">
+			</font> &gt;<font itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a
+					href="/talent.html" itemprop="item"><span itemprop="name"><?php echo $info['catname'];?></span></a>
+				<meta itemprop="position" content="2">
+			</font>
+			 &gt;{$title}
+		</li>
+	</ul>
+</nav>
+
+<div class="nar-wrapper">
+<?php 
+    $protypes=F('Protype');
+	$parr=get_arrparentid($_GET['protype'],$protypes);
+	$parr=explode(',', $parr);
+	$parr[]=$_GET['protype'];
+ ?>
+<div id="content" class="twoColumun">
+    <div class="sectionHeader clearfix">
+        <h1>{$title}</h1>
+    </div>
+    <section class="cat_description">
+     	{$content}
+    </section>
+
+      <style>
+	.breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: .25rem;
+}
+.breadcrumb-item+.breadcrumb-item {
+    padding-left: .5rem;
+}
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #6c757d;
+    content: "/";
+}
+.artinfo { padding:5px;}
+#favorite-brand a {
+	text-decoration: underline;
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 15px;
+}
+#favorite-brand {
+	border-bottom: 2px dashed;
+}
+#favorite-brand:last-child {
+	border-bottom:none;
+}
+.list-page-nav{width: 100%;
+    height:35px;
+    display: -moz-box;
+    display: -webkit-box;
+    display: box;
+    line-height:35px;
+    border-top: solid 5px #f5f5f5;
+}
+.list-page-nav a {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    text-align: center;
+    display: block;
+    color: #474747;
+    text-decoration: none;
+    position: relative;
+    font-size: 12px;
+}
+.list-page-nav a.curr{ color: #ff0000;}
+</style>
+    
+<div  class="artinfo" style="background-color: snow; border: 1px solid lightgray;">
+    <div>
+        <h1 style="font-size: 14px; color: gray; font-weight:600; margin-bottom: 0px;">{$title}が愛用する私服・衣装 ハイブランドを徹底解剖！【2025年最新版】</h1>
+        <h2 style="font-size: 13px; color: gray; font-weight: normal; margin-top: 5px; margin-bottom: 0px;">
+            {$title}さんの2025年最新情報をもとに、テレビ出演時のスタイリッシュな衣装から、SNSで見せる飾らない私服、愛用ブランドまで幅広くご紹介します。Bibicopyでは、彼を愛するファンの皆さまに向けて、信頼の品質を誇るブランド品の優れたスーパーコピー品をご提供しています。</h2>
+
+		<div class="clearfix"></div>
+    </div>
+</div>
+<div style="margin-bottom: 15px; padding:5px 0; margin-left: 0px; display: flex;">
+    <img src="{$thumb}" alt="..."
+        style="width: 30%; height: auto;  padding-right: 10px; display: table-cell; max-width: 180px; margin-top: auto; margin-bottom: auto;">
+    <div style="position: relative; width: 100%;">
+        <p style="font-size: 14px; font-weight: 800;">
+            {$title}
+        </p>
+        <p style="font-size: 13px;">
+            {$content}
+        </p>
+    </div>
+</div>
+<?php 
+$brandx=F($id.'_brands');
+if($brandx){
+?>
+<div>
+    <div style="width:calc(100% - 10px); display: flex; height: 100%;
+                margin-left: auto; margin-right: auto; border: 2px solid; background-color: #94f5ff; z-index: 10000000;">
+        <div style="width: 200px; font-size: 14px; font-weight: 800; margin-top: auto; margin-bottom: auto; text-align: center;">
+            <p style="margin-bottom: 0;">良く着用する<br>ブランド</p>
+            <p style="margin-bottom: 0; font-size: 14px;">（メルカリで探す）</p>
+        </div>
+        <div style="width: 100%;">
+            <?php foreach($brandx as $b){?>
+            <div id="favorite-brand" style="width: 100%; font-size:13px; height: 30px; border-left: 2px dashed; display: table; background-color: white;"><a target="_blank" href="/brand_<?php echo $b['url'];?>/"><?php echo $b['title'];?></a></div>
+            <?php }?>
+        </div>
+    </div>
+</div>
+<?php }?>
+<div class="list-page-nav mod-tab-split">
+    <a  class="layout_switch grid" id="js-layout-switch-button" href="javascript:;">並び替え</a>
+    <a  href="<?php echo $filter;?>?filter=new" class="<?php if($_GET['filter']=='new'){?>curr<?php }?>"  onclick="gtag('event', 'click', {'event_category': 'link','event_label': '新着順','value': '1'});">新着順</a>
+    <a  href="<?php echo $filter;?>?filter=hot" class="<?php if($_GET['filter']=='hot'){?>curr<?php }?>"  onclick="gtag('event', 'click', {'event_category': 'link','event_label': '人気順','value': '1'});">人気順</a>
+    <a  href="<?php echo $filter;?>?filter=update" class="<?php if($_GET['filter']=='update'){?>curr<?php }?>"  onclick="gtag('event', 'click', {'event_category': 'link','event_label': 'おすすめ順','value': '1'});">おすすめ順</a>
+    <a  href="<?php echo $filter;?>?filter=price" class="<?php if($_GET['filter']=='price'){?>curr<?php }?>"  onclick="gtag('event', 'click', {'event_category': 'link','event_label': '価格が安い','value': '1'});">価格が安い</a>
+</div>
+<style>
+.dynamic-product {
+    width: 100%;
+    padding: 10px 5px
+}
+.dynamic-product-list {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.dynamic-product-item {
+    width: calc((100% - 90px) / 4);
+    margin-bottom: 24px;
+    margin-right: 20px;
+}
+.dynamic-product-item:nth-child(4n){
+    margin-right: 0
+}
+.dynamic-product-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: .04em;
+    color: #393e44;
+    margin-bottom: 32px;
+    padding: 0 24px
+}
+.dynamic-product-link {
+    display: block;
+    position: relative
+}
+.dynamic-product-link:not(:last-child) {
+    margin-bottom: 8px
+}
+.brandname {
+    font-size: 12px;
+    color: #17a2b8;
+    font-weight: bold;
+    margin-top: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#favorite {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 25px;
+    height: 25px;
+    background-image: url(__STYLE__/0604/favorite_before.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+#favorite.on{
+   background-image: url(__STYLE__/0604/favorite_after.png); 
+}
+.tx{ position: relative;}
+.dynamic-product-info-name{      font-size: 12px;
+    line-height: 18px;
+    height: 36px;  overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;}
+ .dynamic-product-info-name a   {    color: #212529;}
+ .info-price-value{font-weight: bold;}
+ .info-price-value-unit{font-weight: normal;font-size: 80%;}
+</style>
+<?php
+
+import("@.ORG.Pagex");
+$listRows = !empty($info['pagesize']) ? $info['pagesize'] : 36;
+if(isset($_GET['filter'])){
+    if($_GET['filter']=='update'){				
+        $orderby="p.updatetime desc,p.id desc";	
+    }
+    if($_GET['filter']=='hot'){							
+        $orderby="p.hits desc,p.updatetime desc";	
+    }
+    if($_GET['filter']=='new'){							
+        $orderby="p.id desc,p.updatetime desc";	
+    }
+    if($_GET['filter']=='price'){							
+        $orderby="CAST(p.pro_price as SIGNED) asc,p.updatetime desc";	
+    }
+}else{
+    $orderby="tp.id desc";
+}
+$count = M('Talent_pro tp')
+    ->join('INNER JOIN div_product p ON tp.proid = p.id')
+    ->where('tp.atcid = '.$id)
+    ->count();
+if ($count > 0) {
+    $page = new Page($count, $listRows);
+    $strs = '/'.$info['catdir'].'-' . M('Talent')->where('id = '.$id)->getField('wurl');
+    if(isset($_GET['filter'])){
+        $urlarr = array($strs . '.html?filter='.$_GET['filter'], $strs . '-{#p}.html?filter='.$_GET['filter']);
+    }else{
+        $urlarr = array($strs . '.html', $strs . '-{#p}.html');
+    }
+    $page->urlrule = $urlarr;
+    $pages = $page->show();
+    $list = M('Talent_pro tp')
+        ->field('p.id, p.url, p.title, p.thumb, p.sales, p.pro_price')
+        ->join('INNER JOIN div_product p ON tp.proid = p.id')
+        ->where('tp.atcid = '.$id)
+        ->order($orderby)
+        ->limit($page->firstRow . ',' . $page->listRows)
+        ->select();
+}
+?>
+<div class="dynamic-product" data-url="/index.php?m=ajax&a=multiStatus">
+<ul class="dynamic-product-list" data-url="/index.php?m=ajax&a=love">
+<volist name="list" id="r">
+<li class="dynamic-product-item" data-id="{$r.id}"> 
+    <div class="tx">
+    <a class="dynamic-product-link" href="{$r.url}"> 
+    <img class="dynamic-product-image" alt="{$r.title}" src="{$r.thumb}"   width="190" height="190"> 
+</a>
+<div id="favorite" class="buttonX addfavorite" type="button" data-id="{$r.id}" ></div> 
+</div>
+    <div class="dynamic-product-info">
+        <p class="brandname">{$title}</p>
+        <p class="dynamic-product-info-name"><a href="{$r.url}">{$r.title}</a></p>
+        <p class="dynamic-product-info-price"> <span class="info-price-value"> <?php echo number_format($r['pro_price']);?><span
+                    class="info-price-value-unit">円</span></span> </p>
+    </div>
+</li>
+</volist>
+</ul>
+</div>
+{if $pages}
+<div class="pager">
+    <div id="pages">{$pages}</div>
+</div>
+{/if}
+<div class="clearfix"></div>
+
+</div>
+<include file="Home:slidebar" />
+</div>
+
+<script>
+    $(function(){
+        $(".addfavorite").click(function(){
+            var _uri=$(".dynamic-product-list").data("url");
+            var id = $(this).attr("data-id");
+            var obj = $(this);
+            $.ajax({
+                type: "POST",
+                url: _uri,
+                data: "id="+id,
+                dataType: "json",
+                success: function(data){
+                    if(data.status == 2){
+                        obj.addClass("on");
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            });
+        });
+        var _url=$(".dynamic-product").data("url");
+        const ids = $('.dynamic-product-list li').map(function () {
+            return $(this).data('id');
+        }).get();
+        $.ajax({
+            url: _url,
+            method: 'POST',
+            data: { ids: ids },
+            dataType: 'json',
+            success: function (response) {
+                const stats = response.stats;
+                $('.dynamic-product-list li').each(function () {
+                    const listItem = $(this);
+                    const itemId = listItem.data('id');
+                    const stat = stats[itemId] || { total: 0 };
+                    if (stat.total > 0) {
+                        listItem.find(".buttonX").addClass('on');
+                    }
+                });
+            },
+        });
+    });
+</script>

@@ -1,0 +1,163 @@
+<style>
+	.tabs1{display: flex;background: #eee; border: 1px solid #ccc;}
+	.tabs1 li{ width: 100%; list-style: none;}
+	.tabs1 li a{ display: inline-block; width: 100%; height: 35px; line-height: 35px; text-align: center; font-weight: bold; color: #000;}
+	.tabs1 li a:nth-child(1){ border-left: 1px solid #ccc; border-right: 1px solid #ccc;}
+	.tabs1 li a.on{ background: #C3C3C3 ; color: #ff0000;}
+	.goods_list_btn {
+    font-size: 14px;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #fff;
+    display: block;
+    border: 1px solid #ccc;
+    margin: 10px auto 0 auto;
+    width: 40%;
+}.goods_list_btn a {
+    color: #000;
+}
+.new-list li {
+    height: 30px!important;
+    line-height: 30px!important;
+    border-bottom: 1px dashed #ccc;
+	width: 99%!important;
+}
+</style>
+<div class="tit clearfix" style="border-bottom: 1px solid #ccc;text-align: left;height: 40px;line-height: 40px;margin-top: 20px;"><p class="h"><font style="font-weight: bold;color: #000;"> レビュー</font></p></div>
+<link rel="stylesheet" href="__STYLE__/style/review.css?v=2">
+<div class="cot">
+
+<ul id="searchResultList" class="goodsResult bigThumb clearfix commlist"  data-type="<?php if($_REQUEST['protype']){ echo 'protype';}else{ echo 'pinpai';}?>" data-url="/ajax/getComments.html?id=<?php if($_REQUEST['protype']){ echo $_REQUEST['protype'];}?><?php if($_REQUEST['pinpai']){ echo $_REQUEST['pinpai'];}?>"  data-userid="<?php if(isset($_COOKIE['TP_userid']) && $_COOKIE['TP_userid']>0){echo $_COOKIE['TP_userid'];}else{echo 0;}?>">
+	<div class="panel-group commlists" id="accordion" style="margin-top: 15px;">
+		
+	</div>
+
+
+</ul>
+<div class="clearfix"></div>
+<div class="goods_list_btn" id="load-more-btn" style="display:none;">
+    <a href="javascript:;" id="load-more-link" data-userid="<?php if($_COOKIE['TP_userid']){echo $_COOKIE['TP_userid'];}else{ echo 0;} ?>">もっと見る</a>
+</div>
+
+<script>
+$(function () {
+    const pageMap = { 'protype': 1, 'pinpai': 1 };
+    const limit = 6;
+    let currentType = $(".commlist").data("type");
+    let _url = $(".commlist").data("url");
+    const $_userid=$(".commlist").data('userid');
+    const $loadMoreBtn = $("#load-more-btn");
+
+    var template = `
+        <div class="panel panel-info" data-id="{{id}}">
+            <div class="panel-heading clearfix">
+                <a href="{{product_url}}" target="_blank" class="as">
+                    <img class="ims" src="{{first_img}}" alt="{{product_title}}">
+                </a>
+                <div class="info1">
+                    <a href="{{product_url}}" target="_blank" title="{{product_title}}">{{product_title}}</a>
+                    <span id="conte">{{content}}</span>
+                    <span class="bt">{{author}} 投稿日: {{date}} <span class="star c-star size1 star{{stars}}"></span></span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            {{reply_html}}
+        </div>
+    `;
+
+
+    loadComments(currentType, true);
+
+    $('#load-more-btn').on('click', function () {
+
+        if($_userid == 0){
+            $loadMoreBtn.find('a').attr('href', '/home/user/login.html');
+            $loadMoreBtn.find('a').text('もっと見る（ログインが必要です）');
+            return;
+        }
+
+        var $link = $('#load-more-link');
+        var userid = $('#load-more-link').data('userid');
+        if (userid == 0) {
+            $link.addClass('loading').text('ログインしてください...');
+            return;
+        }
+        if ($link.hasClass('loading')) return;
+        $link.addClass('loading').text('読み込み中...');
+        loadComments(currentType, false, function () {
+            $link.removeClass('loading').text('もっと見る');
+        });
+    });
+
+    function loadComments(type, isFirstLoad, done) {
+        const page = pageMap[type];
+
+        $.ajax({
+            url: _url,
+            data: { type: type, page: page, limit: limit },
+            dataType: 'json',
+            method: 'POST',
+            success: function (res) {
+                const list = res.list;
+                const hasMore = res.has_more;
+
+                if (isFirstLoad && list.length === 0) {
+                    $('.commlists').html('<p style="text-align:center;">レビューがありません。</p>');
+                    $('#load-more-btn').hide();
+                    return;
+                }
+
+                let html = '';
+                list.forEach(function (c) {
+                    var firstImg = (c.images && c.images.length > 0) ? c.images[0] : c.product_img;
+
+                    var replyHtml = '';
+                    if (c.description && c.description.trim() !== '') {
+                        replyHtml = '<div style="font-size:11px;background:#ddd;padding:10px;">' +
+                                    '<b>店長からの返信:</b> ' + c.description +
+                                    '<div class="clearfix"></div></div>';
+                    }
+
+                    var item = template
+                        .replace(/{{id}}/g, c.id)
+                        .replace(/{{product_url}}/g, c.product_url)
+                        .replace(/{{first_img}}/g, firstImg)
+                        .replace(/{{product_title}}/g, c.product_title)
+                        .replace(/{{content}}/g, c.content)
+                        .replace(/{{author}}/g, c.author)
+                        .replace(/{{date}}/g, c.date)
+                        .replace(/{{stars}}/g, c.stars)
+                        .replace(/{{reply_html}}/g, replyHtml);
+
+                    html += item;
+                });
+
+                $('.commlists').append(html);
+
+                if (hasMore) {
+                    $('#load-more-btn').show();
+                    pageMap[type] += 1;
+                } else {
+                    $('#load-more-btn').hide();
+                }
+                if (done) done();
+            },
+            error: function () {
+                console.log('読み込みに失敗しました。');
+                if (done) done();
+            }
+        });
+    }
+});
+</script>
+
+</div>
+<script>
+$('.tabs1 a').click(function(){
+	var idx=$(this).attr('data-id');
+	$('.tabs1 a').removeClass('on');
+	$(this).addClass('on');
+	$('.cot ul').hide();
+	$(".cot ul").eq(idx - 1).show();
+});
+</script>

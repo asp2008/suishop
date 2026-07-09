@@ -1,0 +1,189 @@
+﻿<link rel="stylesheet" href="{$site_url}__STYLE__/user/user.css"/>
+<div id="mypage">
+    <ul class="bread clearfix">
+        <li><a href="/">TOP</a></li>
+        <li>お届け先フォーム </li>
+    </ul>
+    <h2>お届け先フォーム</h2>
+    <!-- マイページメイン Start -->
+    <div id="mypage_main" class="clearfix">
+        <include file="User:menu" />
+        
+
+            <!--  右カラム Start  -->
+            <div id="right_box">
+                <h3>お届け先フォーム</h3>
+                <form action="#" method="post" name="entry"  id="doConfirm"  onsubmit="doConfirm();">
+
+
+                    <div class="check_change">
+                        <p>お客様情報の変更をして頂いた場合、次回以降からの注文について変更内容が反映されます。<br>
+                            ご注文済み商品の配送先については変更されませんのでご注意下さい。</p>
+
+                        <ul style="width: 100%;">
+
+                            <li>
+                                <p>お届け先<span>※</span></p>
+                                <p class="postal_Code">
+                                    <input type="text" id="title" name="title" value="{$info.title}"  maxlength="7" placeholder="(例)会社" style="background-color: inherit;"><span class="check"></span>
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>お名前（全角）<span>※</span></p>
+                                <p><span class="name">姓</span> <input type="text" id="consignee1" name="consignee1"   value="{$info.consignee1}" class=""   placeholder=""  style="background-color: inherit;"><span class="check"></span>
+                                        <span class="name">名</span> <input type="text" id="consignee2" name="consignee2" value="{$info.consignee2}" class="" placeholder=""  style="background-color: inherit;"><span class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>フリガナ（カタカナ）<span>※</span></p>
+                                <p><span class="name">セイ</span> <input type="text" id="tel1"  name="tel1" value="{$info.tel1}" class=""  placeholder=""  style="background-color: inherit;"><span class="check"></span>
+
+                                    <span class="name">メイ</span> <input type="text" id="tel2"  name="tel2" value="{$info.tel2}" class=""   placeholder=""  style="background-color: inherit;"><span class="check"></span>
+
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>郵便番号(半角数字)<span>※</span></p>
+                                <p class="postal_Code">
+                                    <span class="name">〒</span> <input type="tel" id="zip1" name="zip1" value="<?php echo mb_substr($user['zip'],0,3);?>"   onkeyup="value=value.replace(/[^\d]/g,'')"  maxlength="3"  style="background-color: inherit; width: 50px;">-<input type="tel" id="zip2" name="zip2" maxlength="4"  onkeyup="value=value.replace(/[^\d]/g,'')" value="<?php echo mb_substr($user['zip'],3,4);?>"  style="background-color: inherit; width: 80px;"><span class="check"></span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>都道府県<span>※</span></p>
+                                <div class="value">
+                                    <dl style="z-index: 1;" id="stateOrRegionUl">
+                                        <dt>			
+                                        <select name="province" id="province"  class="smgSelectItem"  style="background-color: inherit;">
+                                            <option value="0">選択してください</option>
+                                            <?php $arlist=M('Area')->where('parentid = 0')->field('id,name')->select(); ?>
+                                            <volist name="arlist" id="rs">
+                                            <option value="{$rs.id}" {if $info['province']==$rs['id']} selected{/if}>{$rs.name}</option>
+                                            </volist>
+                                        </select>
+                                        </dt>
+                                        <dd>
+                                            
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li>
+                                <p>住所１ 市区町村<span>※</span></p>
+                                <p> <input type="text" id="address1" name="address1" value="{$info.address1}" maxlength="12"  placeholder="" formnovalidate="" tabindex="20"
+                                        style="background-color: inherit;"><span  class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>住所２ それ以降の番地<span>※</span></p>
+                                <p> <input type="text" id="address2" name="address2" value="{$info.address2}" maxlength="30" style="background-color: inherit;"><span  class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>住所３ 建物名・部屋番号</p>
+                                <p> <input type="text" id="address3" name="address3" value="{$info.address3}" maxlength="30"  style="background-color: inherit;"><span  class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>電話番号(半角数字)<span>※</span></p>
+                                <p> <input type="tel" id="mobile" name="mobile" value="{$info.mobile}" class="" style="background-color: inherit;"><span class="check"></span>
+                                    (ハイフン不要)</p>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div id="members">
+                    <div class="double_btn">
+                        <ul>
+                            <li><a href="javascript:history.back();" class="back_btn">前のページに戻る</a></li>
+                            <input type="hidden" name="addressid" value="{$info.id}" />
+                            <li><a id="goNextElement" onclick="javascript:doConfirm();" class="next_btn">確認する</a></li>
+                        </ul>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <!--  右カラム End  -->
+
+
+    </div>
+    <!-- マイページメイン Start -->
+</div>
+<script>
+    function doConfirm(){
+
+        if ($("#consignee1").val().length < 1) {
+            layer.tips('氏名 姓を入力してください ！', $('input[name="consignee1"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#consignee2").val().length < 1) {
+            layer.tips('氏名 姓を入力してください ！', $('input[name="consignee2"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#tel1").val().length < 1) {
+            layer.tips('氏名（フリガナ） 姓を入力してください', $('input[name="tel1"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#tel2").val().length < 1) {
+            layer.tips('氏名（フリガナ） 姓を入力してください', $('input[name="tel2"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#zip1").val().length != 3) {
+            layer.tips('郵便番号は数字を書き込むことしかできません', $('input[name="zip1"]'), { tips: 1 });
+            return false;
+        }
+        if ($("#zip2").val().length != 4) {
+            layer.tips('郵便番号は数字を書き込むことしかできません', $('input[name="zip2"]'), { tips: 1 });
+            return false;
+        }
+
+        if($('input[name="mobile"]').val()==''){
+            layer.tips('お電話番号を入力してください！', $('input[name="mobile"]'), { tips: 1 });
+		    return false;
+        }
+
+        if($('select[name="province"]').val()<1){
+            layer.tips('選択してください', $('select[name="province"]'), { tips: 1 });
+
+            $('select[name="province"]').focus();
+            return false;
+        }
+
+
+        if($('input[name="address1"]').val()==''){
+            layer.tips('荷受人の詳しい住所を書き込んで下さい！', $('input[name="address1"]'), { tips: 1 });
+            return false;
+        }
+        if($('input[name="address2"]').val()==''){
+            layer.tips('荷受人の詳しい住所を書き込んで下さい！', $('input[name="address2"]'), { tips: 1 });
+            return false;
+        }
+
+        var data=$("#doConfirm").serialize();
+        $.ajax({
+            url: 'index.php?m=user&a=newaddress',
+            type: 'post',
+            data:data,
+            timeout: 1000,
+            dataType:'json',
+            success: function(res){
+                if(res.status==1){
+                    layer.msg(res.msg);
+                    window.location.href="index.php?m=user&a=address";
+                }else{
+                    layer.msg('お届け先の登録・変更..');
+                    window.location.href="index.php?m=user&a=address";
+                }
+            }
+        });
+    }
+</script>

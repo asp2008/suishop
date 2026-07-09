@@ -1,0 +1,88 @@
+        <style>
+  .cart-container{margin:0 auto}
+.cart-items{margin-top:10px}
+.cart-item{background-color:#fff;margin-bottom:10px;padding:5px;display:flex;border-bottom:1px solid #f0f0f0}
+.item-img{width:60px;height:60px;object-fit:cover;border-radius:5px;margin-right:15px}
+.item-details{flex:1}
+.item-title{font-size:12px;line-height:1.4;margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.item-attributes{font-size:12px;color:#666;margin-bottom:10px}
+.item-price{font-size:12px;color:#e60012;margin-bottom:10px;display:flex;justify-content:space-between}
+.original-price{font-size:12px;color:#999;text-decoration:line-through;margin-left:5px}
+.quantity-control{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.quantity-btn{width:30px;height:30px;border:none;background-color:#f6f6f6;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer}
+.quantity-input{width:40px;height:30px;text-align:center;border:none;border-radius:3px;margin:0 5px}
+.remove-btn{background:#f6f6f6;border:1px solid #e5e5e5;color:#999;font-size:12px;height:28px;cursor:pointer;display:flex;align-items:center;min-width:30px;text-align:center}
+.remove-btn i{margin-right:3px}
+.order-summary{background-color:#fff;margin-top:10px;padding:20px; margin-bottom: 20px;}
+.summary-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:14px}
+.summary-row.total{font-weight:600;font-size:16px;border-bottom:none;padding-top:15px}
+.summary-label{color:#666}
+.summary-value{font-weight:500}
+.total .summary-value{color:#e60012;font-size:18px}
+.notice{font-size:11px;color:#999;margin-top:15px;line-height:1.5}
+.checkout-btn{background-color:#e60012;color:white;border:none;border-radius:20px;padding:10px;font-size:14px;width:100%;margin-top:20px;cursor:pointer;box-shadow:0 2px 5px rgba(230,0,18,0.2)}
+.backto{background-color:#000}
+.checkout-btn:active{background-color:#cc0010}
+.help-links{font-size:12px;color:#0066cc;text-align:center;margin-top:15px}
+.help-links a{color:#0066cc;text-decoration:none;margin:0 5px}
+.empty-cart{text-align:center;padding:50px 20px;color:#999;display:none}
+.empty-cart i{font-size:60px;margin-bottom:20px;color:#ddd}
+.empty-cart p{margin-top:10px}
+.item_num{display:flex;align-items:center;background-color:#fff;border:1px solid #e5e5e5;border-radius:.10666667rem}
+@media (min-width:500px){
+.cart-container{box-shadow:0 5px 15px rgba(0,0,0,0.05);border-radius:10px;overflow:hidden}
+}.actbtn{display:flex;justify-content:space-between;gap:10px}
+    </style>
+        <div class="cart-container">
+            <div   style="width:calc(100% - 10px); padding: 5px;border-bottom: 1px solid #f0f0f0;"><p class="text-left"><em class="border-title">商品情報</em></p></div>
+        <div class="cart-items" id="cartItems">
+           <volist name="cart" id="vo">
+			<?php $pc=$vo['price'];?>
+            <div class="cart-item" data-id="{$vo['id']}">
+                <img src="{$vo['product_thumb']}" alt="{$vo['product_name']}" class="item-img">
+                <div class="item-details">
+                    <div class="item-title"><a href="{$vo.product_url}">{$vo['product_name']}</a></div>
+                    <div class="item-price">
+                        <div class="item_pro">購入数：{$vo['number']} *  小計: ¥{$vo['price']|number_format}</div>
+						<div class="item-subtotal"></div>
+                    </div>
+                </div>
+            </div>
+            </volist>
+        </div>
+        <div class="order-summary">
+            <div class="summary-row">
+                <span class="summary-label">商品</span>
+                <span class="summary-value" id="itemsTotal">¥<?php echo number_format($amount); ?></span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">送料</span>
+                <span class="summary-value">¥0</span>
+            </div>
+            <?php if($discount){?>
+            <div class="summary-row couponitem">
+                <span class="summary-label">クーポンコード</span>
+                <span class="summary-value"><span style="color: #ff0000;">-¥<font id="coupons"><?php echo $discount; ?></font></span></span>
+                <input type="hidden" id="discount" name="discount" value="<?php echo $discount; ?>">
+            </div>
+            <?php }?>
+            <?php if($reward){?>
+            <div class="summary-row pointitem">
+                <span class="summary-label">ポイント</span>
+                <span class="summary-value"><span style="color: #ff0000;">-¥<font id="rewards"><?php echo $reward; ?></font></span></span>
+                <input type="hidden" id="reward" name="reward" value="<?php echo $reward; ?>">
+            </div>
+            <?php }?>
+
+            <div class="summary-row total">
+                <span class="summary-label">合計</span>
+                <span class="summary-value" id="cartTotal">¥<?php echo number_format($total); ?> 税込</span>
+            </div>
+
+            <?php if($_COOKIE['TP_userid']){ ?>
+            <button class="checkout-btn submitorder" type="button" id="checkoutBtn">注文確認する</button>
+             <?php }else{ ?>
+            <button class="checkout-btn doneorder" type="button" id="checkoutBtn">注文確認する</button>
+             <?php } ?>
+        </div>
+    </div>

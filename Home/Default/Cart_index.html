@@ -1,0 +1,225 @@
+<include file="Home:header"/>
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="/">トップ</a><span>&rsaquo;</span>ショッピングカート
+  </div>
+
+  <!-- step indicator -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:0;margin:10px 0 28px;">
+    <div style="display:flex;align-items:center;gap:8px;color:var(--red);font-size:13px;font-weight:600;">
+      <span style="width:26px;height:26px;border-radius:50%;background:var(--vermilion);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;">1</span>カート確認
+    </div>
+    <div style="width:48px;height:1px;background:var(--line);margin:0 8px;"></div>
+    <div style="display:flex;align-items:center;gap:8px;color:var(--ink-soft);font-size:13px;">
+      <span style="width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;">2</span>お届け先
+    </div>
+    <div style="width:48px;height:1px;background:var(--line);margin:0 8px;"></div>
+    <div style="display:flex;align-items:center;gap:8px;color:var(--ink-soft);font-size:13px;">
+      <span style="width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;">3</span>お支払い
+    </div>
+    <div style="width:48px;height:1px;background:var(--line);margin:0 8px;"></div>
+    <div style="display:flex;align-items:center;gap:8px;color:var(--ink-soft);font-size:13px;">
+      <span style="width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;">4</span>注文完了
+    </div>
+  </div>
+
+  <div class="cart-layout" id="cartLayout">
+
+    <!-- left: cart items -->
+    <div>
+      <div class="cart-items-panel">
+        <div class="cart-panel-head">
+          <span>カートの商品 <span id="cartItemCount">3</span>点</span>
+          <a href="list.html" style="font-size:13px;color:var(--blue);">買い物を続ける</a>
+        </div>
+        <volist name="cart" id="vo">
+            <?php $pc=$vo['product_price'];?>
+        <div class="cart-item" data-price="{$vo['product_price']}" data-id="1">
+           <img src="{$vo['product_thumb']}" alt="{$vo['product_name']}" class="item-img">
+          <div class="cart-item-meta">
+            <div class="cart-item-name"><a href="{$vo.product_url}">{$vo['product_name']}</a></div>
+
+            <div class="cart-item-row">
+              <div class="qty-stepper">
+                <button type="button" class="minus" aria-label="数量を減らす">−</button>
+                <input type="text" value="{$vo['number']}" inputmode="numeric" class="qty-val">
+                <button type="button" class="plus" aria-label="数量を増やす">+</button>
+              </div>
+              <span class="cart-item-price" style="color:var(--ink)">¥{$vo['price']|number_format}</span>
+            </div>
+            <div style="text-align:right;margin-top:6px;">
+              <button class="cart-remove" data-id="{$vo['id']}" aria-label="商品を削除">
+                <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+                削除
+              </button>
+            </div>
+          </div>
+        </div>
+        </volist>
+
+      </div>
+
+
+    </div>
+
+    <!-- right: summary -->
+    <div class="cart-summary-panel">
+      <h3>ご注文合計</h3>
+      <div class="cart-summary-body">
+        <div class="sum-row"><span>商品代金（{$cart_count}点）</span><span id="sumSubtotal">¥{:number_format($subtotal)}</span></div>
+        <div class="sum-row"><span>送料</span><span style="color:var(--blue);">無料</span></div>
+        <div class="sum-row"><span>ギフト包装</span><span>¥330</span></div>
+        <div class="sum-row total"><span>合計（税込）</span><span class="val" id="sumTotal">¥{:number_format($total)}</span></div>
+
+        <div class="cart-point-notice">
+          <svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          このご注文で <strong>298ポイント</strong> 獲得予定
+        </div>
+
+        <div class="coupon-row">
+          <input type="text" placeholder="クーポンコード">
+          <button type="button">適用</button>
+        </div>
+
+        <button class="btn btn-dark btn-block" style="font-size:15px;padding:16px;">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          レジへ進む
+        </button>
+
+
+
+        <div style="margin-top:18px;border-top:1px solid var(--line-soft);padding-top:14px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-soft);margin-bottom:8px;">
+            <svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            SSL暗号化通信で安全に保護されています
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-soft);">
+            <svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            30日間返品保証
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- empty state (hidden by default) -->
+  <div id="cartEmpty" class="cart-empty" style="display:none;">
+    <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+    <p>カートに商品がありません</p>
+    <a href="/" class="btn btn-dark">商品を探す</a>
+  </div>
+
+</main>
+<include file="Home:footer"/>
+<script src="{$site_url}__STYLE__/js/jquery-3.7.1.min.js" charset="UTF-8"></script>
+<script src="{$site_url}__STYLE__/js/main.js"></script>
+<script>
+/* ---- Cart logic ---- */
+(function(){
+
+  var unitPrices = { 1: 8800, 2: 3960, 3: 12800 };
+  var EXTRA = 330; // gift wrap fixed
+
+  function recalc(){
+    var sub = 0;
+    var itemCount = 0;
+    $(".cart-item:visible").each(function(){
+      var id  = $(this).data("id");
+      var qty = parseInt($(this).find(".qty-val").val(), 10) || 1;
+      var u   = unitPrices[id] || 0;
+      var line = u * qty;
+      $(this).find(".cart-item-price").text("¥" + line.toLocaleString("ja-JP"));
+      sub += line;
+      itemCount += qty;
+    });
+    $("#sumSubtotal").text("¥" + sub.toLocaleString("ja-JP"));
+    $("#sumTotal").text("¥" + (sub + EXTRA).toLocaleString("ja-JP"));
+    var pts = Math.floor((sub + EXTRA) / 100);
+    $(".cart-point-notice strong").text(pts.toLocaleString("ja-JP") + "ポイント");
+    $("#cartItemCount").text(itemCount);
+    $("#cartCount").text(itemCount);
+
+    if($(".cart-item:visible").length === 0){
+      $("#cartLayout").hide();
+      $("#cartEmpty").show();
+    }
+  }
+
+  // qty stepper override for cart (unit price aware)
+  $(document).on("click", ".cart-item .minus", function(){
+    var $input = $(this).siblings(".qty-val");
+    var v = Math.max(1, (parseInt($input.val(),10)||1) - 1);
+    $input.val(v); recalc();
+  });
+  $(document).on("click", ".cart-item .plus", function(){
+    var $input = $(this).siblings(".qty-val");
+    $input.val((parseInt($input.val(),10)||1) + 1); recalc();
+  });
+  $(document).on("change", ".cart-item .qty-val", recalc);
+
+  // remove item
+  $(document).on("click", ".cart-remove", function(){
+    var $item = $(this).closest(".cart-item");
+    var id = $item.data("id");
+    addCart(id, 0); // remove from cart
+    $item.fadeOut(200, function(){ $(this).remove(); recalc(); });
+    
+  });
+
+  // coupon mock
+  $(".coupon-row button").on("click", function(){
+    var code = $(".coupon-row input").val().trim().toUpperCase();
+    if(code === "KURA10"){
+      alert("クーポンコード「KURA10」が適用されました。10%割引が適用されます。");
+    } else {
+      alert("このクーポンコードは有効ではありません。");
+    }
+  });
+
+  recalc();
+})();
+</script>
+<script>
+  
+function addCart(id, num){
+    num = num || 1;
+    $.ajax({
+        url: '/Cart/ajax.html',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            do: 'add',
+            id: id,
+            num: num
+        },
+        beforeSend:function(){
+            $('.btn-cart').prop('disabled',true);
+        },
+        success:function(res){
+            $('.btn-cart').prop('disabled',false);
+            if(res.data==1){
+                message("已加入购物车");
+                getCartCount();
+            }else{
+                message(res.msg ? res.msg : '加入失败');
+            }
+        },
+        error:function(){
+            //$('.btn-cart').prop('disabled',false');
+            message("加入购物车失败");
+        }
+    });
+}
+function getCartCount(){
+    fetch("/index.php?m=Ajax&a=getCounts")
+        .then(response => response.json())
+        .then(data => {
+            setBadge('msgCount', data.msg);
+            setBadge('cart-count', data.cart);
+        })
+        .catch(err => console.error(err));
+}
+</script>

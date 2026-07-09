@@ -1,0 +1,126 @@
+﻿
+<!--  左カラム Start  -->
+<style>
+    .section_profile {
+        margin-top: 12px;
+        padding: 0 15px;
+    }
+    .profile_item {
+        text-align: left;
+    }
+    .profile_item.userName {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .profile_item.rankName {
+        margin-top: 12px;
+    }
+    .profile_item.barcodeImg,
+    .profile_item_list {
+        margin-top: 7px;
+    }
+    .barcodeImg img {
+        width: 100%;
+        height: auto;
+    }
+    .profile_item.memberId {
+        text-align: center;
+    }
+    .menberId_heading {
+        display: table-cell;
+        width: 40px;
+        color: #fff;
+        background: #000;
+        vertical-align: middle;
+        padding: 5px;
+    }
+    .menberId_item {
+        display: table-cell;
+        width: 100px;
+        background: #fff;
+        vertical-align: middle;
+        padding: 5px;
+    }
+    .memberId_textArea {
+        width: 100%;
+    }
+    .profile_item_infoBox {
+        font-size: 10px;
+        margin-top: 5px;
+    }
+    .profile_item_desc.userpoint {
+        color: #c6121e;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .userpointAttention {
+        font-size: 10px;
+    }
+    #left_box dl.menu {
+        margin-top: 19px;
+    }
+    @keyframes shake {
+	0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  #nosign{animation: shake 0.5s ease infinite;}
+</style>
+<div id="left_box">
+    <h3 class="left_box_heading">会員情報</h3>
+    <div class="section_profile">
+        <div class="profile_item userName">
+            {$user.consignee1} {$user.consignee2} 様
+        </div>
+        <div class="profile_item memberId">
+            <div class="menberId_heading"><span class="memberId_textArea">会員等级</span></div>
+            <div class="menberId_item"><span class="memberId_textArea">{$user.level_name}</span></div>
+        </div>
+        <dl class="profile_item_list">
+            <dt class="profile_item_term">【ご利用可能ポイント】</dt>
+            <dd class="profile_item_desc userpoint">
+                {$user.amount|number_format} ポイント
+            </dd>
+            <dd class="profile_item_desc userpointAttention">
+                ※ポイントの有効期限は最新のご購入日から1年です
+            </dd>
+            <dd class="profile_item_desc userpointAttention" id="nosign">
+               <img src="{$site_url}/style/images/sign.png" id="sign-txt" style="width: 100%; margin-top: 20px; cursor: pointer;">
+            </dd>
+        </dl>
+    </div>
+    <dl class="menu">
+        <dd><a href="{$site_url}/home/user/index.html">マイページへ移動</a>
+        </dd>
+        <dd><a href="{$site_url}/home/user/updater.html">登録内容の確認・変更</a>
+        </dd>
+        <dd><a  href="{$site_url}/home/user/editpas.html">パスワードの変更</a>
+        </dd>
+        <dd><a  href="{$site_url}/home/user/point.html">ポイント履歴</a>
+        </dd>
+        <dd><a  href="{$site_url}/home/user/qa.html">お問い合わせ</a>
+        </dd>
+        <dd><a href="{$site_url}/home/user/address.html">お届け先</a>
+        </dd>
+        <dd><a href="{$site_url}/home/user/coupon.html">スペシャルクーポン</a>
+        </dd>
+        <dd><a href="{$site_url}/home/user/order.html">ご注文履歴</a></dd>
+        <dd><a href="{$site_url}/home/user/favorite.html">お気に入り商品</a></dd>
+        <dd><a href="{$site_url}/home/user/logout.html">ログアウト</a></dd>
+
+        <dd style="display: none;"><a href="{$site_url}/home/user/unregister.html">退会</a></dd>
+    </dl>
+</div>
+<!--  左カラム End  -->
+<script>
+    $("#sign-txt").click(function(){
+        $.ajax({
+            url: '/index.php?g=Home&m=user&a=doSignIn',
+            type: 'get',
+            dataType:'json',
+            success: function(res){
+                layer.msg(res.msg);
+            }
+        });
+    });
+    </script>

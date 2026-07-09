@@ -1,0 +1,132 @@
+<style>
+.ui-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529
+}
+table {
+    border-collapse: collapse;
+}
+.text-left {
+    text-align: left;
+}
+.text-left em {
+    color: #363636;
+    font-style: normal;
+}
+.border-title:before {
+    content: "";
+    border-left: 3px solid #363636;
+    margin-right: 10px;
+}
+.ui-table td,
+.ui-table th {
+    padding: .5rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6
+}
+.ui-table td:first-of-type,
+.ui-table th:first-of-type {
+    width: 80px
+}
+.ui-border td,
+.ui-border th {
+    border: 1px solid #dee2e6;
+}
+.ui-table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6
+}
+.ui-table tbody+tbody {
+    border-top: 2px solid #dee2e6
+}
+#cart td:first-of-type,
+#cart th:first-of-type {
+    width: 120px
+}
+.ui-border {
+    border: 1px solid #dee2e6
+}
+.ui-border td,
+.ui-border th {
+    border: 1px solid #dee2e6
+}
+.ui-border thead td,
+.ui-border thead th {
+    border-bottom-width: 2px
+}
+.btn {
+    display: inline-block;
+    margin: 16px auto;
+    background: #000;
+    color: #fff;
+    padding: 10px 28px;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.btn-item {
+    width: 49%;
+}
+#btn-back,
+#btn-empty {
+    background: #b8b8b8;
+}
+.btn:not(:first-child) {
+    margin-right: 8px;
+}
+@media only screen and (max-width:750px) {
+    .btn-item,
+    .cart-area .span12 {
+        width: 100%;
+    }
+}
+.pull-right { float: right;}
+.ui-table li{list-style: none; margin-bottom: 5px;}
+</style>
+<div class="order_box  order_product">
+<table class="ui-table ui-border cart-table text-left">
+<tbody>
+    <tr>
+        <th colspan="3">
+            <p class="text-left"><em class="border-title">お届け先の入力</em><a class="pull-right" href="/index.php?m=user&a=updater&backs=1">編集</a></p>
+        </th>
+    </tr>
+    <tr>
+        <td width="100%" class="ui-txt-center">
+            メール：{$user.email}<br><br>
+            氏名 漢字：{$user.consignee1} {$user.consignee2}<br><br>
+            氏名 カナ：{$user.tel1} {$user.tel2}<br><br>
+            郵便番号〒：{$user.zip}<br><br>
+            住所：{$user.province|getArea} {$user.address1} {$user.address2} {$user.address3}<br><br>
+            電話番号：{$user.mobile}<br><br>
+            {if $user['sex']==2}
+            性別：女性<br>
+            {/if}
+            {if $user['sex']==1}
+            性別：男性<br>
+            {/if}
+            {if $user['sex']==0}
+            性別：秘密を守る<br>
+            {/if}
+            <input type="hidden" id="email" name="email" value="{$user.email}"/>
+            <input type="hidden" id="pay_name" name="pay_name" value="{$user.email}"/>
+            <input type="hidden" id="consignee1" name="consignee1" value="{$user.consignee1}"/>
+            <input type="hidden" id="consignee2" name="consignee2"  value="{$user.consignee2}"/>
+            <input type="hidden" id="tel1" name="tel1"  value="{$user.tel1}"/>
+            <input type="hidden" id="tel2" name="tel2"  value="{$user.tel2}"/>
+            <input type="hidden" id="province" name="province"  value="{$user.province}"/>
+            <input type="hidden" id="address1" name="address1"  value="{$user.address1}"/>
+            <input type="hidden" id="address2" name="address2"  value="{$user.address2}"/>
+            <input type="hidden" id="address3" name="address3"  value="{$user.address3}"/>
+            <input type="hidden" id="mobile" name="mobile"  value="{$user.mobile}"/>
+            <input type="hidden" id="sex" name="sex"  value="{$user.sex}"/>
+            <input type="hidden" id="zip1" name="zip1"  value="<?php echo mb_substr($user['zip'],0,3);?>"/>
+            <input type="hidden" id="zip2" name="zip2"  value="<?php echo mb_substr($user['zip'],3,4);?>"/>
+            <input type="hidden" id="token" name="token" value="{$token}">
+        </td>
+    </tr>
+</tbody>
+</table>
+</div>

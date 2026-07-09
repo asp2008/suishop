@@ -1,0 +1,102 @@
+<include file="Home:head"/>
+<body data-page="cart-done">
+
+<div class="notice-bar">期間限定：全品送料無料キャンペーン実施中｜会員登録で500ポイントプレゼント</div>
+
+<header class="site-header">
+  <div class="header-row">
+    <a href="/" class="logo">
+      <img src="__STYLE__/css/suni_logo-041.png" alt="SUNISUKI">
+    </a>
+    <div style="flex:1;"></div>
+    <div class="header-actions">
+      <a href="{:U('My/dashboard')}">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="{:U('Cart/index')}">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cart-count"></span>
+      </a>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="/">トップ</a></li>
+      <li><a href="{:U('Product/list')}">商品一覧</a></li>
+      <li><a href="{:U('My/brand')}">ブランド</a></li>
+      <li><a href="{:U('My/article')}">ジャーナル</a></li>
+      <li><a href="{:U('My/faq')}">よくあるご質問</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="/">トップ</a><span>›</span>
+    <a href="{:U('Cart/index')}">カート</a><span>›</span>注文完了
+  </div>
+
+  <div class="steps">
+    <div class="step done"><span class="num">✓</span>カート確認</div>
+    <div class="sep"></div>
+    <div class="step done"><span class="num">✓</span>お届け先</div>
+    <div class="sep"></div>
+    <div class="step done"><span class="num">✓</span>お支払い</div>
+    <div class="sep"></div>
+    <div class="step active"><span class="num">4</span>注文完了</div>
+  </div>
+
+  <div class="done-wrap">
+    <div class="done-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1>ご注文ありがとうございます</h1>
+    <p class="sub">ご不明な点がございましたら、<a href="{:U('My/message')}" style="color:var(--blue);">マイページの問い合わせ</a>よりご連絡ください。</p>
+
+    <div class="done-meta">
+      <dl><dt>注文番号</dt><dd><strong>{$order.sn}</strong></dd></dl>
+      <dl><dt>注文日時</dt><dd>{$order.add_time|date="Y年n月j日 H:i",###}</dd></dl>
+      <dl><dt>お支払方法</dt><dd>{$order.pay_name|default='オンライン決済'}</dd></dl>
+      <dl><dt>配送先</dt><dd>{$order.consignee}　{$order.address}（{$order.tel|default=$order['mobile']}）</dd></dl>
+      <dl><dt>合計金額</dt><dd><span style="font-size:18px;font-weight:700;color:var(--ink)">¥{:number_format((float)$order['order_amount'],0,'.',',')}</span>（税込）</dd></dl>
+      <dl><dt>獲得予定ポイント</dt><dd>{$order.point|intval} ポイント</dd></dl>
+    </div>
+
+    <h2 style="font-size:16px;text-align:left;margin:24px 0 12px">ご注文商品</h2>
+    <div class="cart-items-panel" style="background:var(--white);border:1px solid var(--line);">
+      <volist name="items" id="it">
+        <div class="cart-item" style="background:var(--white);">
+          <img src="{$it.product_thumb|default='__STYLE__/css/suni_logo-041.png'}" alt="{$it.product_name}">
+          <div class="cart-item-meta">
+            <div class="cart-item-name">{$it.product_name}</div>
+            <div class="cart-item-opt">
+              <if condition="!empty($it['color'])">{$it.color} </if>
+              <if condition="!empty($it['size'])">{$it.size}</if>
+            </div>
+            <div class="cart-item-row" style="margin-top:8px">
+              <span style="color:var(--ink-soft);font-size:12.5px;">× {$it.number|intval}</span>
+              <span class="cart-item-price">¥{:number_format((float)$it['price']*(int)$it['number'],0,'.',',')}</span>
+            </div>
+          </div>
+        </div>
+      </volist>
+    </div>
+
+    <div class="done-actions">
+      <if condition="$order['pay_status'] eq 0">
+        <a href="{:U('Cart/pay', array('sn'=>$order['sn']))}" class="btn btn-dark btn-lg">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          今すぐ支払う
+        </a>
+      </if>
+      <a href="{:U('My/orders')}" class="btn btn-outline btn-lg">注文履歴を見る</a>
+      <a href="/" class="btn btn-outline btn-lg">トップへ戻る</a>
+    </div>
+  </div>
+
+</main>
+
+<include file="Home:footer"/>
+</body>
+</html>

@@ -1,0 +1,469 @@
+﻿<link rel="stylesheet" href="{$site_url}__STYLE__/user/user.css"/>
+<style>
+#mypages .order_status{font-size:10px;padding:0 10px;text-align:left;}
+#mypages .order_status h3{background-color:#F5F1F0;font-size:12px;padding:10px;text-align:left;border:1px solid #ddd;}
+#mypages .order_status dl{border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;background-color:#ffffff;height: 40px;
+			line-height: 20px;}
+#mypages .order_status dt,#mypages .order_status dd{padding:3px;}
+#mypages .order_status dt{
+			float: left;
+			line-height: 20px;
+			width: 30%;
+			padding-left: 10px;
+		}
+		#mypages .order_status dd{
+			line-height: 20px;
+			margin-left:30%;
+		}
+#mypages .order_history .info{padding:10px;}
+#mypages .order_history .info dl dt{float:left;line-height:20px;clear:both;}
+#mypages .order_history .info dl dt:after{content:":";padding-left:5px;padding-right:5px;clear:both;}
+#mypages .order_history .info dl dd{line-height:20px;}
+#mypages .cart_wrap{padding:10px 15px;}
+#mypages .cart_wrap .cart_item{border-top:1px solid #d6d6d6;padding:5px 0;}
+#mypages .cart_wrap .cart_item:first-child{border-top:none;}
+#mypages .cart_wrap .cart_item .item_box{font-size:11px;}
+#mypages .cart_wrap .cart_item .item_box .item_photo{float:left;width:17%;}
+#mypages .cart_wrap .cart_item .item_box .item_photo img{width:100%;}
+#mypages .cart_wrap .cart_item .item_box .item_detail{width:72%;float:left;margin-left:3%;word-wrap:break-word;}
+#mypages .cart_wrap .cart_item .item_box .item_detail p.item_name{line-height:15px;}
+#mypages .cart_wrap .cart_item .item_box .item_detail p.item_name a{font-size:12px;text-decoration:underline;}
+#receipt{border-top:1px solid #d6d6d6;padding:10px 20px 0 20px; clear: both;}
+#receipt dl dt{float:left;width:50%;text-align:left;}
+#receipt dl dd{float:right;width:50%;text-align:right;}
+#receipt dl dd.caution{color:#ff0000;}
+#mypages .total{background:#2E3235;color:#FFFFFF;text-align:center;margin:5px 0;padding:5px 0;font-size:1.0em;}
+#mypages .total dt{display:inline-table;vertical-align:bottom;}
+#mypages .total dd{display:inline-table;font-size:1.8em;vertical-align:bottom;font-weight:bold;line-height:120%;}
+.order_history .order_user{padding:10px;}
+.order_history .order_user dt{float:left;clear:both;line-height:20px;width:60px;}
+.order_history .order_user dd{line-height:20px;margin-left:60px;}
+.qq-uploader {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    float: left;
+    overflow: hidden;
+}
+.qq-upload-button {
+    width: 60px;
+    height: 60px;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid #c7c7c7;
+    background: #fff;
+    text-indent: -9999px;
+    padding: 0;
+    box-sizing: border-box;
+}
+.qq-uploader::after {
+    pointer-events: none;
+    content: "4MB以下";
+    font-size: 11px;
+    display: block;
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    text-align: center;
+    color: #c7c7c7;
+    z-index: 1;
+}
+.qq-uploader::before {
+    pointer-events: none;
+    content: "";
+    display: block;
+    font-family: "hacopy";
+    position: absolute;
+    top: 5px;
+    color: #d8d8d8;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 30px;
+}
+
+#mypages table tbody th{ background: none;}
+#mypages table tbody td{    border-bottom: 1px solid #202020!important;}
+#mypages .order_history input,#mypages .order_history textarea{ width: 100%; margin-bottom: 10px;}
+.thumlist{width: 60px; height: 60px;float: left; margin-left: 10px; position: relative;}
+.thumlist a::before{content: ""; width: 20px; height: 20px; display: block; background-image:url(__STYLE__/user/a7.png) ; background-size: 20px 20px; background-repeat: no-repeat;  position: absolute; right: 0;}
+.thumlist a img{border-radius: 4px; width: 100%; height: 100%;}
+.combox{display:none}
+.combox.on{display:block}
+.tabClick{ background: #f3f3f3; overflow: hidden; padding: 0 10px}
+.tabClick li{ height:40px; line-height: 40px; width: 50%; float: left; text-align: center;color: #999;}
+.tabClick li.active{ color: #4781fe; transition: 0.1s; font-weight: bold; border-bottom: 2px solid #4781fe;}
+section {
+    width: 100%;
+    margin:0 0%;
+}
+.item {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    padding:5px 10px;
+}
+.item_two {
+    -webkit-box-direction: reverse;
+    -moz-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+.head {
+    overflow: hidden;
+    width: 30px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+}
+.head img {
+    display: block;
+    width: 80%;
+    margin-top:10px;
+}
+.item_one .head {
+    margin-right: 5px;
+}
+.item_two .head {
+    margin-left: 10px;
+}
+.content {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex-: 1;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    word-wrap: break-word;
+    word-break: normal;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    font-size: 12px;
+}
+.item_one .content {
+    background: #d7dbda;
+}
+.item_two .content {
+    background: #a0d1ea;
+}
+.item_one .content:before,
+.item_two .content:after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    z-index: 10;
+    border: solid transparent;
+    border-width: 8px 10px;
+}
+.item_one .content:before {
+    left: -19.4px;
+    border-right-color: #d7dbda;
+}
+.item_two .content:after {
+    right: -18.4px;
+    border-left-color: #a0d1ea!important;
+}
+.item p.content::after{
+    content: '';
+    border: solid transparent;
+    border-width: 8px 10px;
+}
+.msg_content{ display: none;}
+.msg_name{ cursor: pointer; text-decoration: underline;}
+.msg_name::after {
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    content: "";
+    height: 8px;
+    width: 8px;
+    margin-top: -5px;
+    position: absolute;
+    right: 7px;
+    top: 49%;
+    transform: rotate(-45deg);
+}
+.fwpj{width: 100%;display: flex;justify-content: space-between;align-items: center;background: #FFFFFF;padding: .25rem 0rem  .35rem;font-size: 14px;color: #000000;margin-top: 5px;margin-bottom:5px;}
+.star{display: flex;}
+.star span{width:20px;height:20px;margin-left: .3rem;background: url(__STYLE__/user/star.png) center center no-repeat;background-size: 100%;cursor: pointer;}
+.star span.on{background-image: url(__STYLE__/user/star-active.png);}
+
+
+    .btn_submitx{ 
+    height: 62px;
+    width: 62px;
+    line-height: 62px;
+    text-align: center;
+    display: block;
+    background: #2490d0;
+    border-radius: 2px;
+    color: #fff!important;}
+    .btn_areax{ float: right; margin-top: 10px;}
+   .order_history  .cart_wrap{ margin-top: 15px;}
+   .order_history  .cart_wrap .item_photo img{ width: 80px;  margin-bottom: 10px;}
+   .qq-uploader{ margin-top: 10px!important;  margin-left: 0!important;}
+   .thumlist{ margin-top: 10px!important;}
+</style>
+<div id="mypage">
+    <ul class="bread clearfix">
+        <li><a href="/">TOP</a></li>
+        <li>匿名評価 </li>
+    </ul>
+    <h2>匿名評価</h2>
+    <!-- マイページメイン Start -->
+    <div id="mypage_main" class="clearfix">
+        <include file="User:menu" />
+        <!--  右カラム Start  -->
+        <div id="right_box">
+
+            <div class="order_list">
+                <h3>匿名評価</h3>
+<?php $config = F('member.config');?>
+                <div id="mypages">
+                    <div class="section order_history">
+                        <volist name="list" id="r" key="i">
+                        <div class="cart_wrap">
+                            <div class="cart_item" style="border-bottom: 1px solid #d6d6d6">
+                                <div class="item_box clearfix">
+                                    <!--item_box-->
+                                    <div class="item_photo">
+                                        <a href="{$r.product_url}">
+                                            <img src="{$r.product_thumb}" alt="{$$r.product_name}">
+                                        </a>
+                                    </div>
+                                    <div class="item_detail">
+                                        <p class="item_name"><a
+                                                href="{$r.product_url}">{$r['product_name']}</a></p>
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                                <tr>
+                                                    <th>価格：</th>
+                                                    <td>
+                                                        <span> {$r['product_price']|number_format}円</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>数量：</th>
+                                                    <td>{$r['number']}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" order_history" >
+                                <dl class="order_user" style="padding:0">
+                                    <form name="LoginForm" method="post" action="#" id="loginForm_{$r['product_id']}">
+                                    <div style="margin:10px auto;">
+                                        <div class="fwpj">
+                                            <span>評価</span>
+                                            <div class="star">
+                                                <span class="on" data-id="{$r['product_id']}"></span>
+                                                <span class="on" data-id="{$r['product_id']}"></span>
+                                                <span class="on" data-id="{$r['product_id']}"></span>
+                                                <span class="on" data-id="{$r['product_id']}"></span>
+                                                <span class="on" data-id="{$r['product_id']}"></span>
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <textarea name="review[{$r['product_id']}][txaComment]"  id="txaComment_{$r['product_id']}"  style="padding: 5px; width:calc(100% - 3px)" cols="50" rows="5"  placeholder="リクエストの詳細"></textarea>
+                                       <br>
+                                        <div class="qq-uploader">
+                                            <div class="qq-upload-button qq-upload-button-hover" style="position: relative; overflow: hidden; direction: ltr;"></div>
+                                            <div><input class="upd_img_upload"  data-id="{$r['product_id']}" id="myfiles" name="myfiles" accept="image/*" type="file"  style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;height:62px; width: 62px;"></div>
+                                           
+                                        </div>
+                                        <div  class="btn_areax"><a href="javascript:doComent({$r['product_id']});" id="submitButton_{$r['product_id']}" class="btn_submitx">確認</a></div>
+                                        <div class="thums thumbx thumbx_{$r['product_id']}" style="display: none;">
+                                            <div class="thumlist"><a href="javascript:void(0);" class="imgx_{$r['product_id']}" data-catid="{$r['product_id']}" data-id=""><img class="imgxrc_{$r['product_id']}" src=""></a></div>
+                                        </div>
+                                        <input type="hidden" name="review[{$r['product_id']}][thumb]"   id="thumb_{$r['product_id']}" class="thumb_{$r['product_id']}" value="" />
+                                        <input type="hidden" name="review[{$r['product_id']}][rating]" class="rating_{$r['product_id']}" value="5" />
+                                        <input type="hidden" name="review[{$r['product_id']}][orderid]"  value="{$orderid}" />
+                                        <input type="hidden" name="review[{$r['product_id']}][product_id]"  value="{$r.product_id}" />
+                                        <input type="hidden" name="review[{$r['product_id']}][product_thumb]" value="{$r.product_thumb}" />
+                                        <input type="hidden" name="review[{$r['product_id']}][product_name]" value="{$r.product_name}" />
+                                        <input type="hidden" name="review[{$r['product_id']}][product_url]"  value="{$r.product_url}" />
+                                        <input type="hidden" name="review[{$r['product_id']}][tid]"  value="{$tid}" />
+                                        <div class="clearfix"></div>
+                <div style="color: #000;font-size:10px; margin-top:10px;">&#x1F381;<span style="font-size: 13px;"> 実物写真付きレビュー投稿で<?php echo number_format($config['comments']);?>円クーポン進呈！</span> <br>※投稿写真が実物と確認できない場合、ポイントは<font color=red>無効</font>となります。<br>※通信状況により、画像のアップロードが遅れる場合があります。少々お待ちください。</div>
+          
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </dl>
+                            </form>
+                            </div>
+                        </div>
+                    </volist>
+                    </div>
+                
+                </div>
+
+                
+
+            </div>
+            <!-- order_list -->
+        </div>
+        <!--  右カラム End  -->
+    </div>
+    <!-- マイページメイン Start -->
+</div>
+<script>
+    $(".upd_img_upload").change(function(){   
+         var files = $(this).get(0).files[0];
+         if(files.size > 5*1024*1024){
+             layer.msg("画像サイズは4mを超えることはできません");
+             return false;
+         }
+         var idx=$(this).attr("data-id");
+         var reader = new FileReader();
+         reader.readAsDataURL(files);
+         var formData = new FormData();
+         formData.append("__source", files);
+         var _that=$(this);
+         $.ajax({
+             url:'?g=home&m=user&a=upload',
+             dataType:'json',
+             type:'POST',
+             async: false,
+             data:formData,
+             processData : false,
+             contentType : false, 
+             beforeSend: function (XMLHttpRequest) {
+             },
+             success: function(res){
+                 var data = res.data;
+                 if(res.code == 0){
+                     $(".thumb_"+idx).val(data.src);
+                     $(".imgx_"+idx).attr("data-id",data.src);
+                     $(".imgxrc_"+idx).attr("src",data.src);
+                     $(".thumbx_"+idx).show();
+                 }else{
+                     layer.msg(res.msg);
+                 }
+             },
+             error:function(response){
+                 layer.msg(response);
+             }
+         });
+     }); 
+     $('body').on('click','.thumlist a',function(){
+         var _url=$(this).attr("data-id");
+         var idx=$(this).attr("data-catid");
+         $(this).parent().remove();
+         $("#myfiles").attr("readonly",false);
+         $("#myfiles").attr("disabled",false);
+         $(".thumb_"+idx).val("");
+         $.ajax({
+             url: 'index.php?m=user&a=delimg',
+             type: 'POST',
+             data:{id:_url},
+             timeout: 1000,
+             dataType:'json',
+             success: function(res){
+                
+             }
+         });
+     });
+     var isSubmitting = false;
+     function doComent(idx){
+         if (isSubmitting) {
+             return;
+         }
+         isSubmitting = true;
+         $("#submitButton_"+idx).off('click');
+         $("#submitButton_"+idx).text('成功です');
+ 
+
+ 
+         var txaComment=$("#txaComment_"+idx).val().replace(/\n/g,"<br />");
+         if (txaComment.length < 10) {
+             layer.msg('コメントは10文字以内');
+             $("#submitButton_"+idx).on('click', function() { doComent(idx); });
+             isSubmitting = false;
+             return false;
+         }
+         if ($("#thumb_"+idx).val().length < 1) {
+             layer.msg("写真付きレビュー投稿");
+             $("#submitButton_"+idx).on('click', function() { doComent(idx); });
+             isSubmitting = false;
+             return false;
+         }
+ 
+         var data=$("#loginForm_"+idx).serialize();
+         $.ajax({
+             url: 'index.php?m=user&a=addreview',
+             type: 'post',
+             data: data,
+             dataType:'json',
+             success: function(res){
+                 if(res.status==2){
+                     layer.msg('評論することに成功します.審査を待ちます！');
+                     window.location.reload();
+                 }else{
+                     layer.msg(res.msg);
+                 }
+                 isSubmitting = false;
+             }
+         });
+ }
+ 
+     function doComents(idx){
+ 
+         if ($("#thumb_"+idx).val().length < 1) {
+             layer.msg("写真付きレビュー投稿");
+             return false;
+         }
+ 
+         if ($("#username_"+idx).val().length < 1) {
+             layer.msg('ニックネーム！');
+             return false;
+         }
+ 
+         var txaComment=$("#txaComment_"+idx).val().replace(/\n/g,"<br />");
+         if (txaComment.length < 1) {
+             layer.msg('例：ウェア太郎');
+             return false;
+         }
+        
+         var data=$("#loginForm_"+idx).serialize();
+         $.ajax({
+             url: 'index.php?m=user&a=addreview',
+             type: 'post',
+             data: data,
+             timeout: 1000,
+             dataType:'json',
+             success: function(res){
+                 if(res.status==2){
+                     layer.msg('評論することに成功します.審査を待ちます！');
+                     window.location.reload();
+                 }else{
+                     layer.msg(res.msg);
+                 }
+             }
+         });
+     }
+     $('.star span').click(function(){
+         $(this).parent().find('span').removeClass('on')
+         var id=$(this).attr("data-id");
+         var index = $(this).index();
+         var rating=parseInt(index) + 1;
+         $(".rating_"+id).val(rating);
+         $(this).parent().find('span').each(function(){
+             if(index<0){
+                 return
+             }
+             $(this).addClass('on');
+             index--
+         });
+     });
+ </script>

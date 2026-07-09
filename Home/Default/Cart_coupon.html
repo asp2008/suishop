@@ -1,0 +1,251 @@
+<?php
+$userid=$_COOKIE['TP_userid'];
+if($userid){
+  $maps1['use_start_time'] = array('lt',time());
+  $maps1['use_end_time'] = array('gt',time());
+  $maps1['status'] = 1;
+  $maps1['type'] = 2;
+  $info=M('Coupon')->where($maps1)->find();
+  if($info){
+    $mp['cid']=$info['id'];
+    $mp['uid'] = $userid;
+    $has=M('Coupon_list')->where($mp)->find();
+    $ispay = MD('User','id='.$userid,'ispay');
+    if(!$has && $ispay >0){
+      $add['cid'] = $info['id'];
+      $add['type'] = 1;
+      $add['status'] = 0;
+      $add['uid'] = $userid;
+      $add['send_time'] = time();
+      do{
+        $code = get_rand_str(5,0,1);
+        $check_exist = M('Coupon_list')->where(array('code'=>$code))->find();
+      }while($check_exist);
+      $add['code'] = $code;
+      M('Coupon_list')->add($add);
+    }
+  }
+  $maps['c.use_start_time'] = array('lt',time());
+  $maps['c.use_end_time'] = array('gt',time());
+  $maps['l.uid'] = $userid;
+  $maps['l.status'] = 0;
+  $maps['c.type'] = 2;
+  $couponModel = M('Coupon');
+  $list = $couponModel
+  ->alias('c')
+  ->join('div_coupon_list l ON c.id = l.cid', 'INNER')
+  ->field('c.id,c.title,c.use_start_time,c.use_end_time,c.conditions,c.money,c.use_type,c.cat_id,l.code')
+  ->where($maps)
+  ->order('c.use_end_time asc') 
+  ->limit(20)
+  ->select();
+  $twoDaysInSeconds = 2 * 24 * 60 * 60;
+  if($list){
+    foreach ($list AS $idx => $row){
+      if($row['status']==0){
+        $list[$idx]['expired']   = 0;
+      }else{
+        $list[$idx]['expired']   = 1;
+      }
+      if(($row['use_end_time']-time())<$twoDaysInSeconds){
+        $list[$idx]['countdown']   = 1;
+      }else{
+        $list[$idx]['countdown']   = 0;
+      }
+      $list[$idx]['conditions']   = number_format($row['conditions']);
+      $list[$idx]['money']   = number_format($row['money']);
+    }
+  }
+}
+?>
+{if $list}
+<style>
+  
+    .c-coupon-item__wrapper{position:relative;display:block;-webkit-mask-position:-6px;mask-position:-6px;overflow:hidden;}
+    .c-coupon-item__wrapper{margin-bottom:13px;background:#fff6f3;border:#ffe2cf;border:.5px solid #ffe2cf;border-top:0;}
+    .c-coupon-item__wrapper .coupon-cycle-border{width:13px;height:13px;position:absolute;}
+    .c-coupon-item__wrapper .coupon-cycle-border{background-color: #ffe2cf;border-radius:50%;}
+    .c-coupon-item__wrapper .coupon-cycle-border__left{left:-7px;}
+    .c-coupon-item__wrapper .coupon-cycle-border__right{right:-7px;}
+    .c-coupon-item__wrapper:before{content:"";position:absolute;height:.107rem;width:100%;top:0;z-index:1;}
+    .c-coupon-item__wrapper:before{background-color:#fa6338;background-color:var(--themeColor,#fa6338);}
+    .c-coupon-item__wrapper:before{left:0;}
+    .c-coupon-item__wrapper .coupon-mid-line{height:13px;display:flex;align-items:center;}
+    .c-coupon-item__wrapper .coupon-mid-line>div{flex:1;height:2px;}
+    .c-coupon-item__wrapper .coupon-mid-line>div{background-size:8px 2px;background-repeat:repeat-x;}
+    .c-coupon-item__wrapper .coupon-mid-line>div{background-image:linear-gradient(90deg,#fff 0,#fff 50%,transparent 0);background-image:linear-gradient(90deg,var(--midLineColor,#fff) 0,var(--midLineColor,#fff) 50%,transparent 0);}
+    .c-coupon-item__wrapper .head{font-size:20px;line-height:25px;font-weight:700;color:#fa6338;color:var(--themeColor,#fa6338);position:relative;display:flex;align-items:center;justify-content:space-between;}
+    .c-coupon-item__wrapper .head{padding:10px  10px 8px;}
+    .c-coupon-item__wrapper .head .head-left{overflow:hidden;flex:1;}
+    .c-coupon-item__wrapper .head .head-left{margin-right:24px;}
+    .c-coupon-item__wrapper .head .head-right{display:flex;flex-direction:column;align-items:flex-end;}
+    .c-coupon-item__wrapper .head p{font-size:12px;line-height:16px;font-weight:400;word-break:break-all;}
+    .c-coupon-item__wrapper .head p{margin-top:3px;}
+    .c-coupon-item__wrapper .head .coupon-check{width:20px;height:20px;}
+    .c-coupon-item__wrapper .head .coupon-check span{font-size:0;}
+    .c-coupon-item__wrapper .header-wrapper{width:100%;display:flex;align-items:center;justify-content:space-between;}
+    .c-coupon-item__wrapper .body{position:relative;transition:all .2s;}
+    .c-coupon-item__wrapper .body{padding:.09333333rem .427rem .2667rem;}
+    .c-coupon-item__wrapper .body .coupon-desc-content{max-height:1.26rem;width:96%;overflow:hidden;}
+    .c-coupon-item__wrapper .body .coupon-desc-content li{max-width:100%;}
+    .c-coupon-item__wrapper .body .coupon-desc-content .data-range{max-width:100%;}
+    .c-coupon-item__wrapper .body li{font-size:10px;line-height:14px;color:#666;position:relative;}
+    .c-coupon-item__wrapper .body li{padding-left:.187rem;}
+    .c-coupon-item__wrapper .body li:before{content:"";position:absolute;top:.12rem;height:.16rem;width:.16rem;transform-origin:50% 0;}
+    .c-coupon-item__wrapper .body li:before{background:#666;transform:scale(.5);border-radius:50%;}
+    .c-coupon-item__wrapper .body li:before{left:0;margin-left:-.04rem;}
+    .c-coupon-item__wrapper .body li:not(:first-child){margin-top:.107rem;}
+    .c-coupon-item__wrapper .bg-wrapper{background-repeat:no-repeat;background-size:100% 100%;}
+    .c-coupon-item__wrapper .coupon__newly-get{position:absolute;top:6px;z-index:1;width:104px;height:18px;font-size:12px;line-height:18px;color:#fff;}
+    .c-coupon-item__wrapper .coupon__newly-get{text-align:center;box-shadow:0 2px 2px rgba(12,62,16,.12);background-color:#3cbd45;}
+    .c-coupon-item__wrapper .coupon__newly-get{left:-40px;transform:rotate(-45deg) scale(.8333);}
+    .coupon-countdown {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 10px;
+        line-height: 1.6;
+        font-weight: 400;
+        color: #fa6338;
+    }
+    .iaskMz.S-radio_normal {
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+    
+    .iaskMz.S-radio {
+        display: inline-block;
+        position: relative;
+        height: inherit;
+        white-space: nowrap;
+        outline: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-size: 0;
+    }
+    .btn-operation {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .S-radio__input-origin{transform: scale(1.5);}
+    .coupon-countdown{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-end;
+        font-size:10px;
+        line-height:1.6;font-weight:400;color:#fa6338;
+        }.coupon-countdown__row{flex-direction:row;align-items:center}
+        .coupon-countdown__row .coupon-countdown__txt{margin-right:.0533rem}
+        .coupon-countdown__row .coupon-countdown__txt{margin-left:.0533rem}
+        .coupon-countdown__row .coupon-countdown__txt_bold{font-weight:700;font-size:16px}
+        .coupon-countdown__txt{color:#fa6338;color:var(--themeColor,#fa6338)}
+        .coupon-countdown__time{display:flex;align-items:center}
+        .coupon-countdown__time span{flex:0 0 auto;min-width:17px;height:17px;line-height:17px;color:#fff}
+        .coupon-countdown__time span{background-color:#fa6338;background-color:var(--themeColor,#fa6338);text-align:center;margin:0 .0533rem;border-radius:2px}
+    
+        .confirm-use__coupon-model {
+        position: fixed;
+        width:calc(100% - 20px);
+        bottom: 0;
+        z-index: 1;
+        padding: 0 13px 20px;
+        background: #fff;
+        border-top: 1px solid #e5e5e5;
+        transform: translateZ(1px);
+    }
+    .confirm-use__coupon-model .amount-wrap {
+        font-weight: 700;
+        font-size: 16px;
+        color: #222;
+    }.confirm-use__coupon-model .amount-wrap .amount {
+        color: #fa6338;
+    }
+        .confirm-use__coupon-model .use-coupon-tip {
+            padding: 13px 0 0;
+        font-size: 12px;
+        color: #767676;
+        text-transform: capitalize;
+        display: flex;
+        display: -ms-flexbox;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .confirm-use__coupon-model button {
+        margin-top: 13px!important;
+    }
+    .c-my-coupons__wrap .coupon-wrap {
+        overflow-y: scroll;
+    }
+    .coupon-wrap li{ list-style: none;}
+    .coupon-wrap ul{ margin: 0; padding: 0;}
+    .coupon-list{ margin: 5px;}
+    </style>
+
+    <div class="coupon-list">
+      <section id="j-unused-coupon-wrap" class="coupon-wrap">
+    
+        <ul>
+          <volist name="list" id="rs">
+          <li class="c-coupon-item-new 3">
+            <div id="coupon-item-1723430046570" class="c-coupon-item__wrapper"
+              style="visibility: visible;mask-image: radial-gradient(circle at 6px calc(112.953px), transparent 6px, rgb(255, 255, 255) 6px);">
+    
+              <div class="head" id="coupon-head-1723430046570">
+                <div class="header-wrapper bg-wrapper" style="background-image: none;">
+                  <div class="head-left">
+                    <div class="sub-item">
+                      <section class="title-section" id="coupon-head-1723430046570">
+                        <div class="coupon-title-warp">
+                          <div class="coupon-title__text"> <span id="title-0809jp25-0" class="title">
+                              ￥{$rs.money} OFFクーポン </span></div>
+                          <div class="coupon-title__labels"> </div>
+                        </div>
+                        <p>
+                          {$rs.title}
+                        </p>
+                        <p>¥{$rs.conditions}以上のご注文で適用    有効期限まであと  ~ {$rs['use_end_time']|toDate=###,'Y/m/d H:i'}</p>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="head-right">
+                    <section class="btn-operation" show-stackable-tips="true"> <label
+                        class="S-radio iaskMz S-radio_white-black  S-radio_checked S-radio_normal coupon-check"
+                        style="margin-right: 0px !important;"><span class="S-radio__input"><i
+                            class="S-radio__input-inner iconfont-s icons-select"></i></span><input type="radio"
+                          tabindex="-1" name="coupon" class="S-radio__input-origin" value="{$rs.code}"><input type="hidden" name="coupon_price"
+                          value="{$rs.money}"></label>
+    
+           
+                    </section>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="coupon__newly-get"> New </div>
+              <div class="coupon-cycle-border coupon-cycle-border__left" style="top: calc(50%);"></div>
+              <div class="coupon-cycle-border coupon-cycle-border__right" style="top: calc(50%);"></div>
+            </div>
+          </li>
+        </volist>
+    </ul>
+    </section>
+    </div>
+    <script>
+
+  </script>
+    {/if}

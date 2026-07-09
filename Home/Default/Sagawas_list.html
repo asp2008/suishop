@@ -1,0 +1,69 @@
+<nav id="breadCrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ul class="clearfix">
+        <li><font itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/"  itemprop="item"><span itemprop="name">{$site_name}</span></a> <meta itemprop="position" content="1" /></font> >{$catname}</li>
+    </ul>
+</nav>
+<style>
+        .ems {
+    width: 100%;
+    height: auto;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+.titleitem {
+    border-bottom: 1px solid #AAAAAA;
+    font-size: 14px;
+    font-weight: bold;
+    color: #272727;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 8px;
+    background: #AAAAAA;
+}
+.ems .item {
+    border-bottom: 1px dotted #898888;
+    margin: 3px 4px;
+    height: 30px;
+    line-height: 30px;
+}
+.ems .item span.sp2{ float: right;}
+.ems a{ color: #2d2d2d;}
+</style>
+<div class="nar-wrapper">
+<?php 
+    $protypes=F('Protype');
+	$parr=get_arrparentid($_GET['protype'],$protypes);
+	$parr=explode(',', $parr);
+	$parr[]=$_GET['protype'];
+ ?>
+<div id="content" class="twoColumun">
+    <div class="sectionHeader clearfix">
+        <h1>{$catname}</h1>
+    </div>
+    <section class="cat_description">
+     <tp:block pos="jibian" />
+    </section>
+
+    <div class="ems">
+
+        <volist name="listr" id="vo" key="k">
+
+            <div class="item">
+                <span class="sp1">
+                    {$vo.title}</span><span class="sp2">{$vo.createtime|toDate=###,'Y.m.d'}</span>
+                <div class="clear">
+                </div>
+            </div>
+        </volist>
+    </div>
+
+    <div class="pager">
+    {if $pages}
+    <div id="pages">{$pages}</div>
+    {/if}
+</div>
+
+</div>
+<include file="Home:slidebar" />
+</div>

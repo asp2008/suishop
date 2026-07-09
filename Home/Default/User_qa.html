@@ -1,0 +1,718 @@
+<link rel="stylesheet" href="{$site_url}__STYLE__/user/user.css"/>
+<style>
+    #right_box .order_history .order_list table td {
+        border: 1px solid #d6d6d6 !important;
+        padding: 10px !important;
+        text-align: center !important;
+    }
+
+section {
+    width: 100%;
+    margin: 5% 0%;
+}
+.item {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+}
+.item_two {
+    -webkit-box-direction: reverse;
+    -moz-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+.head {
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    text-align: center;
+}
+.head img {
+    display: block;
+    width: 80%;
+}
+.item_one .head {
+    margin-right: 15px;
+}
+.item_two .head {
+    margin-left: 15px;
+}
+.content {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex-: 1;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    word-wrap: break-word;
+    word-break: normal;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    font-size: 12px;
+}
+.item_one .content {
+    background: #d7dbda;
+}
+.item_two .content {
+    background: #a0d1ea;
+}
+.item_one .content:before,
+.item_two .content:after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    z-index: 10;
+    border: solid transparent;
+    border-width: 8px 10px;
+}
+.item_one .content:before {
+    left: -19.4px;
+    border-right-color: #d7dbda;
+}
+.item_two .content:after {
+    right: -18.4px;
+    border-left-color: #a0d1ea!important;
+}
+
+.item p.content::after{
+    content: '';
+    border: solid transparent;
+    border-width: 8px 10px;
+}
+.msg_content{ display: block; padding-top: 10px;}
+.msg_name{ cursor: pointer;}
+
+.msg_name::after {
+    border-bottom: 2px solid #ff0000;
+    border-right: 2px solid #ff0000;
+    content: "";
+    height: 8px;
+    width: 8px;
+    margin-top: -5px;
+    position: absolute;
+    right: 7px;
+    top: 30px;
+    transform: rotate(45deg);
+}
+.msg_name.on::after {transform: rotate(220deg); top: 35px;}
+.msg_name span{ display: block;}
+.msg_name span.time{ text-align:left;width:calc(100% - 10px); border-bottom: 1px dashed; padding-bottom: 2px;}
+.msg_content img{ max-width: 100%;}
+#right_box .order_history .order_list table td {
+        border: 1px solid #d6d6d6 !important;
+        padding: 10px !important;
+        text-align: center !important;
+    }
+    .qq-uploader {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    float: left;
+}
+.qq-upload-button {
+    width: 60px;
+    height: 60px;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid #c7c7c7;
+    background: #fff;
+    text-indent: -9999px;
+    padding: 0;
+    box-sizing: border-box;
+}
+.qq-uploader::after {
+    pointer-events: none;
+    content: "4MB以下";
+    font-size: 11px;
+    display: block;
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    text-align: center;
+    color: #c7c7c7;
+    z-index: 1;
+}
+.qq-uploader::before {
+    pointer-events: none;
+    content: "";
+    display: block;
+    font-family: icon;
+    position: absolute;
+    top: 5px;
+    color: #d8d8d8;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 30px;
+}
+#mypage .order_history input,#mypage .order_history textarea{ width: 100%; margin-bottom: 10px; padding-left: 0; padding-right: 0; text-indent: 10px;}
+.thumlist{width: 60px; height: 60px;float: left; margin-left: 10px; position: relative;}
+.thumlist a::before{content: ""; width: 20px; height: 20px; display: block; background-image:url(__STYLE__/user/a7.png) ; background-size: 20px 20px; background-repeat: no-repeat;  position: absolute; right: 0;}
+.thumlist a img{border-radius: 4px; width: 60px; height: 60px;}
+
+.btn_category_more {
+    display: block;
+    color: #aaa;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.4;
+    background: none;
+    border: none;
+}
+.btn_category_more:after {
+    border-bottom: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+    content: "";
+    height: 7px;
+    margin-left: 10px;
+    position: absolute;
+    top: 4px;
+    transform: rotate(45deg);
+    width: 7px;
+}
+
+.btn_category_more.isOpen::after {
+    transform: rotate(225deg);
+    top: 8px;
+}
+
+option.imagebacked {
+padding: 2px 0 2px 20px;
+background-repeat: no-repeat;
+background-position: 1px 2px;
+vertical-align: middle;
+}
+.pro{ margin-bottom: 10px; clear: both; width: 100%; height: 32px; position: relative;}
+.pro span{ width:auto; line-height: 30px; background: #2490d0; border-radius: 10px; padding:3px 5px; color: #fff; position: relative;  top: 2px;}
+.pro img{ width: 30px; height: 30px; float: left; margin-right: 5px; border-radius: 5px; position: relative;top: -5px;}
+.msg_name  .title{ font-weight: bold;}
+#mypage input.exploer{padding: 8px 0;
+    display: block;
+    background: #080404;
+    border-radius: 2px;
+    color: #fff;
+    margin-bottom: 0;
+    height: 35px;
+    border: none;
+    width: 200px;
+    }
+    .order_btn_list > a{ margin-bottom: 0;}
+
+
+    .chat-notice {
+    clear: both;
+    font-size: 100%;
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.chat-notice span {
+    background-color: #cecece;
+    line-height: 25px;
+    border-radius: 5px;
+    padding: 2px 10px;
+}
+.pro{ margin-bottom: 10px; clear: both; width: 100%;}
+.pro span{ width:auto; line-height: 30px; background: #2490d0; border-radius: 10px; padding:3px 5px; color: #fff;}
+.pro img{ width: 30px; height: 30px; float: left; margin-right: 5px; border-radius: 5px;}
+.msg_name  .title{ font-weight: bold;}
+#mypage input.exploer{padding: 8px 0;
+    display: block;
+    background: #080404;
+    border-radius: 2px;
+    color: #fff;
+    margin-bottom: 0;
+    height: 35px;
+    border: none;
+    }
+    #MoreQa{ margin: 0;}
+
+a.btnsx {
+    display: inline-block;
+    background: #fff;
+    border-radius: 10px;
+    padding: 3px 5px;
+    position: relative;
+    font-size: 12px;
+    border: 1px solid #4781fe;
+    text-decoration: none;
+    float: right;
+}
+a.reply{ display: none; color: #2490d0;}
+.req{ display: flex;}
+.req font.title{ height: 36px; line-height:18px; overflow: hidden;}
+.req span a{ display: block;    width: 30px;
+    height: 30px;}
+.rqs{padding-top: 0px!important;}
+</style>
+<div id="mypage">
+    <ul class="bread clearfix">
+        <li><a href="/">TOP</a></li>
+        <li>お問い合わせ </li>
+    </ul>
+    <h2>お問い合わせ</h2>
+    <!-- マイページメイン Start -->
+    <div id="mypage_main" class="clearfix">
+        <include file="User:menu" />
+        <!--  右カラム Start  -->
+        <div id="right_box">
+            <include file="User:nav" />
+            <div class="order_btn_list">
+                <a href="index.php?m=user&a=qa&typeid=1" {if $typeid==1} class="on"{/if}>注文お知らせ</a>
+                <a href="index.php?m=user&a=qa&typeid=2" {if $typeid==2} class="on"{/if} style="display: none;">取引</a>
+                <a href="index.php?m=user&a=qa&typeid=3" {if $typeid==3} class="on"{/if}>商品について</a>
+                <a href="index.php?m=user&a=qa&typeid=4" {if $typeid==4} class="on"{/if} style="display: none;">リクエスト</a>
+            </div>
+             <div class="section order_history" style="margin: 0px 0;" >
+
+                <dl class="order_user">
+                    <form name="LoginForm" method="post" action="#" id="loginForm">
+                    <div style="margin:10px auto; width: 100%;">
+                        <div style="display: flex;">
+                        <select name="orderid" id="orderid"  class="w94p"  style="background-color: inherit;border: 1px solid #bbb;border-radius: 2px;padding: 10px 7px;">
+                            <option value="0">選択注文番号</option>
+         
+                            <volist name="orders" id="rs">
+                                <?php $infso=$rs['pro'];$thumbs=$infso[0];?>
+                            <option value="{$rs.id}" class="imagebacked"  style="background-image:url(<?php echo $thumbs['product_thumb'];?>);">{$i}、{$rs.sn} 注文日期：{$rs.time|toDate=###,'m.d'}</option>
+                            </volist>
+                        </select>
+                        
+           
+                        <input name="txtReqName" type="text" id="txtReqName" size="40" style="margin-left: 20px;" placeholder="例：振り込みについて（件名）">
+</div>
+                        <br>
+                        <textarea name="txaComment" id="req_comment" cols="50" rows="3"  placeholder="リクエストの詳細"></textarea>
+                       <br>
+                       
+                        <div class="qq-uploader">
+             
+            
+                            <div class="qq-upload-button qq-upload-button-hover" style="position: relative; overflow: hidden; direction: ltr;">
+                            </div>
+                            <div><input class="upd_img_upload"  id="myfiles1" name="myfiles1"  accept="image/*" type="file"
+                                    style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;height: 100%;"></div>
+            
+                        </div>
+                        <div class="thums">
+            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div style="color: #c7c7c7;font-size:10px; margin-top:10px;">（ネットワークの関係で画像のアップロードが遅くなることがある，お待ちください！）</div>
+                    </div>
+                    <div class="btn_area">
+                        <ul>
+                            <li>
+                                <input type="button" value="入力内容を確認する" readonly class="button exploer bbbbbbb">
+                                <a href="javascript:void(0);" onclick="doComent();" class="btn_black" style="display: none;">入力内容を確認する</a>
+                            </li>
+                        </ul>
+                    </div>
+                </dl>
+            </form>
+            </div>
+            <div class="order_list">
+                <h3>すべて</h3>
+      
+               <section id="MoreQa">
+                    <volist name="list" id="r" key="i">
+                        <div class="chat-notice">
+                            <span>{$r.post_time|toDate=###,'Y-m-d H:i'}</span>
+                          </div>  
+                    {if $r['howis']==0}
+                    <div class="item item_one">
+                        <div class="head"><img src="/style/user/pp.png">
+                        </div>
+                        <div class="content">
+                            {if $typeid ==3}
+                            <div class="pro req"><span  style="background: none;">{$r.pro}</span> <font class="title">{$r.msg_name}</font></div>
+
+                            {else}
+                            <div class="pro"><span>注文番号:{$r.pro}{$r.sn}</span></div>
+                            <p class="msg_name on">
+                                <span class="title">{$r.msg_name}</span>
+                            </p>
+                            {/if}
+
+                            <div class="msg_content {if $typeid ==3} rqs{/if}">
+                            {$r.msg_content}
+                            {if $r['thumb']}
+                                {$r.thumb|shwimg}
+                            {/if}
+        
+                            </div>
+                        </div>
+                    </div>
+                    {else}
+                        <div class="item item_two">
+                            <div class="head"><img src="/favicon.ico" alt="">
+                            </div>
+                            <div class="content">
+                                {if $typeid ==3}
+                                <div class="pro req"><span style="background: none;">{$r.pro}</span> <font class="title">{$r.msg_name}</font></div>
+               
+                                {else}
+                                <div class="pro"><span>注文番号:{$r.pro}{$r.sn}</span></div>
+                                <p class="msg_name on">
+                                    <span class="title">{$r.msg_name}</span>
+                                </p>
+                                {/if}
+                               
+                                <div class="msg_content  {if $typeid ==3} rqs{/if}">
+                                {$r.msg_content} 
+
+                                <a href="index.php?m=user&a=review&orderid={$r.order_id}" class=" btnsx reply" data-orderid="{$r.order_id}" data-id="{$r.msg_id}">匿名評価(<font style="font-size: 10px;">1000ポイント</font>)</a>
+
+                                {if $typeid ==1}
+                                <a href="javascript:;" class="replyx btnsx" data-orderid="{$r.order_id}" data-id="{$r.msg_id}">↪返答する</a>
+                                {/if}
+                                {if $typeid ==3}
+                                <a href="javascript:;" class="reback btnsx" data-id="{$r.pids}">↪追加お問い合わせ</a>
+                                {/if}
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="allbox" id="show_{$r.msg_id}"></div>
+                        {/if}
+                  </volist>
+                </section>
+                {if $list}
+                <button type="button" class="btn_category_more">もっと見る</button>
+                {/if}
+
+ 
+            </div>
+            <!-- order_list -->
+
+           
+
+        </div>
+        <!--  右カラム End  -->
+    </div>
+    <!-- マイページメイン Start -->
+</div>
+<script>
+
+
+    var currentIndex = 4;
+    var currentLength = 5;
+
+    $('.btn_category_more').on('click',function () {
+       var _this=$(this);
+        $.ajax({
+            url: '/index.php?m=user&a=loadQa&typeid={$typeid}&userid={$userid}',
+            method: 'GET',
+            dataType:'json',
+            data: {
+                index: currentIndex,
+                length: currentLength,
+            },
+            success: function(ret){
+                if(ret){
+                    render(ret);
+                    currentIndex += currentLength;
+                }else{
+                    _this.addClass("isOpen");
+                    layer.msg("残っているものはありません");
+                }
+            },
+        });
+    });
+    function render (data) {
+        var html = '';
+        var $data = $(data);
+        $data.each(function (i,e) {
+            if($data[i].howis==1){
+                html += '<div class="item item_two"><div class="head"><img src="/style/user/kf.svg" alt=""></div><div class="content"><div class="pro"><span>注文番号:'+$data[i].pro+$data[i].sn+'</span></div><p class="msg_name on">';
+                html += '<span class="title">'+$data[i].title+'</span><span class="time">'+$data[i].time+'</span></p>';
+                html += '<div class="msg_content">'+$data[i].content+$data[i].thumb;
+                html += '</div></div></div>';
+            }else{
+                html +='<div class="item item_one"><div class="head"><img src="/style/user/pp.svg"></div><div class="content"><div class="pro"><span>注文番号:'+$data[i].pro+$data[i].sn+'</span></div><p class="msg_name on">';
+                html +='<span class="title">'+$data[i].title+'</span><span class="time">'+$data[i].time+'</span></p>';
+                html +=' <div class="msg_content">'+$data[i].content+$data[i].thumb;
+                html +='</div></div></div>';
+            }
+        })
+        $('#MoreQa').append(html);
+    }
+
+    $("#myfiles1").click(function(){
+        var nums=$(".thums .thumlist").length;
+        if(nums >1){
+            $(this).attr("readonly",true);
+            $(this).attr("disabled",true);
+            layer.msg("アップロードは1回、画像は2枚まで");
+        }
+    });
+
+    $("#myfiles1").change(function(){   
+        var files = $("#myfiles1").get(0).files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(files);
+        var formData = new FormData();
+        formData.append("__source", files);
+        $.ajax({
+            url:'?g=home&m=user&a=upload',
+            dataType:'json',
+            type:'POST',
+            async: false,
+            data:formData,
+            processData : false,
+            contentType : false, 
+            success: function(res){
+                var data = res.data;
+                $('.thums').append('<div class="thumlist"><a href="javascript:void(0);" data-id="' + data.src + '"><input type="hidden" value="' + data.src + '"  name="thumb[]"><img src="<?php echo $site_url;?>' + data.src + '"></a></div>');
+            },
+            error:function(response){
+                console.log(response);
+            }
+        });
+    }); 
+    $('body').on('click','.thumlist a',function(){
+        var _url=$(this).attr("data-id");
+        $(this).parent().remove();
+        $("#myfiles1").attr("readonly",false);
+        $("#myfiles1").attr("disabled",false);
+        $.ajax({
+            url: 'index.php?m=user&a=delimg',
+            type: 'POST',
+            data:{id:_url},
+            timeout: 1000,
+            dataType:'json',
+            success: function(res){
+
+            }
+        });
+    });
+
+
+    $("body").on("click",".bbbbbbb",function(){
+
+
+
+
+
+
+
+        if($('select[name="orderid"]').val()<1){
+            layer.tips('選択注文番号', $('select[name="orderid"]'), { tips: 1 });
+            $('select[name="orderid"]').focus();
+            return false;
+        }
+
+        var txtReqName=$("#txtReqName").val();
+
+        if (txtReqName.length < 1) {
+            layer.tips('例：振り込みについて（件名）', $('input[name="txtReqName"]'), { tips: 1 });
+            return false;
+        }
+
+
+        var req_comment=$("#req_comment").val();
+
+        if (req_comment.length <1) {
+            layer.tips('例：コンテンツが制限を超えています', $('textarea[name="txaComment"]'), { tips: 1 });
+            return false;
+        }
+
+        if (req_comment.length >1000) {
+            layer.tips('例：コンテンツが制限を超えています', $('textarea[name="txaComment"]'), { tips: 1 });
+            return false;
+        }
+
+
+        $('textarea[name="txaComment"]').keyup(function(){
+            if (req_comment.length >1000) {
+            layer.tips('例：コンテンツが制限を超えています', $('textarea[name="txaComment"]'), { tips: 1 });
+            return false;
+        }
+        });
+
+        $('textarea[name="txaComment"]').blur(function(){
+            if (req_comment.length >1000) {
+            layer.tips('例：コンテンツが制限を超えています', $('textarea[name="txaComment"]'), { tips: 1 });
+            return false;
+        }
+        });
+
+        var nums=$(".thumlist").length;
+        if(nums>=1){
+            var thum=$(".thumlist input[name='thumb[]']").val();
+            if(thum == "undefined"){
+                layer.msg("画像がアップロードできませんでした");
+                return false;
+            }
+        }
+
+
+
+
+
+
+
+        var data=$("#loginForm").serialize();
+        $.ajax({
+            url: 'index.php?m=user&a=qa',
+            type: 'post',
+            data: data,
+            dataType:'json',
+            beforeSend:function(res){
+                $('.bbbbbbb').attr('disabled',"true");
+            },
+            success: function(res){
+                if(res.status==2){
+                    layer.msg('確認');
+                    $("#txtReqName").val("");
+                    $("#req_comment").val("");
+                    $('.bbbbbbb').attr('disabled',"true");
+                    $('.bbbbbbb').val("送信成功です");
+                    $(".thumlist").html("");
+                }else{
+                    layer.msg(res.msg);
+                }
+            }
+        });
+});
+
+
+    var box="";
+    box += '<div class="section order_history"><dl class="order_user"><form name="LoginForm" method="post" action="#" id="loginForm"><div style="margin:10px auto;">';
+    box += '<input name="txtReqName" type="text" id="txtReqName" size="40" placeholder="例：振り込みについて（件名） "><br>';
+    box += '<textarea name="txaComment" id="txaComment" cols="50" rows="5"  placeholder="リクエストの詳細"></textarea><br>';
+    box += '<div class="qq-uploader">';
+    box += '<div class="qq-upload-button qq-upload-button-hover" style="position: relative; overflow: hidden; direction: ltr;"></div>';
+    box += '<div><input class="upd_img_upload"  id="myfiles" name="myfiles" accept="image/*" type="file"  style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;height: 100%;"></div> </div>';
+    box += '<div class="thums"></div>';
+    box += '<div class="btn_area" style="width: 90px;float:right; padding: 0; margin: 0; padding-top: 26px;"><ul><li>';
+    box += '<input name="orderid" type="hidden" id="orderid" size="40" value="0">';
+    box += '<input type="button" value="確認"  class="button exploer ccccccc" style="    width: 100%;">';
+    box += '<a href="javascript:void(0);" onclick="doComent();" class="btn_black" style="padding: 8px 0; display: none;">送信する</a></li></ul></div>';
+    box += '<div class="clearfix"></div>';
+    box += '<div style="color: #c7c7c7;font-size:10px; margin-top:10px;">（ネットワークの関係で画像のアップロードが遅くなることがある，お待ちください！）</div>';
+    box += '<div class="clearfix"></div></div></dl></div>';
+ $("body").on("click","a.replyx",function(){
+
+        $.get("index.php?m=ajax&a=islogin", { userid: "<?php echo $_COOKIE['TP_userid'];?>"},function(data){
+            if(data==1){
+                window.location.href='index.php?m=user&a=index';
+                return false;
+            }
+        });
+        $(".allbox").html("");
+        var id=$(this).attr("data-id");
+        var order_id=$(this).attr("data-orderid");
+        console.log(id);
+       
+        if($(this).hasClass("on")){
+            $(this).removeClass("on");
+            $("#show_"+id).html('');
+        }else{
+            $(this).addClass("on");
+            $("#show_"+id).html(box);
+            $("#show_"+id+"").find("input[name='orderid']").val(order_id);
+        }
+    });
+
+$("body").on("click", ".ccccccc", function() {
+    var $btn = $(this);
+    var $form = $btn.closest("form");
+
+    var name = $form.find("#txtReqName").val().trim();
+    var comment = $form.find("#txaComment").val().trim();
+    if(name === "" || comment === "") {
+        layer.msg("名前とコメントを入力してください");
+        return;
+    }
+
+    $btn.prop("disabled", true);
+
+    var data = $form.serialize();
+
+    $.ajax({
+        url: 'index.php?m=user&a=qa',
+        type: 'post',
+        data: data,
+        dataType: 'json',
+        success: function(res) {
+            if(res.status == 2) {
+                layer.msg('送信成功です');
+                $form[0].reset();
+                $btn.val("送信成功です");
+                $(".thumlist").html("");
+                setTimeout(function(){
+                    window.location.reload();
+                }, 1000);
+            } else {
+                layer.msg(res.msg);
+                $btn.prop("disabled", false);
+            }
+        },
+        error: function() {
+            layer.msg("通信エラーです");
+            $btn.prop("disabled", false);
+        }
+    });
+});
+
+    $("#myfiles").click(function(){
+        var nums=$(".thums .thumlist").length;
+        if(nums >1){
+            $(this).attr("readonly",true);
+            $(this).attr("disabled",true);
+            layer.msg("アップロードは1回、画像は2枚まで");
+        }
+    });
+    $('body').on('change','#myfiles',function(){
+        var files = $("#myfiles").get(0).files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(files);
+        var formData = new FormData();
+        formData.append("__source", files);
+        $.ajax({
+            url:'?g=home&m=user&a=upload',
+            dataType:'json',
+            type:'POST',
+            async: false,
+            data:formData,
+            processData : false,
+            contentType : false, 
+            success: function(res){
+                var data = res.data;
+                $('.thums').append('<div class="thumlist"><a href="javascript:void(0);" data-id="' + data.src + '"><input type="hidden" value="' + data.src + '"  name="thumb[]"><img src="<?php echo $site_url;?>' + data.src + '"></a></div>');
+            },
+            error:function(response){
+                console.log(response);
+            }
+        });
+    }); 
+    $('body').on('click','.thumlist a',function(){
+        var _url=$(this).attr("data-id");
+        $(this).parent().remove();
+        $("#myfiles").attr("readonly",false);
+        $("#myfiles").attr("disabled",false);
+        $.ajax({
+            url: 'index.php?m=user&a=delimg',
+            type: 'POST',
+            data:{id:_url},
+            timeout: 1000,
+            dataType:'json',
+            success: function(res){
+            }
+        });
+    });
+</script>

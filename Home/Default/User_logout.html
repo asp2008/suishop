@@ -1,0 +1,28 @@
+<include file="Home:head"/>
+<body data-page="logout">
+
+<div class="notice-bar">ログアウト処理中…</div>
+
+<header class="site-header">
+  <div class="header-row">
+    <a href="/" class="logo">
+      <img src="__STYLE__/css/suni_logo-041.png" alt="SUNISUKI">
+    </a>
+  </div>
+</header>
+
+<main class="container" style="text-align:center;padding:80px 20px;">
+  <div style="max-width:480px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-xl);padding:50px 40px;box-shadow:var(--shadow-md)">
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-alt);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+      <svg viewBox="0 0 24 24" style="width:32px;height:32px" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    </div>
+    <h1 style="font-size:22px;margin-bottom:8px">ログアウトしますか？</h1>
+    <p style="color:var(--ink-soft);font-size:13px;margin-bottom:24px">ログアウトすると、会员専用ページが利用できなくなります。</p>
+    <form action="{:U('Account/doLogout')}" method="post" style="display:flex;gap:8px;justify-content:center">
+      <button type="submit" class="btn btn-dark">ログアウトする</button>
+      <a href="{:U('My/dashboard')}" class="btn btn-outline">キャンセル</a>
+    </form>
+  </div>
+</main>
+
+<include file="Home:footer"/>

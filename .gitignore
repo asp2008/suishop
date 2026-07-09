@@ -1,0 +1,14 @@
+# 运行时
+Home/Runtime/*
+!Home/Runtime/.gitkeep
+
+# 上传
+Public/theme/upload/*
+!Public/theme/upload/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store

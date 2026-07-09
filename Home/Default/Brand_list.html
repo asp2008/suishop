@@ -1,0 +1,176 @@
+<style>
+	.brandlist {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+.brandlist ul{ margin: 0; padding: 0;}
+.brandlist .list {
+    list-style: none;
+    margin: 0;
+    padding: 0 1px 0 0;
+    overflow: hidden;
+    background: #f7f7f7;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: flex-start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.brandlist .list li {
+    background: #fff;
+    position: relative;
+    float: left;
+    width: 20%;
+    margin-bottom: 1px;
+    padding: 10px 10px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.brandlist .list li:nth-child(2n) {
+    float: right;
+    margin-right: -1px;
+}
+.brandlist .list .cover {
+    position: relative;
+    overflow: hidden;
+    padding-top: 100%;
+    height: 0;
+	width: 130px;
+	margin: 0 auto;
+}
+.brandlist .list .cover img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+	border-radius: 100%;
+}
+
+.brandlist .mod_tag .tag_img, .brandlist .mod_tag img {
+    display: block;
+    height: 100%;
+
+}
+.bname{ text-align: center; line-height: 30px; font-size: 12px;}
+
+#wrapper{ font-size:13px; }
+#body { -webkit-font-smoothing:antialiased; -moz-font-smoothing:antialiased; font-smoothing:antialiased; }
+
+
+#contentHeader .sectionHeader{ border-bottom:0; }
+#contentHeader .lined h1 { padding:5px 0 0 40px; background-position:0 -120px; }
+#contentHeader .lined h1.icoUsed { padding-left:47px; background-position:0 -160px; }
+#contentHeader .lined p { float: right; margin: 14px 0 0 0; font-size: 14px; }
+
+.otherList{ font-size:14px; float:right; margin:43px 0 0; }
+.otherList p{ float: left; margin-left:5px; border-left: 1px solid #c9c9c9; padding: 0 0 0 10px; margin: 0 0 0 10px; line-height: 17px; height: 15px; color: #808080; }
+.otherList p.first{ border-left: none; padding: none; }
+
+
+#ctrl{ margin-top:32px; position:relative; }
+#quickSearchArea{ font-size:16px; }
+#quickInput { background:url(__STYLE__/images/bg_quicksearch_input_new.png) no-repeat top left; padding:0 35px; height:83px }
+#quickInput p { padding:26px 0 0; }
+.mac #quickInput p { padding:26px 0 0; }
+.mac.firefox #quickInput p { padding:24px 0 0; }
+
+#quickInput p input{ border:0; padding:7px 5px 0; width:850px; font-size:15px; -webkit-font-smoothing:antialiased; -moz-font-smoothing:antialiased; font-smoothing:antialiased; }
+#quickInput p input.def{ padding: 5px 30px 0; color:#a0a0a0; background:url(__STYLE__/images/ico_search.png) no-repeat left 5px; }
+.mac #quickInput p input.def{ padding: 6px 30px 0; color:#a0a0a0; background:url(__STYLE__/images/ico_search.png) no-repeat left 5px; }
+.mac.firefox #quickInput p input.def{ padding: 5px 30px 0; color:#a0a0a0; background:url(__STYLE__/images/ico_search.png) no-repeat left 7px; }
+.msie7 #quickInput p { padding:22px 0 0; }
+.msie8 #quickInput p { padding:22px 0 0; }
+
+#ctrl div#ini{ margin: 19px 0 0 0; }
+#ctrl ul{ margin: 0 0 0 3px; }
+#ctrl li{ float: left; font-size: 13px; }
+#ctrl span{  border-right: 1px solid #dcdcdc; padding: 0 10px 0 0; margin: 0 10px 0 0; height: 10px; }
+#ctrl li.last span{ border-right: none; margin: 0px !important; }
+#ctrl a.noAction{ color:#808080; cursor:default; text-decoration: none; }
+
+#quickInitial{ background:url(/common_2015/img/quicksearch/bg_quicksearch_btm.png) no-repeat bottom left; height:191px;  }
+#quickInitial ul{ text-align:center; padding: 16px 0 0; margin: 0 0 -8px; }
+#quickInitial li{ display:inline-block; width:66px; margin: 0 1px; height:50px; }
+#quickInitial li a{ display:inline-block; color:#202020; width:66px; height:50px; line-height:50px; text-align:center; background:url(/common_2015/img/quicksearch/btn_s.png) no-repeat 50% -18px; }
+#quickInitial li a:hover{  background-position: 50% -78px; text-decoration:none; }
+#quickInitial li a:active{  background-position: 50% -137px; }
+#quickInitial li a.noAction{ background-position: 50% -196px; cursor:default; }
+
+*:first-child+html #quickInitial li { display:inline; }
+
+#quickInitial .largeBtn li{ width:140px; height:42px; }
+#quickInitial .largeBtn li a{ display:inline-block; width:140px; height:42px; line-height:42px; text-align:center; background:url(/common_2015/img/quicksearch/btn_m.png) no-repeat 50% -18px; }
+#quickInitial .largeBtn li a:hover{  background-position: 50% -70px; }
+#quickInitial .largeBtn li a:active{  background-position: 50% -120px; }
+#quickInitial .largeBtn li a.noAction{ background-position: 50% -171px; cursor:default; }
+
+
+
+.listColumnWrapper { position:relative; padding:0 0 20px 0; }
+.listColumnWrapper .column3Line .textListBlock { clear:both; margin:0; padding:36px 0 10px 0; margin: 0 0 0 -32px; }
+.listColumnWrapper .column3Line dt { font-size:18px; margin:1px 0 0 32px; padding-bottom:22px; }
+.listColumnWrapper .column3Line dd { float:left; margin:-6px 0 0 32px; height:44px; width:305px; line-height: 16px; }
+
+.listColumnWrapper .column3Line dd a { font-size:13px; max-width: 305px; word-wrap: break-word; height:54px; line-height:1.2; }
+.mac .listColumnWrapper .column3Line dd a { height:56px; }
+.listColumnWrapper .column3Line dd span.kana{ display:none; }
+.listColumnWrapper .column3Line dd .cnt { color: #8c8c8c; font-size:12px; margin-left: 7px; }
+
+*:first-child+html .listColumnWrapper .column3Line dd{ height:54px; }
+*:first-child+html .listColumnWrapper .column3Line dd a{ display:inline-block; zoom:1; height:auto; }
+*:first-child+html .listColumnWrapper .column3Line dd span.name{vertical-align: middle; zoom:1;}
+*:first-child+html .listColumnWrapper .column3Line dd span.cnt{ vertical-align: middle; }
+
+
+
+#recommend{ margin: 35px 0 0; }
+#recommend .sectionHeader h2{ font-size:18px; }
+#recommend #recommendBody{ margin: 0 0 0 -32px;}
+#recommend #recommendBody.loader{ height:113px;}
+#recommend .recommendItems{ float:left; margin: 0 0 0 32px; width:305px; }
+#recommend .recommendHeader{ margin: 10px 0 0; }
+#recommend .recommendHeader h3 { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#recommend .recommendHeader .kana{ font-size:12px; line-height:1.417;  }
+
+#recommend .recommends { margin: 6px 0 0 -5px; }
+#recommend .recommends li{ float:left; overflow:hidden; margin: 0 0 0 5px; width:50px; height:60px; }
+
+
+.listColumnWrapper #noResult{ padding:80px; text-align:center; font-size: 15px; color:#808080; }
+</style>
+<nav id="breadCrumb">
+	<ul class="clearfix">
+		<li><a href="/">{$site_name}</a> > ブランド一覧</li>
+	</ul>
+</nav>
+<div id="body" class="clearfix">
+	<div id="content">
+		<article>
+			<section id="searchResult">
+				<div id="ctrl">
+					<h1>ブランド パロディ スーパーコピー N級品</h1>
+				</div>
+				<div class="brandlist">
+					<ul class="list">
+						<volist name="list" id="r" >
+						<li class="items">
+							<div class="cover"><a href="{:getprobturl('brand',$r['bdurl'])}/"><img src="{$r.thumb}" alt="{$r.title}"></a></div>
+							<div class="bname">
+								<a href="{:getprobturl('brand',$r['bdurl'])}/">{$r.title}</a>
+							</div>
+						</li>
+					   </volist>
+					</ul>
+				</div>
+				
+			</section>
+		</article>
+	</div>
+</div>

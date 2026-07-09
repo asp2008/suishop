@@ -1,0 +1,97 @@
+<style>
+#searchResultSidebar {
+    position: relative;
+    z-index: 10;
+    float: left;
+    width: 200px;
+    overflow: visible;
+}
+#searchResultNum {
+    position: relative;
+    z-index: 1;
+    background:#c3c3c3;
+    width: 200px;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+#searchResultNum #resultNum {
+    padding: 14px 15px 8px;
+    font-size: 13px;
+    color: #ffff;
+    border-bottom: 0;
+}
+#searchResultNum #resultNum span {
+    font-weight: normal;
+    line-height: 1.1;
+    font-family: helvetica;
+    font-size: 35px;
+}
+#floatingBox a{    color: #646464;}
+</style>
+<div id="searchResultSidebar" class="aSide">
+    <div id="floatingWrapper">
+        <div id="floatingBox">
+            {if $count}
+            <section id="searchResultNum" class="nozzle">
+                <div class="inner">
+                    <h2 id="resultNum">取扱商品<br>
+                        <span>{$count}</span> 件
+                    </h2>
+                </div>
+            </section>
+            {/if}
+            <include file="Home:category" />
+            <script>
+                $('.toggleParent').click(function () {
+                    $(this).parent().find('.toggleChild').toggle();
+                });
+            </script>
+            <section class="menuBox section" id="menuBrand">
+                <h2><b>人気 ブランド</b> </h2>
+                <ol class="lists rankingList">
+               <?php $brandls=F('Brand');  $j=1;?>
+                <volist name="brandls" id="r" key="i" offset="0" length="20">
+                    {if $r['status']==1}
+                    <li class="clearfix rank" style="margin-top: 8px;"><span class="iconSet iconSet{$j} icoS">{$j} </span><a
+                            href="{$site_url}/brand_{$r['bdurl']}/" title="{$r.title}">{$r.title}</a>
+                    </li>
+                    <?php $j++;?>
+                    {/if}
+                </volist>
+                </ol>
+                <p class="more" style="margin:10px 0; text-align:center;"><a href="https://www.bibicopy.net/brand/"
+                        style="color:#646464">ブランド一覧を見る</a></p>
+            </section>
+        </div>
+        <script>
+            $('#brand_more').click(function () {
+                $('#searchBrand li').show();
+                $(this).hide();
+            });
+        </script>
+                <div class="menuBox section" id="menuBanner">
+                <ul>
+                    <li style="text-align:center;">人気のキーワード</li>
+                    <li>
+                       <?php $leftone=F('Block_6');echo $leftone;?>
+                    </li>
+                    <li>
+                        <?php $lefttwo=F('Block_7');echo $lefttwo;?>
+                    </li>
+
+                </ul>
+            </div>
+    </div>
+</div>
+<script>
+    $('.menuCategory .lists li').hover(function () {
+        $(this).addClass("current");
+    }).mouseleave(function () {
+        $(this).removeClass("current");
+    });
+    $(".itmore a").click(function () {
+        $(this).toggleClass("on");
+        $(".scroller").toggleClass("on");
+        $(".sub_menu_lst").toggleClass("on");
+    });
+</script>

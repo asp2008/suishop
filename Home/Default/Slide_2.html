@@ -1,0 +1,11 @@
+<link rel="stylesheet" type="text/css" href="__STYLE__/wap/css/swiper.min.css" media="all">
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js" ></script>
+<script  type="text/javascript" src="__STYLE__/wap/js/swiper.min.js"></script>
+<div class="swiper-container ng-swiper" id="swiper">
+   <div class="swiper-wrapper">
+      {loop}
+      <div class="swiper-slide"><a href="{$r.link}"><img src="{$r.pic}" alt="{$r.title}" width="100%" data-y="0" data-x="0" data-scale="1"></a></div>
+      {/loop}
+      </div>
+      <div class="swiper-pagination"></div>
+</div>

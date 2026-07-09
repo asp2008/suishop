@@ -1,0 +1,214 @@
+@charset "UTF-8";
+/*
+ * dialog.css
+ * ─────────────────────────────────────────────────────────
+ * 可复用对话框 / Toast 通知组件，风格与 apple.css 保持一致。
+ * 在需要的页面单独引入，不影响其他页面加载速度。
+ * ─────────────────────────────────────────────────────────
+ */
+
+/* ============================================================
+   Dialog 遮罩层
+   ============================================================ */
+.kc-overlay {
+  position: fixed; inset: 0; z-index: 9100;
+  background: rgba(0, 0, 0, .45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s ease;
+}
+.kc-overlay.kc-open {
+  opacity: 1; pointer-events: all;
+}
+
+/* ============================================================
+   Dialog ボックス
+   ============================================================ */
+.kc-dialog {
+  background: var(--white);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .18),
+              0 4px 16px rgba(0, 0, 0, .08);
+  width: 100%; max-width: 420px;
+  padding: 32px 32px 28px;
+  position: relative;
+  transform: scale(.94) translateY(8px);
+  transition: transform .25s cubic-bezier(.34,1.28,.64,1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.kc-overlay.kc-open .kc-dialog {
+  transform: scale(1) translateY(0);
+}
+
+/* バリアント */
+.kc-dialog.kc-sm { max-width: 340px; }
+.kc-dialog.kc-lg { max-width: 540px; }
+
+/* ============================================================
+   アイコン部分
+   ============================================================ */
+.kc-dialog-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+  flex-shrink: 0;
+}
+.kc-dialog-icon svg { width: 26px; height: 26px; }
+
+/* タイプ別カラー */
+.kc-icon-error   { background: #FEE2E2; }
+.kc-icon-error   svg { stroke: var(--red, #FF3B30); fill: none; }
+.kc-icon-success { background: #DCFCE7; }
+.kc-icon-success svg { stroke: #16A34A; fill: none; }
+.kc-icon-warning { background: #FEF9C3; }
+.kc-icon-warning svg { stroke: #CA8A04; fill: none; }
+.kc-icon-info    { background: var(--blue-lt, #E8F1FB); }
+.kc-icon-info    svg { stroke: var(--blue, #0071E3); fill: none; }
+.kc-icon-confirm { background: var(--bg-alt, #F5F5F7); }
+.kc-icon-confirm svg { stroke: var(--ink, #1D1D1F); fill: none; }
+
+/* ============================================================
+   テキスト
+   ============================================================ */
+.kc-dialog-title {
+  font-family: var(--font, sans-serif);
+  font-size: 17px; font-weight: 700;
+  color: var(--ink, #1D1D1F);
+  text-align: center; margin-bottom: 10px;
+  line-height: 1.4;
+}
+.kc-dialog-body {
+  font-size: 13.5px; color: var(--ink-soft, #6E6E73);
+  text-align: center; line-height: 1.75;
+  margin-bottom: 24px;
+}
+.kc-dialog-body strong { color: var(--ink, #1D1D1F); }
+.kc-dialog-body a      { color: var(--blue, #0071E3); font-weight: 600; }
+
+/* ============================================================
+   ボタンエリア
+   ============================================================ */
+.kc-dialog-footer {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.kc-dialog-footer.kc-row {
+  flex-direction: row; gap: 12px;
+}
+.kc-dialog-footer .btn {
+  /* apple.css の .btn を上書きせず inherit */
+  justify-content: center;
+}
+/* キャンセルなど「軽い」ボタン用 */
+.kc-btn-ghost {
+  background: none; border: none;
+  color: var(--blue, #0071E3); font-size: 14px; font-weight: 600;
+  padding: 10px; cursor: pointer; border-radius: 8px;
+  width: 100%; text-align: center;
+  transition: background .15s;
+}
+.kc-btn-ghost:hover { background: var(--blue-lt, #E8F1FB); }
+.kc-btn-ghost.kc-red { color: var(--red, #FF3B30); }
+.kc-btn-ghost.kc-red:hover { background: #FEE2E2; }
+
+/* ============================================================
+   閉じるボタン（右上）
+   ============================================================ */
+.kc-close-btn {
+  position: absolute; top: 14px; right: 14px;
+  width: 30px; height: 30px; border-radius: 50%;
+  border: none; background: var(--bg-alt, #F5F5F7);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--ink-soft, #6E6E73);
+  transition: background .15s;
+}
+.kc-close-btn:hover { background: var(--line, #D2D2D7); }
+.kc-close-btn svg { width: 15px; height: 15px; }
+
+/* ============================================================
+   Toast 通知（画面右下）
+   ============================================================ */
+#kc-toast-container {
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 9200; display: flex; flex-direction: column;
+  align-items: flex-end; gap: 10px;
+  pointer-events: none;
+}
+.kc-toast {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--line, #D2D2D7);
+  border-radius: 14px; padding: 14px 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.12);
+  min-width: 280px; max-width: 360px;
+  pointer-events: all;
+  animation: kc-toast-in .3s cubic-bezier(.34,1.28,.64,1) forwards;
+}
+.kc-toast.kc-toast-out {
+  animation: kc-toast-out .25s ease forwards;
+}
+@keyframes kc-toast-in {
+  from { opacity:0; transform: translateX(24px) scale(.95); }
+  to   { opacity:1; transform: translateX(0) scale(1); }
+}
+@keyframes kc-toast-out {
+  to   { opacity:0; transform: translateX(24px) scale(.95); }
+}
+
+.kc-toast-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.kc-toast-icon svg { width: 17px; height: 17px; }
+
+.kc-toast.kc-t-error   .kc-toast-icon { background: #FEE2E2; }
+.kc-toast.kc-t-error   .kc-toast-icon svg { stroke: var(--red); fill:none; }
+.kc-toast.kc-t-success .kc-toast-icon { background: #DCFCE7; }
+.kc-toast.kc-t-success .kc-toast-icon svg { stroke: #16A34A; fill:none; }
+.kc-toast.kc-t-warning .kc-toast-icon { background: #FEF9C3; }
+.kc-toast.kc-t-warning .kc-toast-icon svg { stroke: #CA8A04; fill:none; }
+.kc-toast.kc-t-info    .kc-toast-icon { background: var(--blue-lt); }
+.kc-toast.kc-t-info    .kc-toast-icon svg { stroke: var(--blue); fill:none; }
+
+.kc-toast-content { flex: 1; }
+.kc-toast-title   { font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.kc-toast-msg     { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+
+.kc-toast-dismiss {
+  background: none; border: none; color: var(--ink-xsoft, #AEAEB2);
+  cursor: pointer; padding: 0; flex-shrink: 0;
+  display: flex; align-items: center;
+}
+.kc-toast-dismiss svg { width: 15px; height: 15px; }
+.kc-toast-dismiss:hover { color: var(--ink-soft); }
+
+/* ============================================================
+   ローディングスピナー（ボタン内）
+   ============================================================ */
+.kc-spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: kc-spin .65s linear infinite;
+  vertical-align: middle; margin-right: 8px;
+}
+.kc-spinner.kc-spinner-dark {
+  border-color: rgba(0,0,0,.15);
+  border-top-color: var(--ink, #1D1D1F);
+}
+@keyframes kc-spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   レスポンシブ
+   ============================================================ */
+@media (max-width: 480px) {
+  .kc-dialog { padding: 26px 20px 22px; border-radius: 14px; }
+  .kc-dialog-footer.kc-row { flex-direction: column; }
+  #kc-toast-container { bottom: 16px; right: 12px; left: 12px; align-items: stretch; }
+  .kc-toast { min-width: unset; max-width: unset; }
+}

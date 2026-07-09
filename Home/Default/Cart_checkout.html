@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<include file="Home:head"/> 
+</head>
+<style>
+.steps {
+  display: flex;
+  width: 100%;
+  background: #e6e6e6;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.step {
+  position: relative;
+  flex: 1;
+  padding-left: 20px;
+  background: #d9d9d9;
+  color: #333;
+}
+
+/* 箭头效果 */
+.step::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #d9d9d9;
+  z-index: 2;
+}
+
+.step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -21px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #e6e6e6;
+  z-index: 1;
+}
+
+/* 最后一个不需要箭头 */
+.step:last-child::after,
+.step:last-child::before {
+  display: none;
+}
+
+/* 当前步骤 */
+.step.active {
+  background: #bfbfbf;
+  font-weight: bold;
+}
+
+.step.active::after {
+  border-left-color: #bfbfbf;
+}
+
+.num {
+  margin-right: 4px;
+}
+</style>
+<body >
+
+<div class="nar-wrapper">
+
+<nav id="breadCrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ul class="clearfix">
+        <li><font itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/"  itemprop="item"><span itemprop="name">{$site_name}</span></a> <meta itemprop="position" content="1" /></font> >お客様情報入力</li>
+    </ul>
+</nav>
+<div class="steps">
+  <div class="step">
+    <span class="num">1.</span> 商品リスト
+  </div>
+  <div class="step  active">
+    <span class="num">2.</span> お客様情報入力
+  </div>
+  <div class="step">
+    <span class="num">3.</span> 入力内容確認
+  </div>
+</div>
+
+
+<style>
+.form-wrap{margin:auto;background:#fff;padding:20px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); border-radius: 10px;}
+.form-title{padding:2px 10px;font-weight:bold}
+.form-row{display:flex;align-items:center;padding:8px 2px;flex-wrap:nowrap}
+.form-row.error{background:#fff5f5}
+.form-label{width:180px;min-width:180px;font-size:14px;white-space:nowrap}
+.required{color:#c00;font-size:10px;margin-left:4px}
+.form-input{flex:1}
+.form-input input,.form-input select,.form-input textarea{width:100%;padding:3px 5px;font-size:14px;border:1px solid #ccc;box-sizing:border-box}
+.inline-inputs{display:flex;gap:8px}
+.gender{display:flex;align-items:center;gap:20px;flex-wrap:nowrap}
+.radio-item{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+textarea{height:40px;resize:vertical}
+.note{font-size:12px;color:#666;margin-top:4px}
+.error-msg{font-size:12px;color:#c00;margin-top:4px}
+.submit-area{padding:16px;text-align:center}
+button{padding:10px 32px;font-size:16px;border:none;background:#333;color:#fff;cursor:pointer}
+@media (max-width:640px){.form-label{width:110px;min-width:110px;font-size:13px}
+.form-label.addbox{width:180px}
+.form-input input,.form-input select,.form-input textarea{font-size:13px}
+}
+.newsletter-block{ display: none!important;}
+</style>
+<form method="post" action="{:URL('Home-Cart/done')}" id="myform" name="myform">
+<div class="form-wrap">
+    	<?php if($_COOKIE['TP_userid']){
+            $user=M('User')->find($_COOKIE['TP_userid']);
+        ?>
+            <include file="Cart:login"/>
+        <?php }else{?>
+            <div style="width:100%; padding: 5px;border-bottom: 1px solid #f0f0f0; margin-bottom: 10px;"><p class="text-left"><em class="border-title">お客様情報入力</em></p></div>
+            <include file="Cart:unlogin"/>
+        <?php }?>
+    <div  class="form-line">
+        <div   style="width: 100%;">注文附註</div>
+        <div   style="width: 100%; flex: auto;">
+        <textarea id="zipcode" rows="4" cols="60" name="zipcode" style="width:100%;"></textarea>
+        </div>
+    </div>
+    <input type="hidden" id="token" name="token" value="<?php echo $token;?>">
+    <div  class="form-line"> <div class="note"><span style="width:100%;font-size: 12px;">(<font color="#FF0000">※</font> 商品のサイズ/カラーなど。メンズ/レディース)</span></div></div>
+    <div  class="form-line"> <div class="note"><span style="width:100%;font-size: 12px;">(<font color="#FF0000">※</font> よりフィット感なサイズ選びのために、洋服購入時に身長と体重をお知らせください。)</span></div></div>
+</div>
+<include file="Cart:goods"/>
+</form>
+ <script src="<?php echo $site_url;?>/style/assets/address.js"></script>
+<script>
+function validate_isAddress(txt){
+	var e = txt
+	, t = e.match(/[0-9]/g)
+	, i = e.match(/[０-９]/g);
+	t || i || 2;
+	if(t || i){
+		return 1;
+	}else{
+		return 2;
+	}
+}
+window.$yubin = function (t) {};
+$(".zipcode").click(function(){
+    var zip1=$("#zip1").val();
+    var zip2=$("#zip2").val();
+    var zip=zip1+zip2;
+    if(zip1.length !=3){
+        layer.tips('郵便番号', 'input[name="zip1"]', { tips: [1, 'red'], time: 3000});
+        return false;
+    }
+    if(zip2.length !=4){
+        layer.tips('郵便番号', 'input[name="zip2"]', { tips: [1, 'red'], time: 3000});
+    }
+    if(zip1.length ==3){
+        var t=zip1;
+        var xhr = new XMLHttpRequest(); 
+        xhr.open('GET', "<?php echo $site_url;?>/style/assets/data/"+t+".js", true); 
+        xhr.onreadystatechange = function() { 
+            if (xhr.readyState === 4 && xhr.status === 200) { 
+                var  addressFunctionString = xhr.responseText;
+                var addressMap = JSON.parse(addressFunctionString.replace("$yubin(", "").replace(");", ""));
+                var addressData = addressMap[zip];
+                if(addressData === undefined){
+                    art.dialog({ lock:true,icon: 'error',time:'2',content: '郵便番号が分からない方はこちら'});
+                    layer.tips('郵便番号が分からない方はこちら', 'input[name="zip2"]', { tips: [1, 'red'], time: 3000});
+                    return false;
+                }
+                var  prefecture = PREFECTURES[addressData[0]];
+                $("#province").find("option").each(function(){
+                if($(this).text() == prefecture)    {
+                    $(this).prop("selected","selected");
+                }
+                });
+                $("#zip").val(zip);
+                $("#address1").val(addressData[1]);
+                $("#address2").val(addressData[2]);
+                if(addressData[3] != undefined){
+                $("#address3").val(addressData[3]);
+                }
+                }
+            }; 
+        xhr.send(null);
+    }
+});
+</script>
+<script>
+$(".doneorder").click(function(){
+	var mail = $('#email').val();
+	var szReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!szReg.test(mail)) {
+        layer.tips('電子メールアドレス', 'input[name="email"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="email"]').focus();
+		return false;
+	}
+	var email=$('input[name="cfemail"]').val();
+	if (mail != email) {
+         layer.tips('再度メール確認', 'input[name="cfemail"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="cfemail"]').focus();
+		return false;
+	}
+	if($('input[name="consignee1"]').val()==''){
+         layer.tips('姓を入力してください', 'input[name="consignee1"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="consignee1"]').focus();
+		return false;
+	}
+	if($('input[name="consignee2"]').val()==''){
+        layer.tips('氏名 姓を入力してください ！', 'input[name="consignee2"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="consignee2"]').focus();
+		return false;
+	}
+	if($('input[name="tel1"]').val()==''){
+        layer.tips('姓を入力してください', 'input[name="tel1"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="tel1"]').focus();
+		return false;
+	}
+	if($('input[name="tel2"]').val()==''){
+        layer.tips('氏名（フリガナ） 姓を入力してください', 'input[name="tel2"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="tel2"]').focus();
+		return false;
+	}
+	if($('input[name="mobile"]').val()==''){
+        layer.tips('お電話番号を入力してください！', 'input[name="mobile"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="mobile"]').focus();
+		return false;
+	}
+	var zip1=$("#zip1").val();
+    var zip2=$("#zip2").val();
+	var zip=zip1+zip2;
+	if(zip.length == 7){
+		$("#zip").val(zip);
+	}
+	if($('input[name="zip"]').val()==''){
+		$('input[name="zip"]').focus();
+        layer.tips('郵便番号は数字を書き込むことしかできません', 'input[name="zip1"]', { tips: [1, 'red'], time: 3000});
+		return false;
+	}
+	if($('select[name="province"]').val()<1){
+        layer.tips('選択してください', 'select[name="province"]', { tips: [1, 'red'], time: 3000});
+		$('select[name="province"]').focus();
+		return false;
+	}
+	if($('input[name="address1"]').val()==''){
+        layer.tips('荷受人の詳しい住所を書き込んで下さい！', 'input[name="address1"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="address1"]').focus();
+		return false;
+	}
+	if(validate_isAddress($("#address2").val())==2){
+        layer.tips('丁番地を数字で入力してください', 'input[name="address2"]', { tips: [1, 'red'], time: 3000});
+		$('input[name="address2"]').focus();
+		return false;
+	}
+	$('#myform').submit();
+});
+$(".submitorder").click(function(){
+    $('#myform').submit();
+});
+
+</script>
+
+
+</div>
+
+</body>
+</html>

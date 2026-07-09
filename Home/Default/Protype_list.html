@@ -1,0 +1,265 @@
+﻿<link rel="stylesheet" href="__STYLE__/style/search_result.css">
+<style>
+    .unlock1{float:right;cursor:pointer;z-index:555;padding:7px 0 6px 0;}
+    #pages a,#pages span{line-height: 22px;}
+</style>
+
+<include file="Home:mcatpos" />
+<div id="body" class="twoColumun clearfix ">
+
+        <!-- ノベルティインクルード -->
+        <div id="nov">
+                        <?php $protype=F('Protype'); ?>
+        </div>
+        <!-- /ノベルティインクルード -->
+            <?php 
+                $parr=get_arrparentid($_GET['protype'],$protype);
+                $parr=explode(',', $parr);
+                $parr[]=$_GET['protype'];
+             ?>
+        <div id="content">
+            <article>
+
+                    {if $_GET['protype']}
+                <section id="searchResult" >
+                    <div class="sectionHeader clearfix noResult singleLine">
+                            <b>{$protype[$_GET['protype']]['name']} スーパーコピー</b>
+                    </div>
+                <!-- /#searchResult8--></section>
+                    {/if}
+
+					
+					
+                    <section style="margin:10px auto;font-size:15px;line-height:24px;">
+                        {if $b_description}{$b_description}{elseif $_GET['protype']}{$protype[$_GET['protype']]['seo_description']}{/if}
+						<p>
+	                        ※<span style="color:#E53333;">ＨＰ未掲載品</span>でも他店の商品ページのＵＲＬ，型番を送っていただければ，在庫を確認しご連絡いたします。 
+						</p>
+                    </section>
+
+            
+                <section id="hotKeyword" class="section">
+                    <ul class="clearfix">
+                    <?php $pros=$_GET['protype']? intval($_GET['protype']) : 0; ?>
+                    {if $atypes}
+                    <volist name="atypes" id="rc">
+                        <li ><a href="{$site_url}/{$protype[$rc['protype']]['catdir']}/">{$protype[$rc['protype']]['name']}</a></li>
+                    </volist>
+                    {elseif $parr[3]}
+                        <volist name="protype" id="rc">
+                        {if $rc[parentid]==$parr[2]}
+                        <li ><a href="{$site_url}/{$rc.catdir}/">{$rc.name}</a></li>
+                        {/if}
+                    </volist>
+                    {elseif $pros>0}
+                    <volist name="protype" id="rc">
+                        {if $rc[parentid]==$pros}
+                        <li ><a href="{$site_url}/{$rc.catdir}/">{$rc.name}</a></li>
+                        {/if}
+                    </volist>
+                    {/if}
+                    </ul>
+                </section>
+            
+            
+
+                <!-- 対象商品 -->
+                <section id="result">
+
+                    <div id="searchResultBlock" class="clearfix">
+                        <ul id="searchResultList" class="goodsResult bigThumb clearfix">
+                        <volist name="list" id="r" key="k" mod="4">
+                            <li data-sid="197" {if $mod==0}style="margin:0;"{/if}>
+                                <div class="listInner"><!-- 画像サイズ大 -->
+                                    <p class="thumb">
+                                        <a href="{$site_url}{$r.url}"><img class="" src="{$site_url}{$r.thumb}" alt="{$r.title}"></a>
+                                        <span class="icoBox">
+                                        </span>
+                                    </p>
+                                    <div>
+                                        <p class="brand"><a href="{$site_url}{$r.url}" title="{$r.title}">{$r.title}</a></p>
+                                        <p class="price"><font color="#e73656">￥{$r.pro_price}{$site_dw}</font>(税込)</p>
+                                        <p class="stock"></p>
+                                        
+                                        
+                                    </div>
+
+                                </div>
+                            </li>
+                        </volist>
+                        <!-- /#searchResultList --></ul>
+                    
+                        
+
+                        <div class="pager" id="">
+                            
+                            <ul class="clearfix" id="pages">
+                                {$pages}
+                                
+                            </ul>
+                            <!-- /%CommonList_Page -->
+                        <!-- /.pager --></div>
+                        <hr style="display:block;">
+                        <h2 class="mh2" style="line-height:43px;font-size:18px;">最近売れたアイテム</h2>
+                        <ul id="searchResultList" class="goodsResult bigThumb clearfix">
+                        <?php 
+                            $where='1';
+                            if($_REQUEST['pinpai']){
+                                $where='pinpai = '.$_REQUEST['pinpai'];
+                            }
+                            if($_REQUEST['protype']){
+                                $wprotype=trim(get_arrchildid($_REQUEST['protype'],$protype),',');
+                                $where='protype in ('.$wprotype.')';
+                            }
+                                $poslist=M('Product')->field('id,thumb,title,pro_price,url')->where($where)->order('hits desc,listorder asc')->limit(12)->select();
+
+                         ?>
+                        <volist name="poslist" id="r" key="k" mod="4">
+                            <li data-sid="197" {if $mod==0}style="margin:0;"{/if}>
+                                <div class="listInner"><!-- 画像サイズ大 -->
+                                    <p class="thumb">
+                                        <a href="{$site_url}{$r.url}"><img class="" src="{$site_url}{$r.thumb}" alt="{$r.title}"></a>
+                                        <span class="icoBox">
+                                        </span>
+                                    </p>
+                                    <div>
+                                        <p class="brand"><a href="{$site_url}{$r.url}" title="{$r.title}">{$r.title}</a></p>
+                                        <p class="price"><font color="#e73656">￥{$r.pro_price}{$site_dw}</font>(税込)</p>
+                                        <p class="stock"></p>
+                                        
+                                        
+                                    </div>
+
+                                </div>
+                            </li>
+                        </volist>
+                        <!-- /#searchResultList --></ul>
+                        
+                    <!-- /#searchResultBlock --></div>
+            
+            </article>
+
+
+                
+                <!-- /ショップバナー -->
+          
+                        <div id="SearchShopBanner" style="text-align:left;border-top:1px solid #ccc;">
+                            <h3 style="line-height:24px;text-align:center;margin:15px 0;font-size:16px;">{$protype[$_GET['protype']]['name']} プロフィール</h3>
+							
+                            {if $_GET['protype']}{$protype[$_GET['protype']]['seo_content']}{else}<tp:block pos="typeinfo" />{/if}
+                        </div>
+                    
+                    <div id="laterPaymentBar">
+                        <tp:block pos="buydesc" />
+                    </div> 
+
+        <!-- /#content --></div>
+
+        <div id="searchResultSidebar" class="aSide">
+            <div id="floatingWrapper">
+                <div id="floatingBox">
+                        
+
+    <section id="searchResultNum" class="nozzle">
+        <div class="inner">
+            <h2 id="resultNum">取扱商品<br>
+            <span>{$count}</span> 件</h2>
+
+            <!-- /.innner --></div>
+        <!-- /#searchResultNum --></section>
+
+
+    <div id="searchSidebarSelecter">
+
+        <section id="searchCategory" class="sideBox">
+            <h2><b>カテゴリ</b></h2>
+            <ul class="selectList">
+                <li id="cat_101" class="selected">
+
+                    <a href="{$site_url}/{$top['catdir']}/" ><b>{$top['name']}</b>
+
+                    </a>
+                    {if isset($parr[1])}
+                    <div>
+                        <ul class="selectList" >
+                        <?php $slist=M('Protype')->where('status = 1 and parentid = '.$parr[1])->order('listorder asc,id desc')->select() ?>
+                        <volist name="slist" id="r">
+
+                            <li {if $r['id']==$parr[2]}class="selected"{/if} style="padding-left:8px;">
+                                <a href="{$site_url}/{$r.catdir}/">{$r.name}
+
+                                </a>
+                                {if isset($parr[2])&&$r['id']==$parr[2]}
+                                <?php $thlist=M('Protype')->where('status = 1 and parentid = '.$parr[2])->order('listorder asc,id desc')->select() ?>
+                                <div class="threemy">
+                                    <ul class="selectList">
+                                        <volist name="thlist" id="rs">
+                                            <li {if $rs['id']==$_GET['protype']}class="selected"{/if} style="padding-left:8px;">
+                                                <a href="{$site_url}/{$rs.catdir}/">{$rs.name}
+                                                
+
+                                                </a>
+                                            </li>
+                                        </volist>
+                                    </ul>
+                                </div>
+                                {/if}
+                            </li>
+                        </volist>
+                        </ul>
+                    </div>
+                    {/if}
+                </li>
+            </ul>
+            <div class="toggleWrapper close">
+                    <ul class="lists" style="background:#e4e4e4;">
+                        <volist name="protype" id="r">
+                            {if $r['parentid']==0&&$r['id']!=$top['id']}
+                        <li id="cat_108" class="over">
+                            <a href="{$site_url}/{$r['catdir']}/">{$r.name}</a>
+                          
+                        </li>
+                        {/if}
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+        <script>
+            $('.toggleParent').click(function(){
+                // console.log($(this).find('.toggleChild'));
+                $(this).parent().find('.toggleChild').toggle();
+            })
+        </script>   
+        <!-- /#searchCategory --></section>
+        <section id="searchBrand" class="sideBox ovFavListBrand ovFavList clearfix">
+            <h2><b>人気 ブランド</b></h2>
+            <ul class="selectList">
+            <?php $brand=F('Brand');  ?>
+                <volist name="brand" id="rs" key="k" offset="0" length="10">
+                <li {if $_GET['brand']==$rs['id']}class="selected"{/if} ><a href="{$site_url}/brand_{$rs['bdurl']}/" style="padding-right:0;"  {if $_GET['brand']==$r['id']}class="select"{/if}>{$rs.title}</a> </li>
+                </volist>
+                <div style="clear:both;"></div>
+            </ul>
+
+			<p class="more" style="margin:10px 0; text-align:center;"><a href="/brand/">ブランド一覧を見る</a></p>
+        </section>
+        
+    <!-- /#searchSidebarSelecter --></div>
+    <script>
+    $('#brand_more').click(function(){
+        $('#searchBrand li').show();
+        $(this).hide();
+    })
+    </script>
+                        
+    <div id="sideBanners">
+        <div id="giftLeftBanner">
+                
+            
+              <tp:block pos="pclbutton" />                            
+        <!-- /#giftLeftBanner --></div>
+    <!-- /#sideBanners --></div>
+                <!-- /#floatingBox--></div>
+            <!-- /#floatingWrapper--></div>
+        <!-- /#searchSidebar --></div>
+    <!-- /#body --></div>

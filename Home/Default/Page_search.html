@@ -1,0 +1,422 @@
+<nav id="breadCrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ul class="clearfix">
+        <li><font itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/"  itemprop="item"><span itemprop="name">{$site_name}</span></a> <meta itemprop="position" content="1" /></font> >{$catname}</li>
+    </ul>
+</nav>
+<div class="nar-wrapper">
+<?php 
+    $protypes=F('Protype');
+	$parr=get_arrparentid($_GET['protype'],$protypes);
+	$parr=explode(',', $parr);
+	$parr[]=$_GET['protype'];
+ ?>
+ <style>
+    
+#gSearch_box #gSearch_content {
+    overflow-y: auto;
+    height: calc(100% - 90px);
+    overflow-x: hidden;
+    width: 100%
+}
+
+#gSearch_box #gSearch_input {
+    position: relative;
+    z-index: 4;
+    display: table;
+    width: 100%;
+    padding: 0 0 0 16px;
+    background: #fff
+}
+
+#gSearch_box #gSearch_input form {
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    padding: 8px 0 8px 0
+}
+
+#gSearch_box #gSearch_input p.input {
+    position: relative
+}
+
+#gSearch_box #gSearch_input p.input span.box {
+    display: block
+}
+
+#gSearch_box #gSearch_input p.input span.box:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 13px;
+    top: 9px;
+    font-size: 15px;
+    color: #868686;
+    pointer-events: none;
+    background-image: url(__STYLE__/wap/images/bigs.svg);
+    width: 15px;
+    height: 15px;
+    background-size: 15px 15px
+}
+
+#gSearch_box #gSearch_input p.input input {
+    width: 100%;
+    font-size: 14px;
+    padding: 9px 32px 8px 35px;
+    height: 32px;
+    line-height: 18px;
+    border-color: #ddd;
+    border-radius: 16px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #f6f7f8;
+    border: 1px solid #aaa;
+}
+
+#gSearch_box #gSearch_input p.input input::-webkit-input-placeholder {
+    color: #aaa;
+    position: relative;
+    top: 2px
+}
+
+#gSearch_box #gSearch_input p.input input:-ms-input-placeholder {
+    color: #aaa;
+    position: relative;
+    top: 2px
+}
+
+#gSearch_box #gSearch_input p.input input::-moz-placeholder {
+    color: #aaa;
+    position: relative;
+    top: 2px
+}
+
+#gSearch_box #gSearch_input p.input input::-ms-clear {
+    visibility: hidden
+}
+
+#gSearch_box #gSearch_input p.input span.delete {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+    line-height: 1;
+    padding: 7px 10px 0 13px;
+    height: 40px;
+    cursor: pointer
+}
+
+#gSearch_box #gSearch_input p.input span.delete:before {
+    content: "";
+    font-size: 14px;
+    display: block;
+    padding: 2px 0 0 0;
+    line-height: 1;
+    width: 18px;
+    height: 18px;
+    color: #888
+}
+
+#gSearch_box #gSearch_input p.close {
+    display: table-cell;
+    vertical-align: middle;
+    width: 52px;
+    font-size: 0;
+    line-height: 1;
+    letter-spacing: 0
+}
+
+#gSearch_box #gSearch_input p.close span {
+    display: block;
+    font-size: 0;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #333;
+    cursor: pointer
+}
+
+#gSearch_box #gSearch_input p.close span:before {
+    content: "";
+    font-size: 20px;
+    background-image: url(__STYLE__/wap/images/close.svg);
+    display: block;
+    width: 30px;
+    height: 23px;
+    background-size: 30px 23px
+}
+
+#gSearch_box .switch_menu {
+    position: relative;
+    top: 0;
+    z-index: 4;
+    margin-top: 0;
+    background: #fff
+}
+
+#gSearch_box .switch_menu ul {
+    border-bottom: 0;
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1)
+}
+
+#gSearch_box .switch_menu ul li {
+    font-size: 14px
+}
+
+#gSearch_box .switch_menu ul li a {
+    padding: 12px 0 12px 0
+}
+
+#gSearch_box .switch_menu ul li.coordinate {
+    width: 50%
+}
+
+#gSearch_box .switch_menu ul li.current a {
+    font-weight: normal;
+    border-bottom-width: 2px
+}
+
+#gSearch_box .type_content {
+    position: relative;
+    padding: 5px 0 0 0
+}
+
+#gSearch_box .type_content .section {
+    display: none;
+    width: 100%
+}
+
+#gSearch_box .type_content .section .attention_word {
+    clear: both
+}
+
+#gSearch_box .type_content .section .attention_word .intro {
+    padding: 9px 10px 9px 16px
+}
+
+#gSearch_box .type_content .section .attention_word .intro p.tit {
+    font-size: 15px;
+    font-weight: bold
+}
+
+#gSearch_box .type_content .section .attention_word ul {
+    border-bottom: 1px #ddd solid
+}
+
+#gSearch_box .type_content .section .attention_word ul li {
+    border-top: 1px #ddd solid;
+    font-size: 14px
+}
+
+#gSearch_box .type_content .section .attention_word ul li a {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    position: relative;
+    padding: 7px 10px 7px 14px;
+    background: #fff;
+    color: #333;
+    display: block
+}
+
+#gSearch_box .type_content .section .attention_word ul li a:before {
+    content: "";
+    vertical-align: -1px;
+    background-image: url(__STYLE__/wap/images/fire.svg);
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 0 5px;
+    width: 34px;
+    height: 20px
+}
+
+body.searchOpen {
+    position: static;
+    height: 100%;
+    overflow: hidden
+}
+
+#gSearch_init {
+    height: 600px;
+    padding-bottom: 20px
+}
+
+body.searchOpen #gSearch_box {
+    position: fixed
+}
+
+
+.p-search_trendkeyword {
+    margin: 15px 15px 38px;
+}
+.p-search_suggestarea_title {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.1;
+}
+.p-list_maintag {
+    margin: 5px 0 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.p-list_maintag li a {
+    display: block;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: solid 1px #ddd;
+    background-color: #ddd;
+    border-radius: 50px;
+    color: #000;
+    font-size: 11px;
+    padding: 8px 9px;
+    line-height: 1;
+    width: auto;
+    background: 0 0;
+}
+
+
+.b-keyword-search__list-title {
+    height: 47px;
+    line-height: 54px;
+    border-bottom: 1px solid #f4f4f4;
+    padding-left: 16px;
+    font-size: 15px;
+    color: #111;
+}
+.b-keyword-search__list .c-keyword-item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    padding: 0 25px 0 0;
+    margin: 0 16px;
+    height: 40px;
+    border-right: 0;
+    border-bottom: 1px solid #f4f4f4;
+    text-align: left;
+    position: relative;
+}
+.c-keyword-item__title {
+    line-height: 40px;
+}
+
+.c-keyword-item__title strong {
+    font-style: italic;
+    color: #f43142;
+    padding-right: 6px;
+}
+
+
+
+.leaderboard__profiles {
+  background-color: #fff;
+  padding: 5px;
+  display: grid;
+  row-gap: 8px;
+}
+.leaderboard__profile {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  align-items: center;
+  padding:2px 5px 2px 5px;
+  overflow: hidden;
+  border-radius: 10px;
+  border-bottom: 1px solid #f4f4f4;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98), box-shadow 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98);
+  background-color: #fff;
+}
+
+.leaderboard__picture {
+  max-width: 100%;
+  width: 40px;
+  border-radius: 50%;
+}
+.leaderboard__name {
+  color: #979cb0;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.64px;
+  margin-left: 12px;
+  height: 40px;
+  line-height: 20px;
+  overflow: hidden;
+}
+.leaderboard__value {
+  color: #ff0000;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: right;
+}
+.leaderboard__value > span {
+  opacity: .8;
+  font-weight: 600;
+  font-size: 13px;
+  margin-left: 3px;
+}
+.leaderboard__profile a,.leaderboard__value{ font-size: 12px; font-weight: normal;}
+ </style>
+<div id="content" class="twoColumun">
+    <div class="sectionHeader clearfix">
+        <h1>{$title}</h1>
+    </div>
+    <section class="cat_description">
+     	{$content}
+    </section>
+
+    <div id="gSearch_box">
+
+    <div id="gSearch_secondary">
+        <div class="p-search_trendkeyword">
+            <p class="p-search_suggestarea_title">急上昇ワード</p>
+            <ul class="p-list_maintag">
+       
+                <tp:block pos="hkey" />
+            </ul>
+        </div>
+        <div class="p-search_trendkeyword">
+            <p class="p-search_suggestarea_title"><a href="{$site_url}/words.html" style="float:right">もっと見る</a>タグ</p>
+            <ul class="p-list_maintag">
+                <?php $words=M('Words')->where('status = 1')->field('id,title,url,diytitle')->order('listorder desc')->limit(10)->select(); ?>
+				{if $words}
+
+                <volist name="words" id="rc">
+                    <li><a href="{$rc.url}">#{$rc.diytitle}</a></li>
+                </volist>
+
+                {/if}
+            </ul>
+        </div>
+        <div class="b-keyword-search__list">
+            <h3 class="b-keyword-search__list-title">毎週 更新の大割引！</h3>
+            <article class="leaderboard">
+
+                <main class="leaderboard__profiles">
+                    <?php
+                    $where='status = 1 and sales>0';
+                    $tjprols=M('Product')->where($where)->field('title,pro_price,thumb,url,sales')->limit(10)->order('buys desc')->select();
+                    ?>
+                  <volist name="tjprols" id="r" key="i">
+                  <article class="leaderboard__profile">
+                    <img src="{$site_url}{$r.thumb}" alt="Mark Zuckerberg" class="leaderboard__picture">
+                    <span class="leaderboard__name"> <a  href="{$site_url}{$r.url}">{$r.title}</a></span>
+                    <span class="leaderboard__value"><?php echo (100-round(($r['pro_price']/$r['sales'])*100));?>％OFF<span></span></span>
+                  </article>
+                </volist>
+                </main>
+              </div>
+        </div>
+    </div>
+
+</div>
+<include file="Home:slidebar" />
+</div>

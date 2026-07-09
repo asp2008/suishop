@@ -1,0 +1,17 @@
+
+    <li class="product-item">
+        <a href="<?php echo $site_url;?><?php echo $v['url'];?>">
+            <div class="product-thumb">
+                <img src="<?php echo $site_url;?><?php echo $v['thumb'];?>" alt="<?php echo $v['title'];?>" width="135" height="135">
+            </div>
+            <h3 class="product-name">
+              <?php echo $v['title'];?>
+            </h3>
+            <div class="price-box">
+             <span class="price">￥ <?php echo number_format($v['pro_price']);?>円</span>
+                <?php if($v['sales']){?>
+                <span class="discount"><?php echo (100-round(($v['pro_price']/$v['sales'])*100));?>％OFF</span>
+                <?php }?>
+            </div>
+        </a>
+    </li>

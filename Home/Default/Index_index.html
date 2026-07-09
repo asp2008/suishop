@@ -1,0 +1,210 @@
+<include file="Home:header"/>
+<section class="hero" id="heroCarousel">
+  <!-- background slides -->
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('__STYLE__/css/nike-just-do-it-nike-com-jp.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('__STYLE__/css/nike-just-do-it-nike-com-jp1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('__STYLE__/css/hp.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('__STYLE__/css/hp2.jpg')"></div>
+  </div>
+
+  <!-- prev / next arrows -->
+  <div class="hero-arrows">
+    <button class="hero-prev" aria-label="前のスライド">
+      <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-next" aria-label="次のスライド">
+      <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- dot indicators -->
+  <div class="hero-dots">
+    <button class="active" data-slide="0" aria-label="スライド1"></button>
+    <button data-slide="1" aria-label="スライド2"></button>
+    <button data-slide="2" aria-label="スライド3"></button>
+    <button data-slide="3" aria-label="スライド4"></button>
+  </div>
+
+  <!-- copy (stays fixed) -->
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">CRAFTSMANSHIP &amp; TRADITION</div>
+      <h1><b></b>バスケへの愛を表現した、</h1>
+      <p>バスケへの愛を表現した、オフコートスタイルのジョーダン最新アイテム。 ラブレターコレクション</p>
+      <a href="list.html" class="btn btn-vermilion">商品をさがす
+        <svg class="icon" style="width:16px;height:16px" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+<?php $recBrand=F('Hbrand');?>
+<main class="container">
+
+  <div class="cat-strip">
+    <volist name="recBrand" id="r"  key="k">
+    <a class="cat-card" href="<?php echo $site_url;?>/brand_{$r.bdurl}/">
+      <div class="brand_thumb"><img alt="{$r.title}" src="<?php echo $site_url;?>{$r.thumb}" width="100%" height="80"></div>
+      <span>{$r.title}</span>
+    </a>
+   </volist>
+  </div>
+<?php 
+	$newpro=M('Product')->where('status = 1')->field('id,title,url,pro_price,thumb,sales')->order('id desc')->limit(10)->select();
+ ?>
+  <div class="section-head">
+    <div>
+      <span class="en">RECOMMEND</span>
+      <h2>編集部おすすめの逸品</h2>
+    </div>
+    <a href="list.html" class="more">もっと見る</a>
+  </div>
+
+  <div class="product-grid">
+<volist name="newpro" id="r" >
+    <article class="product-card">
+      <div class="product-thumb">
+
+        <button class="fav-btn" aria-label="お気に入りに追加"><svg class="icon" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+        <a href="{$r.url}"><img src="{$r.thumb}" alt="{$r.title}" loading="lazy"></a>
+      </div>
+      <div class="product-info">
+
+        <p class="product-name"><a href="{$r.url}">{$r.title}</a></p>
+        <div class="stars">
+
+        </div>
+        <div class="price-row">
+          <span class="price">¥{$r.pro_price|number_format}</span>
+          <span class="price-before">¥{$r.sales|number_format}</span>
+        </div>
+      </div>
+    </article>
+</volist>
+    
+
+
+
+
+  </div>
+
+  <div class="section-head">
+    <div>
+      <span class="en">SEASONAL GIFT</span>
+      <h2>季節のギフト特集</h2>
+    </div>
+    <a href="list.html" class="more">もっと見る</a>
+  </div>
+
+  <div class="product-grid">
+   <volist name="newpro" id="r" >
+    <article class="product-card">
+      <div class="product-thumb">
+
+        <button class="fav-btn" aria-label="お気に入りに追加"><svg class="icon" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+        <a href="{$r.url}"><img src="{$r.thumb}" alt="{$r.title}" loading="lazy"></a>
+      </div>
+      <div class="product-info">
+
+        <p class="product-name"><a href="{$r.url}">{$r.title}</a></p>
+        <div class="stars">
+
+        </div>
+        <div class="price-row">
+          <span class="price">¥{$r.pro_price|number_format}</span>
+          <span class="price-before">¥{$r.sales|number_format}</span>
+        </div>
+      </div>
+    </article>
+</volist>
+    
+  </div>
+
+</main>
+
+
+<script src="{$site_url}__STYLE__/js/jquery-3.7.1.min.js" charset="UTF-8"></script>
+<script src="{$site_url}__STYLE__/js/main.js"></script>
+<script>
+/* ---- Hero Carousel (with touch swipe support) ---- */
+(function(){
+  var cur = 0;
+  var $slides = $(".hero-slide");
+  var $dots   = $(".hero-dots button");
+  var total   = $slides.length;
+  var timer;
+  var $hero   = $("#heroCarousel");
+
+  function go(n){
+    $slides.eq(cur).removeClass("active");
+    $dots.eq(cur).removeClass("active");
+    cur = (n + total) % total;
+    $slides.eq(cur).addClass("active");
+    $dots.eq(cur).addClass("active");
+  }
+
+  function autoplay(){ timer = setInterval(function(){ go(cur + 1); }, 5000); }
+  function restartAutoplay(){ clearInterval(timer); autoplay(); }
+
+  $(".hero-next").on("click", function(){ go(cur + 1); restartAutoplay(); });
+  $(".hero-prev").on("click", function(){ go(cur - 1); restartAutoplay(); });
+  $(".hero-dots button").on("click", function(){
+    go(parseInt($(this).data("slide"),10));
+    restartAutoplay();
+  });
+
+  /* --- touch swipe (mobile) --- */
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchDeltaX = 0;
+  var isSwiping = false;
+
+  $hero.on("touchstart", function(e){
+    var t = e.originalEvent.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    touchDeltaX = 0;
+    isSwiping = true;
+    clearInterval(timer); // pause autoplay while interacting
+  });
+
+  $hero.on("touchmove", function(e){
+    if(!isSwiping) return;
+    var t = e.originalEvent.touches[0];
+    touchDeltaX = t.clientX - touchStartX;
+    var deltaY = t.clientY - touchStartY;
+    // only treat as horizontal swipe if movement is mostly horizontal
+    if(Math.abs(touchDeltaX) > Math.abs(deltaY)){
+      e.preventDefault(); // stop vertical page scroll while swiping slides
+    }
+  });
+
+  $hero.on("touchend", function(){
+    if(!isSwiping) return;
+    isSwiping = false;
+    var THRESHOLD = 40; // px
+    if(touchDeltaX > THRESHOLD){
+      go(cur - 1);
+    } else if(touchDeltaX < -THRESHOLD){
+      go(cur + 1);
+    }
+    restartAutoplay();
+  });
+
+  /* --- mouse drag swipe (desktop trackpad / mouse, optional nicety) --- */
+  var mouseDownX = null;
+  $hero.on("mousedown", function(e){ mouseDownX = e.clientX; });
+  $hero.on("mouseup", function(e){
+    if(mouseDownX === null) return;
+    var dx = e.clientX - mouseDownX;
+    mouseDownX = null;
+    if(Math.abs(dx) < 40) return;
+    if(dx > 0){ go(cur - 1); } else { go(cur + 1); }
+    restartAutoplay();
+  });
+
+  autoplay();
+})();
+</script>
+<include file="Home:footer"/>

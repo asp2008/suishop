@@ -1,0 +1,103 @@
+<include file="Home:header"/>
+	<?php 
+    $protype=F('Protype');$brandinfo = F('Brand');
+ ?>
+<main class="container">
+
+  <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <a href="/">{$site_name}</a><meta itemprop="position" content="1" /><span>&rsaquo;</span>{$catpos}
+  </div>
+
+  <h1 style="font-size:28px;margin-bottom:6px;">
+    <?php 
+	$diyh=$brandinfo[$_REQUEST['pinpai']]['diyh'];
+	if($diyh){
+		echo $brandinfo[$_REQUEST['pinpai']]['diyh'];
+	}else{
+		echo $brandinfo[$_REQUEST['pinpai']]['title'];
+	}
+	?>
+  </h1>
+  <p style="color:var(--ink-soft);font-size:13px;margin-bottom:10px;">{if $b_description}{$b_description}{elseif $_GET['protype']}{$protype[$_GET['protype']]['descs']}{/if}</p>
+
+
+  <div class="list-layout">
+
+
+    <section class="list-main">
+      <div class="list-toolbar">
+        <span class="count">{$count}件中　1〜12件を表示</span>
+        <select id="sortSelect" aria-label="並び替え">
+          <option>おすすめ順</option>
+          <option>新着順</option>
+          <option>価格が安い順</option>
+          <option>価格が高い順</option>
+          <option>レビュー評価順</option>
+        </select>
+      </div>
+
+      <div class="list-product-grid">
+         <volist name="list" id="r" key="i">  
+          <article class="product-card">
+            <div class="product-thumb">
+
+              <button class="fav-btn" aria-label="お気に入りに追加"><svg class="icon" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+               <a href="{$r.url}"><img src="{$r.thumb}" alt="{$r.title}" loading="lazy"></a>
+            </div>
+            <div class="product-info">
+
+              <p class="product-name"><a href="{$r.url}">{$r.title}</a></p>
+              <div class="stars">
+
+              </div>
+              <div class="price-row">
+                <span class="price">¥{$r.pro_price|number_format}</span>
+                <span class="price-before">¥{$r.sales|number_format}</span>
+              </div>
+            </div>
+          </article>
+      </volist>
+      </div>
+      {if $pages}
+      <nav class="pagination" aria-label="ページネーション">
+        {$pages}
+      </nav>
+      {/if}
+    </section>
+
+        <aside class="filter-sidebar">
+      <div class="filter-box">
+        <h3>カテゴリ</h3>
+        <div class="filter-body">
+   <?php
+      $parentIndex = 0;
+      foreach ($protype as $r) {
+          if ($r['parentid'] != 0) {
+              continue;
+          }
+          if ($parentIndex++ < 4) {
+              continue;
+          }
+      ?>
+          <label><input type="checkbox" value="<?php echo $r['id']; ?>"> <?php echo $r['name']; ?></label>
+         <?php } ?>
+
+        </div>
+      </div>
+      <div class="filter-box">
+        <h3>価格帯</h3>
+        <div class="filter-body">
+          <div class="price-inputs">
+            <input type="text" placeholder="¥下限">〜<input type="text" placeholder="¥上限">
+          </div>
+          <button class="btn btn-outline btn-sm btn-block" style="margin-top:12px;">適用する</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+<script src="{$site_url}__STYLE__/js/jquery-3.7.1.min.js" charset="UTF-8"></script>
+<script src="{$site_url}__STYLE__/js/main.js"></script>
+<include file="Home:footer"/>

@@ -1,0 +1,218 @@
+﻿<link rel="stylesheet" href="{$site_url}__STYLE__/user/user.css"/>
+<div id="mypage">
+    <ul class="bread clearfix">
+        <li><a href="/">TOP</a></li>
+        <li>登録内容の確認・変更 </li>
+    </ul>
+    <h2>登録内容の確認・変更</h2>
+    <!-- マイページメイン Start -->
+    <div id="mypage_main" class="clearfix">
+        <include file="User:menu" />
+        
+
+            <!--  右カラム Start  -->
+            <div id="right_box">
+                <include file="User:nav" />
+                <h3>登録内容の確認・変更</h3>
+                <form action="#" method="post" name="entry"  id="doConfirm"  onsubmit="doConfirm();">
+
+
+                    <div class="check_change">
+                        <p>お客様情報の変更をして頂いた場合、次回以降からの注文について変更内容が反映されます。<br>
+                            ご注文済み商品の配送先については変更されませんのでご注意下さい。</p>
+
+                        <ul style="width: 100%;">
+                            <li>
+
+                            </li>
+                            <li>
+                                <p>メールアドレス<span>※</span></p>
+                                <p> <input type="email" id="email" name="email" value="{$user.email}" class="" maxlength="180"  placeholder="" style="background-color: inherit;" ><span  class="check email"></span>
+
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>お名前（全角）<span>※</span></p>
+                                <p><span class="name">姓</span> <input type="text" id="consignee1" name="consignee1"   value="{$user.consignee1}" class=""   placeholder=""  style="background-color: inherit;"><span class="check"></span>
+                                        <span class="name">名</span> <input type="text" id="consignee2" name="consignee2" value="{$user.consignee2}" class="" placeholder=""  style="background-color: inherit;"><span class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>フリガナ（カタカナ）<span>※</span></p>
+                                <p><span class="name">セイ</span> <input type="text" id="tel1"  name="tel1" value="{$user.tel1}" class=""  placeholder=""  style="background-color: inherit;"><span class="check"></span>
+
+                                    <span class="name">メイ</span> <input type="text" id="tel2"  name="tel2" value="{$user.tel2}" class=""   placeholder=""  style="background-color: inherit;"><span class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>性別</p>
+                                <p> <input type="radio" id="gender0" name="sex" value="2" {if $user['sex']==2} checked{/if}  style="background-color: inherit;">
+
+                                    <label for="gender0">女</label>
+                                    <input type="radio" id="gender1" name="sex" value="1" {if $user['sex']==1} checked{/if}   style="background-color: inherit;">
+
+                                    <label for="gender1">男</label>
+                                </p>
+                            </li>
+                            <li>
+                                <p>郵便番号(半角数字)<span>※</span></p>
+                                <p class="postal_Code">
+                                    <span class="name">〒</span> <input type="tel" id="zip1" name="zip1" value="<?php echo mb_substr($user['zip'],0,3);?>"   onkeyup="value=value.replace(/[^\d]/g,'')"  maxlength="3"  style="background-color: inherit; width: 50px;">-<input type="tel" id="zip2" name="zip2" maxlength="4"  onkeyup="value=value.replace(/[^\d]/g,'')" value="<?php echo mb_substr($user['zip'],3,4);?>"  style="background-color: inherit; width: 80px;"><span class="check"></span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>都道府県<span>※</span></p>
+                                <div class="value">
+                                    <dl style="z-index: 1;" id="stateOrRegionUl">
+                                        <dt>			
+                                        <select name="province" id="province"  class="smgSelectItem"  style="background-color: inherit;">
+                                            <option value="0">選択してください</option>
+                                            <?php $arlist=M('Area')->where('parentid = 0')->field('id,name')->select(); ?>
+                                            <volist name="arlist" id="rs">
+                                            <option value="{$rs.id}" {if $user['province']==$rs['id']} selected{/if}>{$rs.name}</option>
+                                
+                                            </volist>
+                                        </select>
+                                        </dt>
+                                        <dd>
+                                            
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li>
+                                <p>住所１ 市区町村<span>※</span></p>
+                                <p> <input type="text" id="address1" name="address1" value="{$user.address1}" maxlength="12"  placeholder="" formnovalidate="" tabindex="20"
+                                        style="background-color: inherit;"><span  class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>住所２ それ以降の番地<span>※</span></p>
+                                <p> <input type="text" id="address2" name="address2" value="{$user.address2}" maxlength="30" style="background-color: inherit;"><span  class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>住所３ 建物名・部屋番号</p>
+                                <p> <input type="text" id="address3" name="address3" value="{$user.address3}" maxlength="30"  style="background-color: inherit;"><span  class="check"></span>
+
+                                </p>
+                            </li>
+                            <li>
+                                <p>電話番号(半角数字)<span>※</span></p>
+                                <p> <input type="tel" id="mobile" name="mobile" value="{$user.mobile}" class="" style="background-color: inherit;"><span class="check"></span>
+                                    (ハイフン不要)</p>
+                            </li>
+                
+                        </ul>
+
+                    </div>
+                    <div id="members">
+                    <div class="double_btn">
+                        <ul>
+                            <input type="hidden" id="backs" name="backs"  value="{$backs}"/>
+                            <li><a href="javascript:history.back();" class="back_btn">前のページに戻る</a></li>
+                            <li><a id="goNextElement" onclick="javascript:doConfirm();" class="next_btn">確認する</a></li>
+                        </ul>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <!--  右カラム End  -->
+
+
+    </div>
+    <!-- マイページメイン Start -->
+</div>
+<script>
+    function doConfirm(){
+        var email=$("#email").val();
+
+        if (email.length < 1) {
+            layer.tips('メールアドレスの形式が不正です', $('input[name="email"]'), { tips: 1 });
+            return false;
+        }
+        var szReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!szReg.test(email)) {
+            layer.tips('メールアドレスの形式が不正です', $('input[name="email"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#consignee1").val().length < 1) {
+            layer.tips('氏名 姓を入力してください ！', $('input[name="consignee1"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#consignee2").val().length < 1) {
+            layer.tips('氏名 姓を入力してください ！', $('input[name="consignee2"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#tel1").val().length < 1) {
+            layer.tips('氏名（フリガナ） 姓を入力してください', $('input[name="tel1"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#tel2").val().length < 1) {
+            layer.tips('氏名（フリガナ） 姓を入力してください', $('input[name="tel2"]'), { tips: 1 });
+            return false;
+        }
+
+        if ($("#zip1").val().length != 3) {
+            layer.tips('郵便番号は数字を書き込むことしかできません', $('input[name="zip1"]'), { tips: 1 });
+            return false;
+        }
+        if ($("#zip2").val().length != 4) {
+            layer.tips('郵便番号は数字を書き込むことしかできません', $('input[name="zip2"]'), { tips: 1 });
+            return false;
+        }
+
+        if($('input[name="mobile"]').val()==''){
+            layer.tips('お電話番号を入力してください！', $('input[name="mobile"]'), { tips: 1 });
+		    return false;
+        }
+
+        if($('select[name="province"]').val()<1){
+            layer.tips('選択してください', $('select[name="province"]'), { tips: 1 });
+
+            $('select[name="province"]').focus();
+            return false;
+        }
+
+
+        if($('input[name="address1"]').val()==''){
+            layer.tips('荷受人の詳しい住所を書き込んで下さい！', $('input[name="address1"]'), { tips: 1 });
+            return false;
+        }
+        if($('input[name="address2"]').val()==''){
+            layer.tips('荷受人の詳しい住所を書き込んで下さい！', $('input[name="address2"]'), { tips: 1 });
+            return false;
+        }
+
+        var data=$("#doConfirm").serialize();
+        $.ajax({
+            url: 'index.php?m=user&a=updater',
+            type: 'post',
+            data:data,
+            timeout: 1000,
+            dataType:'json',
+            success: function(res){
+                if(res.status==1){
+                    layer.msg(res.msg);
+                    window.location.reload();
+                }else if(res.status==3){
+                    layer.msg('確認');
+                    window.location.href="index.php?m=cart&a=checkout";
+                }else{
+                    layer.msg('登録完了！ 管理者が確認するまでお待ちください..');
+                    window.location.href="";
+                }
+            }
+        });
+    }
+</script>

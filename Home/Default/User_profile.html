@@ -1,0 +1,87 @@
+<include file="Home:head"/>
+<body data-page="profile">
+
+<div class="notice-bar">期間限定：全品送料無料キャンペーン実施中｜会員登録で500ポイントプレゼント</div>
+
+<header class="site-header">
+  <div class="header-row">
+    <a href="/" class="logo">
+      <img src="__STYLE__/css/suni_logo-041.png" alt="SUNISUKI">
+    </a>
+    <div style="flex:1;"></div>
+    <div class="header-actions">
+      <a href="{:U('My/dashboard')}">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="{:U('Cart/index')}">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cart-count"></span>
+      </a>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="/">トップ</a></li>
+      <li><a href="{:U('Product/list')}">商品一覧</a></li>
+      <li><a href="{:U('My/brand')}">ブランド</a></li>
+      <li><a href="{:U('My/article')}">ジャーナル</a></li>
+      <li><a href="{:U('My/faq')}">よくあるご質問</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="breadcrumb">
+    <a href="/">トップ</a><span>›</span>
+    <a href="{:U('My/dashboard')}">マイページ</a><span>›</span>会員情報設定
+  </div>
+  <div class="mypage-layout">
+    <include file="User:aside"/>
+    <section>
+      <h1 style="font-size:24px;margin-bottom:18px;">会員情報設定</h1>
+      <div class="checkout-section">
+        <h3>基本情報</h3>
+        <div class="body">
+          <form action="{:U('My/profileSave')}" method="post">
+            <div class="field-row">
+              <div class="field">
+                <label>ユーザー名</label>
+                <input type="text" value="{$user.username}" disabled>
+              </div>
+              <div class="field">
+                <label>性別</label>
+                <select name="sex">
+                  <option value="0" <if condition="$user['sex'] eq 0">selected</if>>未選択</option>
+                  <option value="1" <if condition="$user['sex'] eq 1">selected</if>>男性</option>
+                  <option value="2" <if condition="$user['sex'] eq 2">selected</if>>女性</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label>本名</label>
+              <input type="text" name="realname" value="{$user.realname}">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>メールアドレス</label>
+                <input type="email" name="email" value="{$user.email}">
+              </div>
+              <div class="field">
+                <label>携帯番号</label>
+                <input type="tel" name="mobile" value="{$user.mobile}">
+              </div>
+            </div>
+            <div class="field">
+              <label>住所</label>
+              <input type="text" name="address" value="{$user.address}">
+            </div>
+            <button type="submit" class="btn btn-dark">保存</button>
+            <a href="{:U('Account/password')}" class="btn btn-outline">パスワード変更</a>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<include file="Home:footer"/>

@@ -1,0 +1,120 @@
+<nav id="breadCrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ul class="clearfix">
+        <li><font itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/"  itemprop="item"><span itemprop="name">{$site_name}</span></a> <meta itemprop="position" content="1" /></font> >{$catname}</li>
+    </ul>
+</nav>
+<div class="nar-wrapper">
+<?php 
+    $protypes=F('Protype');
+	$parr=get_arrparentid($_GET['protype'],$protypes);
+	$parr=explode(',', $parr);
+	$parr[]=$_GET['protype'];
+ ?>
+<div id="content" class="twoColumun">
+    <div class="sectionHeader clearfix">
+        <h1>{$info.title}</h1>
+    </div>
+    <section class="cat_description">
+     <link rel="stylesheet" href="__STYLE__/style/review.css?v=2">
+   <hr>
+        <div class="commlist">
+     
+
+            <div class="panel panel-info">
+                <div class="panel-heading clearfix">
+                    <a href="{$site_url}{$info.url}" target="_blank" style="display: inline-block; float: left; margin-right:10px; width: 100px ">
+                        <img src="{$site_url}{$info.thumb}"  alt="{$info.title}" style="width: 100px; height: 100px; border:1px solid #fafafa">
+                    </a>
+                    <div style="display: inline-block; float: right; float: right;width:calc(100% - 112px);">
+                        <h1 style="font-weight: bold;">  <a href="{$site_url}{$info.url}" target="_blank" title="{$info.title}">  {$info.title}</a></h1>
+               
+                        <div id="conte"><?php if($info['sales']){?> 
+                            <span class="mc_itemDetailInfoCard__priceBefore"><?php echo $info['pro_price'];?></span><span class="mc_priceBefore_yen">円（税込）→</span>
+                            <div class="clear"></div>
+    
+    
+                            <span class="mc_itemDetailInfoCard__priceNumber mc_sale_price"><?php echo $info['pro_price'];?></span><span class="mc_itemDetailInfoCard__priceAmount">円</span>（税込）
+                            
+                            <span class="mc_itemDetailInfoCard__priceLabel">【<?php echo $info['sales'];?>%OFF】</span>
+                            <?php }else{?> 
+    
+                            <span class="mc_itemDetailInfoCard__priceNumber mc_sale_price"><?php echo $info['pro_price'];?></span><span class="mc_itemDetailInfoCard__priceAmount">円</span>（税込）
+    
+                            <?php }?> 
+                        </div>
+    
+                    
+                    </div>
+                </div>
+       
+                <ul class="mdItemInfoReview"> <span class="star c-star  size1 star<?php echo round($avg);?>" style="float: left;margin-top: 3px;"></span>  総合評価：{$avg} ( 総計レビュー件数： {$count} 件)</ul>
+        
+
+            </div>
+
+            <div class="panel-group" id="accordion" style="margin-top:15px ">
+                <volist name="listr" id="vo" key="k">
+                    <div class="panel panel-info">
+                        <div class="panel-heading clearfix">
+        
+                          <div class="info1" style="width: 100%!important;">
+                            <span class="bt"><font style="font-weight: bold;"><?php echo $vo['username'];?></font> 投稿日: {$vo.createtime|toDate=###,'Y.m.d'} <span class="star c-star  size1 star{$vo.rating}"></span></span>
+                            
+           
+                            <span id="conte">{$vo.content}</span>
+
+      
+
+                            <?php if(is_array($vo['thumbs'])){?>
+                                <div class="imglist">
+                                    <?php foreach($vo['thumbs'] as $v){?>
+                                        <a href="javascript:;"><img src="<?php echo $v;?>" class="pimg"  alt="<?php echo MD('Product','id='.$vo['artid'],'title');?>"></a>
+                                    <?php }?>
+                                </div>
+                            <?php }?>
+  
+                       
+                          </div>
+                          <div class="clearfix"></div>
+                          <?php if($vo['description']){?>
+                            <div style="font-size:11px;background: #ddd;padding: 10px;">
+                            <b>店長からの返信:</b> <?php  echo $vo['description'];?> 
+                            <div class="clearfix"></div>
+                            </div>
+                            <?php }?>
+                     
+                        </div>
+                      </div>
+               </volist>
+            </div>
+            <div class="pager">
+                {if $pages}
+                <div id="pages">{$pages}</div>
+                {/if}
+            </div>
+        </div>
+    </section>
+
+</div>
+<include file="Home:slidebar" />
+</div>
+    <div class="showing" ><img src="#"></div>
+<style>
+.showing{ display: none; text-align: center;}
+.showing img{width: 100%;}
+</style>
+<script>
+   	$(".pimg").click(function(){
+		var _src=$(this).attr("src");
+		$(".showing img").attr("src",_src);
+		layer.open({
+		type: 1,
+		title: false,
+		closeBtn: 1,
+		area: ['500px'],
+		skin: 'layui-layer-nobg',
+		shadeClose: true,
+		content: $('.showing')
+		});
+	});
+</script>
