@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会员中心 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb" style="margin-top:24px">
+    <a href="../index.html">首页</a>
+    <span class="sep">/</span>
+    <span>会员中心</span>
+  </nav>
+
+  <div class="account-layout">
+    <aside class="account-nav">
+      <div class="account-user">
+        <div class="avatar">MJ</div>
+        <h4>Micheal Jordan</h4>
+        <p>micheal@email.com</p>
+        <div style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#8a6d1b);color:#0a0a0a;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700">
+          👑 Gold 会员
+        </div>
+      </div>
+      <ul>
+        <li><a href="account.html" class="active"><span class="ic">▦</span> 概览</a></li>
+        <li><a href="orders.html"><span class="ic">📦</span> 我的订单</a></li>
+        <li><a href="wishlist.html"><span class="ic">♡</span> 我的收藏</a></li>
+        <li><a href="addresses.html"><span class="ic">📍</span> 收货地址</a></li>
+        <li><a href="payment.html"><span class="ic">💳</span> 支付方式</a></li>
+        <li><a href="points.html"><span class="ic">⭐</span> JojoClub 积分</a></li>
+        <li><a href="settings.html"><span class="ic">⚙</span> 账号设置</a></li>
+        <li><a href="support.html"><span class="ic">💬</span> 客服中心</a></li>
+        <li><a href="../index.html" style="color:var(--red)"><span class="ic">⎋</span> 退出登录</a></li>
+      </ul>
+    </aside>
+
+    <div>
+      <div class="panel">
+        <h2>你好，Micheal 👋</h2>
+        <p class="sub">欢迎回到 JojoKicks · 今天是个好日子，来看几双新鞋？</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="label">订单数</div>
+            <div class="num">12</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">收藏</div>
+            <div class="num">28</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">积分</div>
+            <div class="num">3,450</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">会员等级</div>
+            <div class="num" style="font-size:22px">Gold</div>
+          </div>
+        </div>
+
+        <h3 style="margin:30px 0 14px">最近订单</h3>
+        <div class="order-row head"><div></div><div>商品</div><div>订单号</div><div>日期</div><div>金额</div><div>状态</div></div>
+        <div class="order-row">
+          <div class="img">👟</div>
+          <div><strong>Air Jordan 1 "Bred"</strong><div style="color:var(--text-mute);font-size:12px">US 10 · 1 双</div></div>
+          <div>#JK-20260708-001</div>
+          <div>2026-07-08</div>
+          <div>$320</div>
+          <div><span class="tag shipped">已发货</span></div>
+        </div>
+        <div class="order-row">
+          <div class="img">👟</div>
+          <div><strong>Nike Dunk Low "Panda"</strong><div style="color:var(--text-mute);font-size:12px">US 9 · 1 双</div></div>
+          <div>#JK-20260629-014</div>
+          <div>2026-06-29</div>
+          <div>$145</div>
+          <div><span class="tag delivered">已送达</span></div>
+        </div>
+        <div class="order-row">
+          <div class="img">👟</div>
+          <div><strong>Yeezy 350 V2 "Zebra"</strong><div style="color:var(--text-mute);font-size:12px">US 10.5 · 1 双</div></div>
+          <div>#JK-20260615-022</div>
+          <div>2026-06-15</div>
+          <div>$280</div>
+          <div><span class="tag delivered">已送达</span></div>
+        </div>
+        <a href="orders.html" class="btn btn-outline" style="margin-top:18px">查看全部订单 →</a>
+      </div>
+
+      <div class="panel" style="margin-top:24px">
+        <h2 style="font-size:20px">推荐给你</h2>
+        <p class="sub">根据你的浏览和购买历史</p>
+        <div class="products" id="rec-grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  window.JK.renderProducts('#rec-grid', window.JK_DATA.products.slice(0, 4));
+</script>
+</body>
+</html>

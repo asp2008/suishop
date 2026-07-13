@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>所有球鞋 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<section class="list-hero">
+  <div class="container">
+    <nav class="crumb">
+      <a href="index.html">首页</a>
+      <span class="sep">/</span>
+      <span>所有球鞋</span>
+    </nav>
+    <h1>所有球鞋</h1>
+    <p>从 Jordan 经典到 Yeezy 限定，从 Nike Dunk 到 New Balance 550 — 共 460+ 款 authentic 球鞋</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="list-layout">
+    <aside class="filter-box">
+      <h4>筛选条件</h4>
+
+      <div class="filter-group" id="filter-brand">
+        <h5>品牌</h5>
+        <ul class="filter-list">
+          <li><input type="checkbox" data-brand="jordan" id="b1"><label for="b1">Jordan</label></li>
+          <li><input type="checkbox" data-brand="nike" id="b2"><label for="b2">Nike</label></li>
+          <li><input type="checkbox" data-brand="adidas" id="b3"><label for="b3">Adidas</label></li>
+          <li><input type="checkbox" data-brand="yeezy" id="b4"><label for="b4">Yeezy</label></li>
+          <li><input type="checkbox" data-brand="newbalance" id="b5"><label for="b5">New Balance</label></li>
+          <li><input type="checkbox" data-brand="asics" id="b6"><label for="b6">Asics</label></li>
+          <li><input type="checkbox" data-brand="puma" id="b7"><label for="b7">Puma</label></li>
+          <li><input type="checkbox" data-brand="converse" id="b8"><label for="b8">Converse</label></li>
+        </ul>
+      </div>
+
+      <div class="filter-group" id="filter-size">
+        <h5>尺码 (US 男)</h5>
+        <div class="size-grid">
+          <div class="size" data-size="7">7</div>
+          <div class="size" data-size="7.5">7.5</div>
+          <div class="size" data-size="8">8</div>
+          <div class="size" data-size="8.5">8.5</div>
+          <div class="size" data-size="9">9</div>
+          <div class="size" data-size="9.5">9.5</div>
+          <div class="size" data-size="10">10</div>
+          <div class="size" data-size="10.5">10.5</div>
+          <div class="size" data-size="11">11</div>
+          <div class="size" data-size="12">12</div>
+          <div class="size" data-size="13">13</div>
+          <div class="size" data-size="14">14</div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h5>价格区间 (USD)</h5>
+        <div style="font-size:13px;color:var(--text-soft)">最高 <span id="filter-price-val">$500</span></div>
+        <input type="range" min="50" max="500" value="500" step="10" id="filter-price" style="width:100%;accent-color:var(--gold);margin-top:8px">
+      </div>
+
+      <div class="filter-group">
+        <h5>颜色</h5>
+        <div class="color-list">
+          <div class="c active" style="background:#000" title="Black"></div>
+          <div class="c" style="background:#fff;border-color:#444" title="White"></div>
+          <div class="c" style="background:#c8102e" title="Red"></div>
+          <div class="c" style="background:#2ecc71" title="Green"></div>
+          <div class="c" style="background:#d4af37" title="Gold"></div>
+          <div class="c" style="background:#3498db" title="Blue"></div>
+        </div>
+      </div>
+
+      <button class="btn btn-gold btn-block" style="margin-top:20px" onclick="JK.toast('已重置筛选条件')">重置筛选</button>
+    </aside>
+
+    <div>
+      <div class="list-toolbar">
+        <div class="count">显示 1–24 共 24 双</div>
+        <div class="right">
+          <select id="sort-select">
+            <option value="featured">推荐排序</option>
+            <option value="newest">最新上架</option>
+            <option value="price-asc">价格 低 → 高</option>
+            <option value="price-desc">价格 高 → 低</option>
+            <option value="rating">评分最高</option>
+          </select>
+          <div class="view-toggle">
+            <button class="active" title="Grid">▦</button>
+            <button title="List">≡</button>
+          </div>
+        </div>
+      </div>
+      <div class="products" id="product-grid"></div>
+      <div class="pagination">
+        <a href="#">‹</a>
+        <span class="active">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">…</a>
+        <a href="#">19</a>
+        <a href="#">›</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寄售你的球鞋 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<section style="padding:80px 0 60px;background:radial-gradient(circle at 70% 30%,rgba(200,16,46,.12),transparent 50%),var(--bg-soft);text-align:center">
+  <div class="container">
+    <span class="hero-eyebrow" style="margin-bottom:20px">💰 寄售计划</span>
+    <h1 style="font-size:54px;line-height:1.05;margin:0 0 16px;font-weight:900">把闲置球鞋<br><span style="color:var(--gold)">变成现金</span></h1>
+    <p style="color:var(--text-soft);font-size:18px;max-width:640px;margin:0 auto 30px">48 小时内报价 · 包邮上门 · 当天打款 · 全美最高报价</p>
+    <a class="btn btn-gold btn-lg" href="#quote-form">立即估价 →</a>
+  </div>
+</section>
+
+<div class="container" style="padding:60px 0">
+  <div class="section-head" style="margin-bottom:40px;text-align:center;justify-content:center;flex-direction:column">
+    <h2 style="font-size:36px;margin:0 0 12px">3 步简单变现</h2>
+    <p class="sub">从你提交到收款 · 平均只需要 5 天</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div class="panel" style="text-align:center;border-radius:var(--radius-lg)">
+      <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,.15);color:var(--gold);display:grid;place-items:center;font-size:24px;font-weight:800;margin:0 auto 16px">1</div>
+      <h3 style="margin:0 0 8px">提交清单</h3>
+      <p style="color:var(--text-soft);font-size:14px;margin:0">拍照上传你的球鞋 · 填写尺码、购买年份等基本信息</p>
+    </div>
+    <div class="panel" style="text-align:center;border-radius:var(--radius-lg)">
+      <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,.15);color:var(--gold);display:grid;place-items:center;font-size:24px;font-weight:800;margin:0 auto 16px">2</div>
+      <h3 style="margin:0 0 8px">48h 报价</h3>
+      <p style="color:var(--text-soft);font-size:14px;margin:0">我们的鉴定师会在 48 小时内给出全美最有竞争力的报价</p>
+    </div>
+    <div class="panel" style="text-align:center;border-radius:var(--radius-lg)">
+      <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,.15);color:var(--gold);display:grid;place-items:center;font-size:24px;font-weight:800;margin:0 auto 16px">3</div>
+      <h3 style="margin:0 0 8px">包邮 + 当天打款</h3>
+      <p style="color:var(--text-soft);font-size:14px;margin:0">接受报价后 · 顺丰上门取件 · 签收当天 PayPal/Venmo 打款</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding:0 0 80px" id="quote-form">
+  <div class="panel" style="max-width:720px;margin:0 auto;border-radius:var(--radius-lg)">
+    <h2 style="margin:0 0 8px">获取即时估价</h2>
+    <p style="color:var(--text-soft);margin:0 0 30px">填写你的球鞋信息 · 我们会在 48 小时内通过邮件回复报价</p>
+
+    <form onsubmit="event.preventDefault(); JK.toast('估价请求已提交 · 我们会尽快联系你'); this.reset();">
+      <div class="field"><label>品牌 *</label>
+        <select required>
+          <option>Jordan</option><option>Nike</option><option>Adidas</option>
+          <option>Yeezy</option><option>New Balance</option><option>Asics</option><option>其他</option>
+        </select>
+      </div>
+      <div class="field"><label>完整鞋款名 *</label><input placeholder="如：Air Jordan 1 Retro High OG Bred" required></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+        <div class="field"><label>尺码 (US) *</label><input placeholder="10" required></div>
+        <div class="field"><label>购买年份 *</label>
+          <select required><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>更早</option></select>
+        </div>
+        <div class="field"><label>数量 *</label><input type="number" min="1" value="1" required></div>
+      </div>
+      <div class="field"><label>球鞋状态 *</label>
+        <select required>
+          <option>全新未上脚 (含原盒)</option>
+          <option>全新未上脚 (无原盒)</option>
+          <option>轻微试穿 (无明显使用痕迹)</option>
+          <option>中度使用 (有使用痕迹)</option>
+          <option>重度使用 (有明显磨损)</option>
+        </select>
+      </div>
+      <div class="field"><label>附带原盒 *</label>
+        <select required><option>是</option><option>否</option></select>
+      </div>
+      <div class="field"><label>图片上传 (选填 · 最多 4 张)</label>
+        <input type="file" accept="image/*" multiple style="padding:12px">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="field"><label>你的名字 *</label><input required></div>
+        <div class="field"><label>邮箱 *</label><input type="email" required></div>
+      </div>
+      <div class="field"><label>期望报价 (选填)</label><input placeholder="$"></div>
+      <div class="field"><label>备注</label><textarea placeholder="任何额外信息..."></textarea></div>
+      <button class="btn btn-gold btn-block btn-lg" type="submit">提交估价请求</button>
+    </form>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

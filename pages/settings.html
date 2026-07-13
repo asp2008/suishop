@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>账号设置 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<section class="list-hero">
+  <div class="container">
+    <nav class="crumb"><a href="../index.html">首页</a><span class="sep">/</span><a href="account.html">会员中心</a><span class="sep">/</span><span>账号设置</span></nav>
+    <h1>账号设置</h1>
+  </div>
+</section>
+<div class="container" style="padding:60px 24px 80px;max-width:920px">
+
+<div class="account-layout" style="display:grid;grid-template-columns:280px 1fr;gap:32px;padding:0">
+  <aside class="account-nav" style="position:relative;top:0">
+    <div class="account-user"><div class="avatar">MJ</div><h4>Micheal Jordan</h4><p>micheal@email.com</p></div>
+    <ul style="list-style:none;padding:0;margin:0">
+      <li><a href="account.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">▦</span> 概览</a></li>
+      <li><a href="orders.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">📦</span> 我的订单</a></li>
+      <li><a href="wishlist.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">♡</span> 我的收藏</a></li>
+      <li><a href="addresses.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">📍</span> 收货地址</a></li>
+      <li><a href="payment.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">💳</span> 支付方式</a></li>
+      <li><a href="points.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">⭐</span> JojoClub 积分</a></li>
+      <li><a href="settings.html" class="active" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;background:rgba(212,175,55,.12);color:var(--gold);font-weight:600"><span class="ic">⚙</span> 账号设置</a></li>
+      <li><a href="support.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">💬</span> 客服中心</a></li>
+    </ul>
+  </aside>
+  <div>
+    <div class="panel" style="border-radius:var(--radius-lg);margin-bottom:24px">
+      <h2 style="margin:0 0 8px">个人信息</h2>
+      <p class="sub" style="margin:0 0 24px">更新你的个人资料</p>
+      <form onsubmit="event.preventDefault(); JK.toast(\u0027资料已更新\u0027)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="field"><label>名</label><input value="Micheal"></div>
+          <div class="field"><label>姓</label><input value="Jordan"></div>
+        </div>
+        <div class="field"><label>邮箱</label><input type="email" value="micheal@email.com"></div>
+        <div class="field"><label>手机</label><input value="+1 (212) 555-0100"></div>
+        <div class="field"><label>生日</label><input type="date" value="1995-02-17"></div>
+        <div class="field"><label>尺码 (US 男)</label>
+          <select><option>9</option><option selected>10</option><option>10.5</option><option>11</option><option>12</option></select>
+        </div>
+        <button class="btn btn-gold" type="submit">保存修改</button>
+      </form>
+    </div>
+
+    <div class="panel" style="border-radius:var(--radius-lg);margin-bottom:24px">
+      <h2 style="margin:0 0 8px">修改密码</h2>
+      <p class="sub" style="margin:0 0 24px">建议每 90 天更换一次密码</p>
+      <form onsubmit="event.preventDefault(); JK.toast(\u0027密码已更新\u0027)">
+        <div class="field"><label>当前密码</label><input type="password"></div>
+        <div class="field"><label>新密码</label><input type="password" placeholder="至少 8 位 · 含大小写字母与数字"></div>
+        <div class="field"><label>确认新密码</label><input type="password"></div>
+        <button class="btn btn-gold" type="submit">更新密码</button>
+      </form>
+    </div>
+
+    <div class="panel" style="border-radius:var(--radius-lg);margin-bottom:24px">
+      <h2 style="margin:0 0 8px">通知偏好</h2>
+      <p class="sub" style="margin:0 0 24px">选择你想接收的通知类型</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <label style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--bg-card);border-radius:8px">
+          <div>
+            <strong>订单相关</strong>
+            <div style="color:var(--text-soft);font-size:13px">订单确认、发货通知、物流更新</div>
+          </div>
+          <input type="checkbox" checked style="accent-color:var(--gold);width:20px;height:20px">
+        </label>
+        <label style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--bg-card);border-radius:8px">
+          <div>
+            <strong>发售提醒</strong>
+            <div style="color:var(--text-soft);font-size:13px">关注的球鞋补货、即将发售</div>
+          </div>
+          <input type="checkbox" checked style="accent-color:var(--gold);width:20px;height:20px">
+        </label>
+        <label style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--bg-card);border-radius:8px">
+          <div>
+            <strong>会员专属优惠</strong>
+            <div style="color:var(--text-soft);font-size:13px">JojoClub 折扣、生日福利</div>
+          </div>
+          <input type="checkbox" checked style="accent-color:var(--gold);width:20px;height:20px">
+        </label>
+        <label style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--bg-card);border-radius:8px">
+          <div>
+            <strong>资讯博客</strong>
+            <div style="color:var(--text-soft);font-size:13px">每周 sneaker 文化、发售速递</div>
+          </div>
+          <input type="checkbox" style="accent-color:var(--gold);width:20px;height:20px">
+        </label>
+      </div>
+    </div>
+
+    <div class="panel" style="border-radius:var(--radius-lg);border:1px solid rgba(200,16,46,.4)">
+      <h2 style="margin:0 0 8px;color:var(--red)">危险操作</h2>
+      <p class="sub" style="margin:0 0 16px">注销账号是不可逆操作 · 所有数据将被永久删除</p>
+      <button class="btn btn-outline" style="border-color:var(--red);color:var(--red)">注销账号</button>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

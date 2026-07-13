@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的订单 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb" style="margin-top:24px">
+    <a href="../index.html">首页</a>
+    <span class="sep">/</span>
+    <a href="account.html">会员中心</a>
+    <span class="sep">/</span>
+    <span>我的订单</span>
+  </nav>
+
+  <div class="account-layout">
+    <aside class="account-nav">
+      <div class="account-user">
+        <div class="avatar">MJ</div>
+        <h4>Micheal Jordan</h4>
+        <p>micheal@email.com</p>
+        <div style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#8a6d1b);color:#0a0a0a;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700">👑 Gold</div>
+      </div>
+      <ul>
+        <li><a href="account.html"><span class="ic">▦</span> 概览</a></li>
+        <li><a href="orders.html" class="active"><span class="ic">📦</span> 我的订单</a></li>
+        <li><a href="wishlist.html"><span class="ic">♡</span> 我的收藏</a></li>
+        <li><a href="addresses.html"><span class="ic">📍</span> 收货地址</a></li>
+        <li><a href="payment.html"><span class="ic">💳</span> 支付方式</a></li>
+        <li><a href="points.html"><span class="ic">⭐</span> JojoClub 积分</a></li>
+        <li><a href="settings.html"><span class="ic">⚙</span> 账号设置</a></li>
+        <li><a href="support.html"><span class="ic">💬</span> 客服中心</a></li>
+        <li><a href="../index.html" style="color:var(--red)"><span class="ic">⎋</span> 退出登录</a></li>
+      </ul>
+    </aside>
+
+    <div class="panel">
+      <h2>我的订单</h2>
+      <p class="sub">查看历史订单、物流和发票</p>
+
+      <div class="list-toolbar" style="margin-bottom:18px">
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn btn-dark btn-sm">全部 (12)</button>
+          <button class="btn btn-outline btn-sm">待付款 (1)</button>
+          <button class="btn btn-outline btn-sm">已发货 (2)</button>
+          <button class="btn btn-outline btn-sm">已送达 (9)</button>
+          <button class="btn btn-outline btn-sm">退换中 (0)</button>
+        </div>
+        <div class="right">
+          <input class="search-input" placeholder="搜索订单号…" style="width:240px">
+        </div>
+      </div>
+
+      <div class="order-row head"><div></div><div>商品</div><div>订单号</div><div>日期</div><div>金额</div><div>操作</div></div>
+
+      <div class="order-row" style="background:rgba(212,175,55,.05);border-radius:8px;padding:14px;margin-bottom:8px">
+        <div class="img">👟</div>
+        <div><strong>Air Jordan 1 "Bred"</strong><div style="color:var(--text-mute);font-size:12px">US 10 · 1 双</div></div>
+        <div>#JK-20260708-001</div>
+        <div>2026-07-08</div>
+        <div><strong>$320</strong><br><span class="tag shipped">已发货</span></div>
+        <div>
+          <a class="btn btn-outline btn-sm" href="order-detail.html">查看</a><br>
+          <a href="#" style="font-size:12px;color:var(--text-soft);margin-top:6px;display:inline-block">查看物流</a>
+        </div>
+      </div>
+
+      <div class="order-row" style="border-radius:8px;padding:14px;margin-bottom:8px">
+        <div class="img">👟</div>
+        <div><strong>Nike Dunk Low "Panda"</strong><div style="color:var(--text-mute);font-size:12px">US 9 · 1 双</div></div>
+        <div>#JK-20260629-014</div>
+        <div>2026-06-29</div>
+        <div><strong>$145</strong><br><span class="tag delivered">已送达</span></div>
+        <div>
+          <a class="btn btn-outline btn-sm" href="order-detail.html">查看</a><br>
+          <a href="#" style="font-size:12px;color:var(--text-soft);margin-top:6px;display:inline-block">再次购买</a>
+        </div>
+      </div>
+
+      <div class="order-row" style="border-radius:8px;padding:14px;margin-bottom:8px">
+        <div class="img">👟</div>
+        <div><strong>Yeezy 350 V2 "Zebra"</strong><div style="color:var(--text-mute);font-size:12px">US 10.5 · 1 双</div></div>
+        <div>#JK-20260615-022</div>
+        <div>2026-06-15</div>
+        <div><strong>$280</strong><br><span class="tag delivered">已送达</span></div>
+        <div>
+          <a class="btn btn-outline btn-sm" href="order-detail.html">查看</a><br>
+          <a href="#" style="font-size:12px;color:var(--text-soft);margin-top:6px;display:inline-block">评价晒图</a>
+        </div>
+      </div>
+
+      <div class="order-row" style="border-radius:8px;padding:14px;margin-bottom:8px">
+        <div class="img">👟</div>
+        <div><strong>New Balance 550 "White Green"</strong><div style="color:var(--text-mute);font-size:12px">US 10 · 1 双</div></div>
+        <div>#JK-20260601-008</div>
+        <div>2026-06-01</div>
+        <div><strong>$130</strong><br><span class="tag delivered">已送达</span></div>
+        <div>
+          <a class="btn btn-outline btn-sm" href="order-detail.html">查看</a><br>
+          <a href="#" style="font-size:12px;color:var(--text-soft);margin-top:6px;display:inline-block">再次购买</a>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="#">‹</a>
+        <span class="active">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">›</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

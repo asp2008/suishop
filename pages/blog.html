@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资讯博客 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<section class="list-hero">
+  <div class="container">
+    <nav class="crumb">
+      <a href="../index.html">首页</a>
+      <span class="sep">/</span>
+      <span>资讯博客</span>
+    </nav>
+    <h1>球鞋资讯 · 深度报道</h1>
+    <p>发售速递 · 鉴定指南 · 行业趋势 · 一手 sneaker 文化</p>
+  </div>
+</section>
+
+<div class="container" style="padding:40px 0 80px">
+  <div class="section-head" style="margin-bottom:30px">
+    <div>
+      <h2 style="font-size:32px;margin:0">最新文章</h2>
+      <p class="sub" style="margin-top:6px">由我们的 sneakerhead 编辑团队撰写</p>
+    </div>
+    <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-dark btn-sm">全部</button>
+      <button class="btn btn-outline btn-sm">发售</button>
+      <button class="btn btn-outline btn-sm">鉴定指南</button>
+      <button class="btn btn-outline btn-sm">趋势</button>
+      <button class="btn btn-outline btn-sm">品牌故事</button>
+    </div>
+  </div>
+
+  <div class="blog-grid" id="blog-grid"></div>
+
+  <div class="pagination">
+    <a href="#">‹</a>
+    <span class="active">1</span>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">›</a>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  const blog = window.JK_DATA.blog;
+  document.getElementById('blog-grid').innerHTML = blog.map(b => `
+    <a class="blog-card" href="blog-detail.html?id=${b.id}">
+      <div class="cover">${b.emoji}</div>
+      <div class="body">
+        <div class="meta">${b.cat} · ${b.date}</div>
+        <h3>${b.title}</h3>
+        <p>${b.excerpt}</p>
+        <span style="color:var(--gold);font-weight:700;font-size:13px">阅读全文 →</span>
+      </div>
+    </a>
+  `).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的收藏 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb" style="margin-top:24px">
+    <a href="../index.html">首页</a>
+    <span class="sep">/</span>
+    <a href="account.html">会员中心</a>
+    <span class="sep">/</span>
+    <span>我的收藏</span>
+  </nav>
+
+  <div class="account-layout">
+    <aside class="account-nav">
+      <div class="account-user">
+        <div class="avatar">MJ</div>
+        <h4>Micheal Jordan</h4>
+        <p>micheal@email.com</p>
+        <div style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#8a6d1b);color:#0a0a0a;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700">👑 Gold</div>
+      </div>
+      <ul>
+        <li><a href="account.html"><span class="ic">▦</span> 概览</a></li>
+        <li><a href="orders.html"><span class="ic">📦</span> 我的订单</a></li>
+        <li><a href="wishlist.html" class="active"><span class="ic">♡</span> 我的收藏</a></li>
+        <li><a href="addresses.html"><span class="ic">📍</span> 收货地址</a></li>
+        <li><a href="payment.html"><span class="ic">💳</span> 支付方式</a></li>
+        <li><a href="points.html"><span class="ic">⭐</span> JojoClub 积分</a></li>
+        <li><a href="settings.html"><span class="ic">⚙</span> 账号设置</a></li>
+        <li><a href="support.html"><span class="ic">💬</span> 客服中心</a></li>
+        <li><a href="../index.html" style="color:var(--red)"><span class="ic">⎋</span> 退出登录</a></li>
+      </ul>
+    </aside>
+
+    <div class="panel">
+      <h2>我的收藏 <span style="color:var(--text-mute);font-size:18px;font-weight:500">· 28 件</span></h2>
+      <p class="sub">保存你心仪的球鞋 · 降价或补货时会第一时间通知你</p>
+
+      <div class="products" id="wish-grid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // 模拟前 8 个是已收藏的
+  const all = window.JK_DATA.products;
+  window.JK.renderProducts('#wish-grid', all.concat(all.slice(0,4).map(p => ({...p, id: p.id+100, name: p.name + ' (Alternate)'}))));
+</script>
+</body>
+</html>

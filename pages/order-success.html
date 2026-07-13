@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>订单提交成功 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container" style="max-width:680px;padding:80px 24px;text-align:center">
+  <div style="width:100px;height:100px;border-radius:50%;background:rgba(46,204,113,.15);color:var(--green);display:grid;place-items:center;font-size:50px;margin:0 auto 24px">✓</div>
+  <h1 style="font-size:42px;margin:0 0 12px;font-weight:900">订单提交成功！</h1>
+  <p style="color:var(--text-soft);font-size:17px;margin:0 0 30px">感谢你的购买 · 我们已经收到你的订单</p>
+
+  <div class="panel" style="text-align:left;border-radius:var(--radius-lg)">
+    <div style="display:flex;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line)">
+      <span style="color:var(--text-soft)">订单号</span>
+      <strong id="order-id">#JK-20260713-001</strong>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)">
+      <span style="color:var(--text-soft)">下单时间</span>
+      <strong>2026-07-13 11:21 EST</strong>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)">
+      <span style="color:var(--text-soft)">支付方式</span>
+      <strong>Visa **** 4242</strong>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)">
+      <span style="color:var(--text-soft)">配送方式</span>
+      <strong>标准配送 · 3-5 工作日</strong>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0">
+      <span style="color:var(--text-soft)">订单总额</span>
+      <strong style="color:var(--gold);font-size:20px">$450</strong>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(212,175,55,.12),transparent);border:1px solid rgba(212,175,55,.3);border-radius:var(--radius-lg);padding:24px;margin:30px 0;text-align:left">
+    <h3 style="margin:0 0 8px;font-size:18px">🎁 你获得了 450 积分</h3>
+    <p style="margin:0;color:var(--text-soft);font-size:14px">已加入你的 JojoClub 账户 · 累计积分 3,450 · 可在结账时抵扣 $45</p>
+  </div>
+
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn btn-gold" href="orders.html">查看订单 →</a>
+    <a class="btn btn-outline" href="../index.html">回到首页</a>
+  </div>
+
+  <p style="color:var(--text-mute);font-size:13px;margin-top:30px">订单确认邮件已发送至 micheal@email.com</p>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // 生成假订单号
+  const now = new Date();
+  const ymd = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+  const r = Math.floor(Math.random()*900+100);
+  document.getElementById('order-id').textContent = `#JK-${ymd}-${r}`;
+  // 清空购物车
+  window.JK.Cart.clear();
+</script>
+</body>
+</html>

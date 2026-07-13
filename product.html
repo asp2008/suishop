@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品详情 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb">
+    <a href="index.html">首页</a>
+    <span class="sep">/</span>
+    <a href="list.html">所有球鞋</a>
+    <span class="sep">/</span>
+    <span id="crumb-name">商品详情</span>
+  </nav>
+
+  <div class="detail" id="p-detail">
+    <div class="gallery">
+      <div class="g-main">
+        <div class="emoji" id="p-main-emoji">👟</div>
+      </div>
+      <div class="g-thumbs">
+        <div class="thumb active" data-emoji="👟">👟</div>
+        <div class="thumb" data-emoji="👟">👟</div>
+        <div class="thumb" data-emoji="👟">👟</div>
+        <div class="thumb" data-emoji="👟">👟</div>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="brand-line p-brand-line">Jordan</div>
+      <h1 id="p-title">Air Jordan 1 Retro High OG "Bred"</h1>
+      <p class="sub">Authentic · Jordan · Free shipping</p>
+
+      <div class="p-rating" style="font-size:14px">
+        <span class="stars">★★★★★</span>
+        <span><span id="p-rating">4.9</span> · <span id="p-reviews">234</span> 条评价</span>
+        <span style="color:var(--text-mute)">| 已售 1.2k+</span>
+      </div>
+
+      <div class="price-row">
+        <span class="now" id="p-price-now">$320</span>
+        <span class="was" id="p-price-was">$380</span>
+        <span class="save" id="p-save">立减 16%</span>
+      </div>
+
+      <div class="meta">
+        <div class="meta-row"><span>货号</span><span>555088-001</span></div>
+        <div class="meta-row"><span>发售日期</span><span>2026-05-04</span></div>
+        <div class="meta-row"><span>鉴定状态</span><span style="color:var(--green)">✓ 已通过三重鉴定</span></div>
+        <div class="meta-row"><span>发货</span><span>下单后 24 小时内出库</span></div>
+        <div class="meta-row"><span>退换</span><span>30 天无理由 · 详情见政策</span></div>
+      </div>
+
+      <div class="section-block">
+        <h4>颜色 · <span id="p-color-name">Bred</span></h4>
+        <div class="color-row" id="p-colors"></div>
+      </div>
+
+      <div class="section-block">
+        <h4>选择尺码 (US 男)</h4>
+        <div class="size-grid" id="p-sizes" style="grid-template-columns:repeat(6,1fr)"></div>
+      </div>
+
+      <div class="cta-row">
+        <div class="qty">
+          <button class="qty-dec">−</button>
+          <input id="p-qty" value="1" />
+          <button class="qty-inc">+</button>
+        </div>
+        <button class="btn btn-dark btn-lg" id="add-to-cart" style="flex:1">加入购物车 · <span id="p-btn-price">$320</span></button>
+      </div>
+      <button class="btn btn-gold btn-block btn-lg" id="buy-now">立即购买</button>
+      <button class="btn btn-ghost btn-block" style="margin-top:8px" data-wish="1">♡ 加入我的收藏</button>
+
+      <div class="features" style="grid-template-columns:repeat(3,1fr);border:none;padding:20px 0 0;margin-top:20px;border-top:1px solid var(--line)">
+        <div class="feature"><div class="ic">🚚</div><div><h4>满 $200 免邮</h4><p style="font-size:12px">3-5 个工作日送达</p></div></div>
+        <div class="feature"><div class="ic">✓</div><div><h4>正品保证</h4><p style="font-size:12px">假一赔三</p></div></div>
+        <div class="feature"><div class="ic">↺</div><div><h4>30 天退换</h4><p style="font-size:12px">未上脚可退</p></div></div>
+      </div>
+
+      <div class="tabs">
+        <div class="tabs-nav">
+          <button class="active" data-tab="desc">商品详情</button>
+          <button data-tab="spec">规格参数</button>
+          <button data-tab="auth">鉴定说明</button>
+          <button data-tab="review">用户评价 (234)</button>
+        </div>
+        <div class="tab-content active" id="tab-desc">
+          <p>Air Jordan 1 Retro High OG "Bred" 复刻自 1985 年 Michael Jordan 的首款签名鞋。这双被誉为"篮球鞋之王"的开山之作，以其经典的黑红配色（Bred = Black/Red）成为球鞋文化史上最具代表性的鞋款之一。</p>
+          <br>
+          <p>本次复刻采用与元年一致的皮革、配色与细节：Swoosh、后跟 Wings Logo、鞋舌 Nike Air 标志全部还原。鞋底内嵌 Air-Sole 气垫，提供出色的缓震表现。</p>
+          <br>
+          <p><strong>穿着建议：</strong> 球鞋整体偏小，建议大半码或一码购买。脚型偏宽的 sneakerhead 可选择大半码 + 厚袜的搭配。</p>
+        </div>
+        <div class="tab-content" id="tab-spec">
+          <ul class="spec-list">
+            <li><span>品牌</span><span>Jordan</span></li>
+            <li><span>系列</span><span>Air Jordan 1</span></li>
+            <li><span>货号</span><span>555088-001</span></li>
+            <li><span>配色</span><span>Black / Varsity Red / White</span></li>
+            <li><span>材质</span><span>真皮 + 合成革</span></li>
+            <li><span>鞋底</span><span>橡胶 + Air-Sole 气垫</span></li>
+            <li><span>发售日期</span><span>2026-05-04</span></li>
+            <li><span>原产地</span><span>Vietnam</span></li>
+            <li><span>适合场景</span><span>收藏 / 日常 / 街头</span></li>
+          </ul>
+        </div>
+        <div class="tab-content" id="tab-auth">
+          <p><strong>JojoKicks 三重鉴定流程：</strong></p>
+          <br>
+          <p>1️⃣ <strong>初鉴</strong>：到货后由 2 名鉴定师独立检查外包装、鞋盒标签、SKU 码、产地标签、防伪码。</p>
+          <p>2️⃣ <strong>复鉴</strong>：拆箱后检查鞋面缝线、鞋舌标签、鞋垫印花、中底走线、鞋底 LOGO 钢印。</p>
+          <p>3️⃣ <strong>终鉴</strong>：使用 CheckCheck、StockX 等专业数据库交叉比对，确保与品牌官方信息一致。</p>
+          <br>
+          <p>鉴定通过后会附上 <strong>JojoKicks 鉴定证书</strong> 与一次性防伪贴纸。如发现假货，全额退款并额外赔付订单金额的 200%。</p>
+        </div>
+        <div class="tab-content" id="tab-review">
+          <div class="review">
+            <div class="top"><span class="author">@sneakerhead_NYC</span><span class="stars">★★★★★</span><span class="date">2026-07-08</span></div>
+            <div class="text">JojoKicks 的 AJ1 一直是我最放心的购买渠道。这次 Bred 复刻皮质比上一代更柔软，尺码正常，按日常尺码买即可。鉴定证书 + 防伪贴让人很安心。</div>
+          </div>
+          <div class="review">
+            <div class="top"><span class="author">@jordanlife_04</span><span class="stars">★★★★★</span><span class="date">2026-06-29</span></div>
+            <div class="text">下单一双给老公做生日礼物，到货速度比预期快一天。包装细致，附赠了防尘袋和鉴定卡。客服响应也很及时，会回购。</div>
+          </div>
+          <div class="review">
+            <div class="top"><span class="author">@kick_collector</span><span class="stars">★★★★☆</span><span class="date">2026-06-15</span></div>
+            <div class="text">球鞋本身没问题，5 星给商品。扣一星是因为物流信息更新有点慢，但客服很快回复解释了，整体满意。</div>
+          </div>
+          <button class="btn btn-outline" style="margin-top:18px">查看全部 234 条评价 →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:40px">
+    <div class="section-head">
+      <div>
+        <h2>你可能也喜欢</h2>
+        <div class="sub">根据浏览推荐 · 来自相同系列</div>
+      </div>
+    </div>
+    <div class="products" id="related-grid"></div>
+  </section>
+</div>
+
+<div id="jk-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // 把价格同步到 CTA 按钮
+  const updateBtnPrice = () => {
+    const p = document.getElementById('p-price-now');
+    const b = document.getElementById('p-btn-price');
+    if (p && b) b.textContent = p.textContent;
+  };
+  setTimeout(updateBtnPrice, 50);
+  setTimeout(updateBtnPrice, 300);
+</script>
+</body>
+</html>

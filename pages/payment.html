@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>支付方式 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<section class="list-hero">
+  <div class="container">
+    <nav class="crumb"><a href="../index.html">首页</a><span class="sep">/</span><a href="account.html">会员中心</a><span class="sep">/</span><span>支付方式</span></nav>
+    <h1>支付方式</h1>
+  </div>
+</section>
+<div class="container" style="padding:60px 24px 80px;max-width:920px">
+
+<div class="account-layout" style="display:grid;grid-template-columns:280px 1fr;gap:32px;padding:0">
+  <aside class="account-nav" style="position:relative;top:0">
+    <div class="account-user"><div class="avatar">MJ</div><h4>Micheal Jordan</h4><p>micheal@email.com</p></div>
+    <ul style="list-style:none;padding:0;margin:0">
+      <li><a href="account.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">▦</span> 概览</a></li>
+      <li><a href="orders.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">📦</span> 我的订单</a></li>
+      <li><a href="wishlist.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">♡</span> 我的收藏</a></li>
+      <li><a href="addresses.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">📍</span> 收货地址</a></li>
+      <li><a href="payment.html" class="active" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;background:rgba(212,175,55,.12);color:var(--gold);font-weight:600"><span class="ic">💳</span> 支付方式</a></li>
+      <li><a href="points.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">⭐</span> JojoClub 积分</a></li>
+      <li><a href="settings.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">⚙</span> 账号设置</a></li>
+      <li><a href="support.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--text-soft)"><span class="ic">💬</span> 客服中心</a></li>
+    </ul>
+  </aside>
+  <div class="panel" style="border-radius:var(--radius-lg)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <div>
+        <h2 style="margin:0 0 6px">支付方式</h2>
+        <p class="sub" style="margin:0">管理你保存的支付方式</p>
+      </div>
+      <button class="btn btn-gold" onclick="JK.toast(\u0027新支付方式已添加\u0027)">+ 添加新卡</button>
+    </div>
+    <div class="panel" style="background:var(--bg-card);border:2px solid var(--gold);border-radius:var(--radius);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="font-size:32px">💳</div>
+          <div>
+            <strong>Visa **** 4242</strong>
+            <div style="color:var(--text-soft);font-size:13px">2028-09 过期</div>
+          </div>
+          <span class="tag" style="background:rgba(212,175,55,.15);color:var(--gold)">默认</span>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-ghost btn-sm">编辑</button>
+        <button class="btn btn-ghost btn-sm" style="color:var(--red)">删除</button>
+      </div>
+    </div>
+    <div class="panel" style="background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="font-size:32px">💳</div>
+        <div>
+          <strong>Mastercard **** 8888</strong>
+          <div style="color:var(--text-soft);font-size:13px">2027-03 过期</div>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-ghost btn-sm">编辑</button>
+        <button class="btn btn-ghost btn-sm" style="color:var(--red)">删除</button>
+      </div>
+    </div>
+    <div class="panel" style="background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="font-size:32px">🟦</div>
+        <div>
+          <strong>PayPal</strong>
+          <div style="color:var(--text-soft);font-size:13px">micheal@email.com</div>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-ghost btn-sm" style="color:var(--red)">解绑</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>注册 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="auth">
+  <div class="auth-side">
+    <div class="quote">
+      <h2>加入<br><span class="accent">JojoKicks</span> 大家庭</h2>
+      <p>新用户首单立享 9 折优惠 — 优惠码会自动应用。注册后还可加入 JojoClub 会员，解锁独家发售。</p>
+      <div style="margin-top:40px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(212,175,55,.15);color:var(--gold);display:grid;place-items:center;font-size:22px">🎁</div>
+          <div>
+            <h4 style="margin:0;font-size:15px">新人专享 $20 礼券</h4>
+            <p style="margin:0;font-size:13px;color:var(--text-soft)">注册即送 · 满 $150 可用</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(212,175,55,.15);color:var(--gold);display:grid;place-items:center;font-size:22px">⚡</div>
+          <div>
+            <h4 style="margin:0;font-size:15px">提前 24h 抢购</h4>
+            <p style="margin:0;font-size:13px;color:var(--text-soft)">限定发售 · 会员优先</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(212,175,55,.15);color:var(--gold);display:grid;place-items:center;font-size:22px">📦</div>
+          <div>
+            <h4 style="margin:0;font-size:15px">全美免邮</h4>
+            <p style="margin:0;font-size:13px;color:var(--text-soft)">订单满 $200 即享</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <div class="auth-form-inner">
+      <h2>创建账号</h2>
+      <p class="sub">已经有账号？<a href="login.html" style="color:var(--gold);font-weight:600">立即登录 →</a></p>
+
+      <form onsubmit="event.preventDefault(); JK.toast('注册成功 · 欢迎加入 JojoKicks'); setTimeout(()=>location='account.html', 800)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="field"><label>名 *</label><input placeholder="Micheal" required></div>
+          <div class="field"><label>姓 *</label><input placeholder="Jordan" required></div>
+        </div>
+        <div class="field"><label>邮箱 *</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="field"><label>手机 (选填)</label><input type="tel" placeholder="+1 (212) 555-0100"></div>
+        <div class="field"><label>密码 *</label><input type="password" placeholder="至少 8 位 · 含大小写字母与数字" required></div>
+        <div class="field"><label>确认密码 *</label><input type="password" placeholder="再次输入" required></div>
+        <div class="field"><label>生日 (用于生日福利)</label><input type="date"></div>
+        <label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text-soft);margin:8px 0 16px">
+          <input type="checkbox" required style="accent-color:var(--gold);margin-top:3px">
+          <span>我已阅读并同意 <a href="terms.html" style="color:var(--gold)">服务条款</a> 与 <a href="privacy.html" style="color:var(--gold)">隐私政策</a>，并确认年满 13 岁</span>
+        </label>
+        <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--text-soft);margin-bottom:16px">
+          <input type="checkbox" style="accent-color:var(--gold)"> 订阅 JojoKicks 邮件 · 第一时间获取发售信息
+        </label>
+        <button class="btn btn-gold btn-block btn-lg" type="submit">创建账号</button>
+      </form>
+
+      <div class="divider"><span>或使用以下方式注册</span></div>
+
+      <div class="social-btns">
+        <button>🍎 Apple</button>
+        <button>🟦 Google</button>
+        <button>📘 Facebook</button>
+        <button>🐦 Twitter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

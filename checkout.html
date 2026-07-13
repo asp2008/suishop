@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>结账 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb" style="margin-top:24px">
+    <a href="index.html">首页</a>
+    <span class="sep">/</span>
+    <a href="cart.html">购物车</a>
+    <span class="sep">/</span>
+    <span>结账</span>
+  </nav>
+  <h1 style="font-size:36px;margin:8px 0 8px">结账</h1>
+  <p style="color:var(--text-soft);margin:0 0 24px">🔒 安全支付 — 你的信息受 SSL 加密保护</p>
+
+  <div class="checkout-grid">
+    <div>
+      <div class="step-box">
+        <h3><span class="num">1</span> 联系信息</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="field"><label>名 *</label><input placeholder="Micheal"></div>
+          <div class="field"><label>姓 *</label><input placeholder="Jordan"></div>
+        </div>
+        <div class="field"><label>邮箱 *</label><input type="email" placeholder="you@email.com"></div>
+        <div class="field"><label>手机 (用于配送通知)</label><input type="tel" placeholder="+1 (212) 555-0100"></div>
+        <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--text-soft);margin-top:6px">
+          <input type="checkbox" checked style="accent-color:var(--gold)"> 订阅 JojoKicks，第一时间获取发售信息
+        </label>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="num">2</span> 收货地址</h3>
+        <div class="field"><label>国家 *</label>
+          <select>
+            <option>United States</option><option>Canada</option><option>United Kingdom</option>
+            <option>Australia</option><option>China</option><option>Japan</option>
+          </select>
+        </div>
+        <div class="field"><label>详细地址 *</label><input placeholder="街道地址、公寓号"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+          <div class="field"><label>城市 *</label><input placeholder="Brooklyn"></div>
+          <div class="field"><label>州/省 *</label>
+            <select><option>New York</option><option>California</option><option>Texas</option><option>Florida</option></select>
+          </div>
+          <div class="field"><label>邮编 *</label><input placeholder="11201"></div>
+        </div>
+        <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--text-soft);margin-top:6px">
+          <input type="checkbox" style="accent-color:var(--gold)"> 账单地址与配送地址相同
+        </label>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="num">3</span> 配送方式</h3>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <label class="pay-opt" style="display:flex">
+            <input type="radio" name="ship" checked style="margin-top:4px;accent-color:var(--gold)">
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between">
+                <span class="label">标准配送 (3-5 个工作日)</span>
+                <span class="label" style="color:var(--green)">FREE</span>
+              </div>
+              <div class="ico" style="margin-top:4px">订单满 $200 自动免邮</div>
+            </div>
+          </label>
+          <label class="pay-opt" style="display:flex">
+            <input type="radio" name="ship" style="margin-top:4px;accent-color:var(--gold)">
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between">
+                <span class="label">快递配送 (1-2 个工作日)</span>
+                <span class="label">$15</span>
+              </div>
+              <div class="ico" style="margin-top:4px">FedEx / UPS · 含保险</div>
+            </div>
+          </label>
+          <label class="pay-opt" style="display:flex">
+            <input type="radio" name="ship" style="margin-top:4px;accent-color:var(--gold)">
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between">
+                <span class="label">当日达 (纽约/洛杉矶/迈阿密)</span>
+                <span class="label">$25</span>
+              </div>
+              <div class="ico" style="margin-top:4px">下午 2 点前下单 · 自有骑手</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="num">4</span> 支付方式</h3>
+        <div class="pay-options">
+          <label class="pay-opt">
+            <input type="radio" name="pay" checked style="accent-color:var(--gold)">
+            <span class="label">💳 信用卡 / 借记卡</span>
+            <span class="ico">VISA · MASTERCARD · AMEX</span>
+          </label>
+          <label class="pay-opt">
+            <input type="radio" name="pay" style="accent-color:var(--gold)">
+            <span class="label">🍎 Apple Pay</span>
+            <span class="ico">Touch ID / Face ID</span>
+          </label>
+          <label class="pay-opt">
+            <input type="radio" name="pay" style="accent-color:var(--gold)">
+            <span class="label">🛍️ Shop Pay</span>
+            <span class="ico">一键结账</span>
+          </label>
+          <label class="pay-opt">
+            <input type="radio" name="pay" style="accent-color:var(--gold)">
+            <span class="label">💰 Klarna 分期</span>
+            <span class="ico">4 期免息 · $0 手续费</span>
+          </label>
+          <label class="pay-opt">
+            <input type="radio" name="pay" style="accent-color:var(--gold)">
+            <span class="label">🏦 PayPal</span>
+            <span class="ico">买家保护</span>
+          </label>
+        </div>
+
+        <div style="margin-top:18px">
+          <div class="field"><label>持卡人姓名 *</label><input placeholder="Micheal Jordan"></div>
+          <div class="field"><label>卡号 *</label><input placeholder="1234 5678 9012 3456"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+            <div class="field"><label>有效期 *</label><input placeholder="MM/YY"></div>
+            <div class="field"><label>CVV *</label><input placeholder="123"></div>
+            <div class="field"><label>邮编 *</label><input placeholder="11201"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="summary">
+      <h3>订单详情</h3>
+      <div id="checkout-items"></div>
+      <div class="line"><span>小计</span><span id="ck-sub">$0</span></div>
+      <div class="line"><span>运费</span><span id="ck-ship">FREE</span></div>
+      <div class="line"><span>税费 (8%)</span><span id="ck-tax">$0</span></div>
+      <div class="line"><span>会员折扣</span><span style="color:var(--green)">−$0</span></div>
+      <div class="line total"><span>总计</span><span class="val" id="ck-total">$0</span></div>
+      <button class="btn btn-gold btn-block btn-lg" style="margin-top:20px" onclick="JK.toast('支付成功 · 订单已确认'); setTimeout(()=>location='pages/order-success.html', 800)">
+        🔒 确认支付
+      </button>
+      <p style="font-size:12px;color:var(--text-mute);text-align:center;margin:14px 0 0">
+        点击"确认支付"即表示你同意 JojoKicks 的 <a href="pages/terms.html" style="color:var(--gold)">服务条款</a> 与 <a href="pages/privacy.html" style="color:var(--gold)">隐私政策</a>
+      </p>
+    </aside>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // 渲染订单明细
+  (function () {
+    const items = window.JK.Cart.get();
+    const list = document.getElementById('checkout-items');
+    if (!items.length) {
+      list.innerHTML = '<div class="empty" style="padding:30px"><p>购物车是空的</p><a class="btn btn-gold btn-sm" href="list.html">去逛逛</a></div>';
+      return;
+    }
+    list.innerHTML = items.map(it => `
+      <div class="line" style="align-items:center">
+        <span style="display:flex;gap:10px;align-items:center">
+          <span style="width:40px;height:40px;background:var(--bg);border-radius:6px;display:grid;place-items:center;font-size:24px">${it.emoji||'👟'}</span>
+          <span>
+            <strong style="font-size:13px;display:block">${it.name}</strong>
+            <span style="font-size:11px;color:var(--text-mute)">US ${it.size} × ${it.qty}</span>
+          </span>
+        </span>
+        <span style="font-size:13px">${window.JK.fmt(it.price * it.qty)}</span>
+      </div>
+    `).join('');
+    const sub = window.JK.Cart.total();
+    const ship = sub > 200 ? 0 : 12;
+    const tax = Math.round(sub * 0.08);
+    document.getElementById('ck-sub').textContent = window.JK.fmt(sub);
+    document.getElementById('ck-ship').textContent = ship === 0 ? 'FREE' : window.JK.fmt(ship);
+    document.getElementById('ck-tax').textContent = window.JK.fmt(tax);
+    document.getElementById('ck-total').textContent = window.JK.fmt(sub + ship + tax);
+  })();
+</script>
+</body>
+</html>

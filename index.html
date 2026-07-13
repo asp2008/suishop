@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JojoKicks — Authentic Sneakers, Curated Heat</title>
+<meta name="description" content="JojoKicks 是一家专注于 authentic 球鞋的潮流电商 — Jordan、Nike、Yeezy、New Balance 限量发售与日常款。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header / Top Bar 注入 -->
+<div id="jk-header"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-eyebrow">🔥 2026 SUMMER DROP · 已上架</span>
+      <h1>球场到街头<br><span class="accent">每一双都是签名</span></h1>
+      <p class="lead">JojoKicks 严选全球最热的 authentic 球鞋 — Jordan、Nike、Yeezy、New Balance 限量款与日常款，每一双都经过专业鉴定师三重验证。</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold btn-lg" href="list.html">立即选购 →</a>
+        <a class="btn btn-outline btn-lg" href="pages/membership.html">加入 JojoClub</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">120K+</div><div class="label">已发货订单</div></div>
+        <div class="stat"><div class="num">100%</div><div class="label">正品保证</div></div>
+        <div class="stat"><div class="num">4.9★</div><div class="label">用户评分</div></div>
+        <div class="stat"><div class="num">200+</div><div class="label">品牌合作</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-tag top"><span class="dot"></span>实时上新 · 24h 内发货</div>
+      <div class="shoe-emoji">👟</div>
+      <div class="hero-tag bottom">⚡ Jordan 1 "Bred Reimagined" 现货</div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand strip -->
+<section class="container">
+  <div class="brands" style="margin-top:-40px;position:relative;z-index:2">
+    <div class="brand-item">NIKE</div>
+    <div class="brand-item">JORDAN</div>
+    <div class="brand-item">ADIDAS</div>
+    <div class="brand-item">YEEZY</div>
+    <div class="brand-item">NEW BALANCE</div>
+    <div class="brand-item">ASICS</div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>按分类逛</h2>
+        <div class="sub">找到你日常通勤、周末出街、球场对决的那一双</div>
+      </div>
+      <a class="btn btn-outline btn-sm" href="list.html">查看全部 →</a>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card big" href="list.html?cat=jordan" style="background:linear-gradient(135deg,#c8102e 0%,#5a0a16 100%)">
+        <div class="cat-bg" style="font-size:260px">👟</div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info">
+          <h3>Jordan 专区</h3>
+          <p>从 AJ1 到 AJ4 — Jumpman 全系列 · 124 款</p>
+          <span class="more">立即选购 →</span>
+        </div>
+      </a>
+      <a class="cat-card" href="list.html?cat=running" style="background:linear-gradient(135deg,#2ecc71,#0a5c2e)">
+        <div class="cat-bg">🏃</div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info">
+          <h3>跑步系列</h3>
+          <p>Vaporfly · Pegasus · Vomero · 86 款</p>
+        </div>
+      </a>
+      <a class="cat-card" href="list.html?cat=basketball" style="background:linear-gradient(135deg,#f39c12,#a85a00)">
+        <div class="cat-bg">🏀</div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info">
+          <h3>篮球实战</h3>
+          <p>性能与颜值兼具 · 64 款</p>
+        </div>
+      </a>
+      <a class="cat-card" href="list.html?cat=lifestyle" style="background:linear-gradient(135deg,#d4af37,#8a6d1b)">
+        <div class="cat-bg">👜</div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info">
+          <h3>潮流生活</h3>
+          <p>Dunk · Samba · 550 · 142 款</p>
+        </div>
+      </a>
+      <a class="cat-card" href="list.html?cat=skate" style="background:linear-gradient(135deg,#3498db,#1a5276)">
+        <div class="cat-bg">🛹</div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info">
+          <h3>滑板街头</h3>
+          <p>Vans · Converse · 48 款</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured products -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>🔥 本周热门</h2>
+        <div class="sub">本周被抢得最多的几双 — 手慢无</div>
+      </div>
+      <a class="btn btn-outline btn-sm" href="list.html?sort=hot">查看全部 →</a>
+    </div>
+    <div class="products" id="hot-grid"></div>
+  </div>
+</section>
+
+<!-- Promo banners -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="promo">
+      <div class="promo-card gold">
+        <div class="promo-emoji">⚡</div>
+        <h3>JojoClub 会员</h3>
+        <p>提前 24 小时抢购限定款 · 免邮 · 2 倍积分 · 每月 1 双抽奖</p>
+        <a class="btn btn-dark" href="pages/membership.html">查看会员权益 →</a>
+      </div>
+      <div class="promo-card dark">
+        <div class="promo-emoji">🎁</div>
+        <h3>寄售计划</h3>
+        <p>把你的闲置球鞋变现 — 48 小时内报价 · 包邮上门 · 当天打款</p>
+        <a class="btn btn-gold" href="pages/sell.html">立即估价 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- New drops -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>✨ 新品上架</h2>
+        <div class="sub">刚刚补货 — 别错过</div>
+      </div>
+      <a class="btn btn-outline btn-sm" href="list.html?sort=newest">查看全部 →</a>
+    </div>
+    <div class="products" id="new-grid"></div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="container">
+  <div class="features">
+    <div class="feature">
+      <div class="ic">✓</div>
+      <div>
+        <h4>100% 正品保证</h4>
+        <p>三重鉴定 · 不真全额退款</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="ic">🚚</div>
+      <div>
+        <h4>24h 内发货</h4>
+        <p>满 $200 全美免邮</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="ic">↺</div>
+      <div>
+        <h4>30 天无理由退换</h4>
+        <p>未上脚 · 原包装 · 全额退款</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="ic">🔒</div>
+      <div>
+        <h4>安全支付</h4>
+        <p>支持 Apple Pay · Shop Pay · Klarna 分期</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section">
+  <div class="container">
+    <div class="newsletter">
+      <div>
+        <h3>第一时间掌握限量发售</h3>
+        <p>订阅 JojoKicks — 提前 24h 收到发售通知、独家优惠和抽奖活动。</p>
+      </div>
+      <form onsubmit="event.preventDefault(); JK.toast('已订阅，感谢支持！');">
+        <input type="email" placeholder="输入你的邮箱地址" required>
+        <button class="btn btn-gold" type="submit">订阅</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer 注入 -->
+<div id="jk-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // 渲染首页商品
+  const data = window.JK_DATA.products;
+  window.JK.renderProducts('#hot-grid', data.slice(0, 8));
+  window.JK.renderProducts('#new-grid', data.slice(2, 10));
+</script>
+</body>
+</html>

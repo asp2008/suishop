@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常见问题 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<section class="list-hero">
+  <div class="container">
+    <nav class="crumb">
+      <a href="../index.html">首页</a>
+      <span class="sep">/</span>
+      <span>常见问题</span>
+    </nav>
+    <h1>常见问题</h1>
+    <p>没找到答案？<a href="contact.html" style="color:var(--gold)">联系客服</a> · 7×24 在线</p>
+  </div>
+</section>
+
+<div class="container" style="max-width:880px;padding:40px 24px 80px">
+  <div class="section-head" style="margin-bottom:30px">
+    <div>
+      <h2 style="font-size:32px;margin:0">分类</h2>
+    </div>
+    <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-dark btn-sm">全部</button>
+      <button class="btn btn-outline btn-sm">订单与配送</button>
+      <button class="btn btn-outline btn-sm">退换货</button>
+      <button class="btn btn-outline btn-sm">真伪与鉴定</button>
+      <button class="btn btn-outline btn-sm">会员与积分</button>
+      <button class="btn btn-outline btn-sm">寄售</button>
+    </div>
+  </div>
+
+  <div id="faq-list"></div>
+
+  <div style="margin-top:60px;padding:40px;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-lg);text-align:center">
+    <h3 style="font-size:24px;margin:0 0 8px">还有其他问题？</h3>
+    <p style="color:var(--text-soft);margin:0 0 20px">我们的客服团队 7×24 小时在线，平均 30 分钟内回复。</p>
+    <a class="btn btn-gold" href="contact.html">联系客服 →</a>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  document.getElementById('faq-list').innerHTML = window.JK_DATA.faq.map(f => `
+    <div class="faq-item">
+      <h4>${f.q} <span class="ic">+</span></h4>
+      <div class="ans">${f.a}</div>
+    </div>
+  `).join('');
+  // 重新绑定折叠（main.js 在 DOMContentLoaded 时跑了一次，现在 FAQ 才被注入）
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const ic = item.querySelector('.ic');
+    ic.textContent = '+';
+    item.querySelector('h4').addEventListener('click', () => {
+      item.classList.toggle('open');
+      ic.textContent = item.classList.contains('open') ? '−' : '+';
+    });
+  });
+</script>
+</body>
+</html>

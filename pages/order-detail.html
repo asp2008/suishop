@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>订单详情 — JojoKicks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb" style="margin-top:24px">
+    <a href="../index.html">首页</a>
+    <span class="sep">/</span>
+    <a href="account.html">会员中心</a>
+    <span class="sep">/</span>
+    <a href="orders.html">我的订单</a>
+    <span class="sep">/</span>
+    <span>#JK-20260708-001</span>
+  </nav>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0 24px;flex-wrap:wrap;gap:12px">
+    <h1 style="font-size:30px;margin:0">订单 #JK-20260708-001</h1>
+    <span class="tag shipped" style="font-size:13px;padding:8px 14px">📦 已发货 · 预计 2026-07-15 送达</span>
+  </div>
+
+  <!-- 物流进度 -->
+  <div class="panel" style="margin-bottom:24px;border-radius:var(--radius-lg)">
+    <h3 style="margin:0 0 24px">物流进度</h3>
+    <div style="display:flex;justify-content:space-between;position:relative">
+      <div style="position:absolute;top:18px;left:18px;right:18px;height:2px;background:var(--line)">
+        <div style="height:100%;width:75%;background:var(--gold)"></div>
+      </div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:#0a0a0a;display:grid;place-items:center;margin:0 auto 8px;font-weight:800">✓</div>
+        <div style="font-size:13px;font-weight:600">订单确认</div>
+        <div style="font-size:11px;color:var(--text-mute)">07-08 10:30</div>
+      </div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:#0a0a0a;display:grid;place-items:center;margin:0 auto 8px;font-weight:800">✓</div>
+        <div style="font-size:13px;font-weight:600">已发货</div>
+        <div style="font-size:11px;color:var(--text-mute)">07-09 14:22</div>
+      </div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:#0a0a0a;display:grid;place-items:center;margin:0 auto 8px;font-weight:800">📍</div>
+        <div style="font-size:13px;font-weight:600">运输中</div>
+        <div style="font-size:11px;color:var(--text-mute)">07-12 09:00</div>
+      </div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bg-card);color:var(--text-mute);display:grid;place-items:center;margin:0 auto 8px;font-weight:800;border:1px solid var(--line)">4</div>
+        <div style="font-size:13px;font-weight:600;color:var(--text-mute)">已送达</div>
+        <div style="font-size:11px;color:var(--text-mute)">预计 07-15</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:flex-start">
+    <div>
+      <div class="panel" style="border-radius:var(--radius-lg)">
+        <h3 style="margin:0 0 18px">商品明细</h3>
+        <div style="display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)">
+          <div style="width:100px;height:100px;background:var(--bg);border-radius:8px;display:grid;place-items:center;font-size:48px;flex-shrink:0">👟</div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em">Jordan</div>
+            <h4 style="margin:4px 0 6px">Air Jordan 1 Retro High OG "Bred"</h4>
+            <div style="color:var(--text-soft);font-size:13px;margin-bottom:8px">货号: 555088-001 · 颜色: Bred · US 10</div>
+            <div style="color:var(--text-soft);font-size:13px">数量: 1 双</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:18px;font-weight:800;color:var(--gold)">$320</div>
+            <a href="../product.html?id=1" style="font-size:13px;color:var(--text-soft);display:block;margin-top:6px">再次购买 →</a>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:18px 0">
+          <span>运费</span>
+          <span style="color:var(--green)">FREE</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--line)">
+          <span>税费 (8%)</span>
+          <span>$26</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding-top:18px;font-size:20px;font-weight:800">
+          <span>订单总额</span>
+          <span style="color:var(--gold)">$346</span>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:24px;border-radius:var(--radius-lg)">
+        <h3 style="margin:0 0 18px">配送信息</h3>
+        <div style="color:var(--text-soft);line-height:1.8">
+          <strong style="color:var(--text)">Micheal Jordan</strong><br>
+          118 Sneaker Lane, Apt 4B<br>
+          Brooklyn, NY 11201<br>
+          United States<br>
+          📞 +1 (212) 555-0100
+        </div>
+        <h4 style="margin:24px 0 8px;font-size:14px">承运商</h4>
+        <p style="margin:0;color:var(--text-soft)">FedEx · 追踪号: <strong style="color:var(--text)">7749 1234 5678 9012</strong></p>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel" style="border-radius:var(--radius-lg)">
+        <h3 style="margin:0 0 18px">订单操作</h3>
+        <a class="btn btn-outline btn-block" href="#" style="margin-bottom:10px">📍 查看物流</a>
+        <a class="btn btn-outline btn-block" href="#" style="margin-bottom:10px">📄 下载发票</a>
+        <a class="btn btn-outline btn-block" href="#" style="margin-bottom:10px">🔄 申请退换</a>
+        <a class="btn btn-outline btn-block" href="support.html">💬 联系客服</a>
+      </div>
+
+      <div class="panel" style="margin-top:24px;border-radius:var(--radius-lg)">
+        <h3 style="margin:0 0 12px;font-size:16px">支付信息</h3>
+        <p style="margin:0;color:var(--text-soft);font-size:14px">
+          💳 Visa **** 4242<br>
+          2026-07-08 10:31 EST<br>
+          <span style="color:var(--green)">✓ 支付成功</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
