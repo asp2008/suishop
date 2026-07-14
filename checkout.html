@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お会計 — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb" style="margin-top:16px">
+    <a href="index.html">HOME</a>
+    <span class="sep">/</span>
+    <a href="cart.html">カート</a>
+    <span class="sep">/</span>
+    <span>お会計</span>
+  </nav>
+  <h1 style="font-size:26px;margin:6px 0 6px;font-weight:800">お会計</h1>
+  <p style="color:var(--text-soft);margin:0 0 20px;font-size:13px">🔒 SSL 暗号化で守られた安全な決済</p>
+
+  <div class="checkout-grid">
+    <div>
+      <div class="step-box">
+        <h3><span class="num">1</span> お客様情報</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="field"><label>姓 *</label><input placeholder="田中"></div>
+          <div class="field"><label>名 *</label><input placeholder="太郎"></div>
+        </div>
+        <div class="field"><label>メールアドレス *</label><input type="email" placeholder="you@email.com"></div>
+        <div class="field"><label>電話番号 *</label><input type="tel" placeholder="090-1234-5678"></div>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="num">2</span> 配送先住所</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+          <div class="field"><label>郵便番号 *</label><input placeholder="150-0001"></div>
+          <div class="field"><label>都道府県 *</label>
+            <select><option>東京都</option><option>大阪府</option><option>神奈川県</option><option>千葉県</option><option>埼玉県</option></select>
+          </div>
+          <div class="field"><label>市区町村 *</label><input placeholder="渋谷区"></div>
+        </div>
+        <div class="field"><label>町名・番地 *</label><input placeholder="神宮前 1-2-3"></div>
+        <div class="field"><label>建物名・部屋番号</label><input placeholder="○○マンション 101号室"></div>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="num">3</span> 配送方法</h3>
+        <label class="pay-opt">
+          <input type="radio" name="ship" checked style="margin-top:2px">
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between"><span class="label">通常配送 (1〜3 営業日)</span><span class="label" style="color:var(--green)">¥10,000 以上 FREE / 未満 ¥880</span></div>
+            <div class="ico" style="margin-top:4px">佐川急便 · 追跡可能</div>
+          </div>
+        </label>
+        <label class="pay-opt" style="margin-top:8px">
+          <input type="radio" name="ship" style="margin-top:2px">
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between"><span class="label">お急ぎ便 (翌日配送)</span><span class="label">¥1,500</span></div>
+            <div class="ico" style="margin-top:4px">ヤマト運輸 · 午前中指定可</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="num">4</span> お支払い方法</h3>
+        <div class="pay-options">
+          <label class="pay-opt"><input type="radio" name="pay" checked style="accent-color:var(--red)"><span class="label">💳 クレジットカード</span><span class="ico">VISA · MASTER · JCB · AMEX</span></label>
+          <label class="pay-opt"><input type="radio" name="pay" style="accent-color:var(--red)"><span class="label">🏪 コンビニ払い</span><span class="ico">セブン・ローソン・ファミマ</span></label>
+          <label class="pay-opt"><input type="radio" name="pay" style="accent-color:var(--red)"><span class="label">📱 PayPay</span><span class="ico">スマホで簡単決済</span></label>
+          <label class="pay-opt"><input type="radio" name="pay" style="accent-color:var(--red)"><span class="label">💴 銀行振込</span><span class="ico">三菱UFJ・三井住友・みずほ</span></label>
+          <label class="pay-opt"><input type="radio" name="pay" style="accent-color:var(--red)"><span class="label">🍎 Apple Pay</span><span class="ico">Touch ID / Face ID</span></label>
+          <label class="pay-opt"><input type="radio" name="pay" style="accent-color:var(--red)"><span class="label">🅿️ PayPal</span><span class="ico"> buyer protection 付き</span></label>
+        </div>
+      </div>
+    </div>
+
+    <aside class="summary">
+      <h3>注文詳細</h3>
+      <div id="checkout-items"></div>
+      <div class="line"><span>小計</span><span id="ck-sub">¥0</span></div>
+      <div class="line"><span>配送</span><span id="ck-ship">FREE</span></div>
+      <div class="line"><span>消費税 (10%)</span><span id="ck-tax">¥0</span></div>
+      <div class="line total"><span>合計</span><span class="val" id="ck-total">¥0</span></div>
+      <button class="btn btn-primary btn-block btn-lg" style="margin-top:18px" onclick="JK.toast('注文を確定しました · ありがとうございます'); setTimeout(()=>location='pages/order-success.html', 800)">
+        🔒 注文を確定する
+      </button>
+      <p style="font-size:11px;color:var(--text-mute);text-align:center;margin:14px 0 0">
+        「注文を確定する」をクリックすることで、JOJOKICKS の <a href="pages/terms.html" style="color:var(--red)">利用規約</a> と <a href="pages/privacy.html" style="color:var(--red)">プライバシーポリシー</a> に同意したものとみなされます。
+      </p>
+    </aside>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  (function () {
+    const items = window.JK.Cart.get();
+    const list = document.getElementById('checkout-items');
+    if (!items.length) {
+      list.innerHTML = '<div class="empty" style="padding:24px"><p>カートは空です</p><a class="btn btn-dark btn-sm" href="list.html">商品を見る</a></div>';
+      return;
+    }
+    list.innerHTML = items.map(it => `
+      <div class="line" style="align-items:center;padding:8px 0">
+        <span style="display:flex;gap:8px;align-items:center">
+          <span style="width:36px;height:36px;background:var(--bg-gray);border-radius:4px;display:grid;place-items:center;font-size:20px">${it.emoji||'👟'}</span>
+          <span>
+            <strong style="font-size:12px;display:block">${it.name.length > 24 ? it.name.slice(0,24)+'…' : it.name}</strong>
+            <span style="font-size:11px;color:var(--text-mute)">${it.size} × ${it.qty}</span>
+          </span>
+        </span>
+        <span style="font-size:12px">${window.JK.fmt(it.price * it.qty)}</span>
+      </div>
+    `).join('');
+    const sub = window.JK.Cart.total();
+    const ship = sub >= 10000 ? 0 : 880;
+    const tax = Math.round(sub * 0.1);
+    document.getElementById('ck-sub').textContent = window.JK.fmt(sub);
+    document.getElementById('ck-ship').textContent = ship === 0 ? 'FREE' : window.JK.fmt(ship);
+    document.getElementById('ck-tax').textContent = window.JK.fmt(tax);
+    document.getElementById('ck-total').textContent = window.JK.fmt(sub + ship + tax);
+  })();
+</script>
+</body>
+</html>

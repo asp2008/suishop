@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ログイン — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="auth">
+  <div class="auth-side">
+    <div class="quote">
+      <h2>Welcome to<br><span class="accent">JOJOKICKS</span></h2>
+      <p>ログインして会員限定の特典、ポイント、購入履歴をチェックしましょう。</p>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <div class="auth-form-inner">
+      <h2>ログイン</h2>
+      <p class="sub">アカウントをお持ちでない方は <a href="register.html" style="color:var(--red);font-weight:600">新規登録 →</a></p>
+
+      <form onsubmit="event.preventDefault(); location.href='account.html'">
+        <div class="field"><label>メールアドレス</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="field"><label>パスワード</label><input type="password" placeholder="パスワードを入力" required></div>
+        <div class="row">
+          <label><input type="checkbox" style="accent-color:var(--red)"> ログイン状態を保存</label>
+          <a href="#" style="color:var(--text-soft)">パスワードを忘れた？</a>
+        </div>
+        <button class="btn btn-dark btn-block btn-lg" type="submit">ログイン</button>
+      </form>
+
+      <div class="divider"><span>または</span></div>
+
+      <div class="social-btns">
+        <button>🟦 LINE</button>
+        <button>📧 Google</button>
+        <button>🍎 Apple</button>
+        <button>📘 Facebook</button>
+      </div>
+
+      <p style="margin-top:18px;font-size:11px;color:var(--text-mute);text-align:center">
+        ログインすることで JOJOKICKS の <a href="terms.html" style="color:var(--red)">利用規約</a> と <a href="privacy.html" style="color:var(--red)">プライバシーポリシー</a> に同意したものとみなされます。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

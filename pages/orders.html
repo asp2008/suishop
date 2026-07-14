@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>注文履歴 — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<div class="container">
+  <nav class="crumb" style="margin-top:16px"><a href="../index.html">HOME</a><span class="sep">/</span><a href="account.html">マイアカウント</a><span class="sep">/</span><span>注文履歴</span></nav>
+  <div class="account-layout">
+    <aside class="account-nav">
+      <div class="account-user"><div class="avatar">田</div><h4>田中 太郎</h4><p>taro@email.com</p></div>
+      <ul>
+        <li><a href="account.html"><span class="ic">▦</span> 概要</a></li>
+        <li><a href="orders.html" class="active"><span class="ic">📦</span> 注文履歴</a></li>
+        <li><a href="wishlist.html"><span class="ic">♡</span> お気に入り</a></li>
+        <li><a href="addresses.html"><span class="ic">📍</span> 住所</a></li>
+        <li><a href="payment.html"><span class="ic">💳</span> 支払い方法</a></li>
+        <li><a href="points.html"><span class="ic">⭐</span> ポイント</a></li>
+        <li><a href="settings.html"><span class="ic">⚙</span> 設定</a></li>
+        <li><a href="support.html"><span class="ic">💬</span> サポート</a></li>
+      </ul>
+    </aside>
+    <div class="panel">
+      <h2>注文履歴</h2>
+      <p class="sub">過去の注文、配送状況、請求書を管理</p>
+      <div class="list-toolbar" style="margin-bottom:14px">
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn btn-dark btn-sm">すべて (12)</button>
+          <button class="btn btn-outline btn-sm">処理中 (1)</button>
+          <button class="btn btn-outline btn-sm">発送済み (2)</button>
+          <button class="btn btn-outline btn-sm">配達済み (9)</button>
+        </div>
+      </div>
+      <div class="order-row head"><div></div><div>商品</div><div>注文番号</div><div>日付</div><div>金額</div><div>操作</div></div>
+      <div class="order-row" style="background:rgba(209,28,44,.05);border-radius:4px;padding:12px;margin-bottom:6px">
+        <div class="img">👟</div><div><strong>Air Jordan 1 "Bred"</strong><div style="color:var(--text-mute);font-size:11px">US 10</div></div>
+        <div>#JK-20260708-001</div><div>2026-07-08</div><div><strong>¥34,560</strong><br><span class="tag shipped">発送済み</span></div>
+        <div><a class="btn btn-outline btn-sm" href="order-detail.html">詳細</a></div>
+      </div>
+      <div class="order-row" style="padding:12px;margin-bottom:6px">
+        <div class="img">👕</div><div><strong>SUPREME ANNOUNCING T-SHIRT</strong><div style="color:var(--text-mute);font-size:11px">M</div></div>
+        <div>#JK-20260629-014</div><div>2026-06-29</div><div><strong>¥9,290</strong><br><span class="tag delivered">配達済み</span></div>
+        <div><a class="btn btn-outline btn-sm" href="order-detail.html">詳細</a></div>
+      </div>
+      <div class="pagination">
+        <a href="#">‹</a><span class="active">1</span><a href="#">2</a><a href="#">3</a><a href="#">›</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

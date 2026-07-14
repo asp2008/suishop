@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>設定 — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<div class="container">
+  <nav class="crumb" style="margin-top:16px"><a href="../index.html">HOME</a><span class="sep">/</span><a href="account.html">マイアカウント</a><span class="sep">/</span><span>設定</span></nav>
+  <div class="account-layout">
+<aside class="account-nav"><div class="account-user"><div class="avatar">田</div><h4>田中 太郎</h4><p>taro@email.com</p></div><ul><li><a href="account.html"><span class="ic">▦</span> 概要</a></li><li><a href="orders.html"><span class="ic">📦</span> 注文履歴</a></li><li><a href="wishlist.html"><span class="ic">♡</span> お気に入り</a></li><li><a href="addresses.html"><span class="ic">📍</span> 住所</a></li><li><a href="payment.html"><span class="ic">💳</span> 支払い方法</a></li><li><a href="points.html"><span class="ic">⭐</span> ポイント</a></li><li><a href="settings.html" class="active"><span class="ic">⚙</span> 設定</a></li><li><a href="support.html"><span class="ic">💬</span> サポート</a></li></ul></aside>
+<div><div class="panel" style="margin-bottom:16px"><h2>個人情報</h2><p class="sub">プロフィールを更新</p><form onsubmit="event.preventDefault(); JK.toast(\u0027更新しました\u0027)"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="field"><label>姓</label><input value="田中"></div><div class="field"><label>名</label><input value="太郎"></div></div><div class="field"><label>メールアドレス</label><input type="email" value="taro@email.com"></div><div class="field"><label>電話番号</label><input value="090-1234-5678"></div><div class="field"><label>生年月日</label><input type="date" value="1995-02-17"></div><button class="btn btn-dark" type="submit">保存</button></form></div><div class="panel" style="margin-bottom:16px"><h2>パスワード変更</h2><form onsubmit="event.preventDefault(); JK.toast(\u0027パスワードを更新しました\u0027)"><div class="field"><label>現在のパスワード</label><input type="password"></div><div class="field"><label>新しいパスワード</label><input type="password"></div><div class="field"><label>確認</label><input type="password"></div><button class="btn btn-dark" type="submit">更新</button></form></div><div class="panel" style="border:1px solid rgba(209,28,44,.4)"><h2 style="color:var(--red)">アカウント削除</h2><p class="sub">すべてのデータが完全に削除されます · この操作は取り消せません</p><button class="btn btn-outline btn-sm" style="border-color:var(--red);color:var(--red)">アカウントを削除</button></div></div>
+</div>
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

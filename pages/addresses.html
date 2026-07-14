@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>住所 — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<div class="container">
+  <nav class="crumb" style="margin-top:16px"><a href="../index.html">HOME</a><span class="sep">/</span><a href="account.html">マイアカウント</a><span class="sep">/</span><span>住所</span></nav>
+  <div class="account-layout">
+<aside class="account-nav"><div class="account-user"><div class="avatar">田</div><h4>田中 太郎</h4><p>taro@email.com</p></div><ul><li><a href="account.html"><span class="ic">▦</span> 概要</a></li><li><a href="orders.html"><span class="ic">📦</span> 注文履歴</a></li><li><a href="wishlist.html"><span class="ic">♡</span> お気に入り</a></li><li><a href="addresses.html" class="active"><span class="ic">📍</span> 住所</a></li><li><a href="payment.html"><span class="ic">💳</span> 支払い方法</a></li><li><a href="points.html"><span class="ic">⭐</span> ポイント</a></li><li><a href="settings.html"><span class="ic">⚙</span> 設定</a></li><li><a href="support.html"><span class="ic">💬</span> サポート</a></li></ul></aside>
+<div><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><div><h2>住所</h2><p class="sub">最大 10 件まで保存できます</p></div><button class="btn btn-dark btn-sm" onclick="JK.toast(\u0027新しい住所を追加しました\u0027)">+ 新しい住所</button></div><div class="panel" style="background:var(--bg-gray);border:2px solid var(--red);border-radius:4px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px"><div><strong>🏠 自宅</strong><span class="tag" style="background:rgba(209,28,44,.15);color:var(--red);margin-left:8px">デフォルト</span></div><div><button class="btn btn-ghost btn-sm">編集</button><button class="btn btn-ghost btn-sm" style="color:var(--red)">削除</button></div></div><p style="color:var(--text-soft);margin:0;line-height:1.7">田中 太郎<br>〒150-0001<br>東京都渋谷区神宮前 1-2-3<br>○○マンション 101 号室<br>📞 090-1234-5678</p></div><div class="panel" style="background:var(--bg-gray);border:1px solid var(--line);border-radius:4px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px"><div><strong>🏢 会社</strong></div><div><button class="btn btn-ghost btn-sm">編集</button><button class="btn btn-ghost btn-sm" style="color:var(--red)">削除</button></div></div><p style="color:var(--text-soft);margin:0;line-height:1.7">田中 太郎<br>〒107-0052<br>東京都港区赤坂 1-2-3<br>○○ビル 5F</p></div></div></div>
+</div>
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

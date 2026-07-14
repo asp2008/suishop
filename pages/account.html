@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マイアカウント — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="container">
+  <nav class="crumb" style="margin-top:16px">
+    <a href="../index.html">HOME</a>
+    <span class="sep">/</span>
+    <span>マイアカウント</span>
+  </nav>
+
+  <div class="account-layout">
+    <aside class="account-nav">
+      <div class="account-user">
+        <div class="avatar">田</div>
+        <h4>田中 太郎</h4>
+        <p>taro@email.com</p>
+      </div>
+      <ul>
+        <li><a href="account.html" class="active"><span class="ic">▦</span> 概要</a></li>
+        <li><a href="orders.html"><span class="ic">📦</span> 注文履歴</a></li>
+        <li><a href="wishlist.html"><span class="ic">♡</span> お気に入り</a></li>
+        <li><a href="addresses.html"><span class="ic">📍</span> 住所</a></li>
+        <li><a href="payment.html"><span class="ic">💳</span> 支払い方法</a></li>
+        <li><a href="points.html"><span class="ic">⭐</span> ポイント</a></li>
+        <li><a href="settings.html"><span class="ic">⚙</span> 設定</a></li>
+        <li><a href="support.html"><span class="ic">💬</span> サポート</a></li>
+        <li><a href="../index.html" style="color:var(--red)"><span class="ic">⎋</span> ログアウト</a></li>
+      </ul>
+    </aside>
+
+    <div>
+      <div class="panel">
+        <h2>こんにちは、田中 太郎 👋</h2>
+        <p class="sub">JOJOKICKS へようこそ · 今日も新しい商品を見てみましょう！</p>
+
+        <div class="stat-grid">
+          <div class="stat-card"><div class="label">注文数</div><div class="num">12</div></div>
+          <div class="stat-card"><div class="label">お気に入り</div><div class="num">28</div></div>
+          <div class="stat-card"><div class="label">ポイント</div><div class="num">3,450</div></div>
+          <div class="stat-card"><div class="label">会員ランク</div><div class="num" style="font-size:18px">GOLD</div></div>
+        </div>
+
+        <h3 style="margin:24px 0 12px;font-size:16px">最近の注文</h3>
+        <div class="order-row head"><div></div><div>商品</div><div>注文番号</div><div>日付</div><div>金額</div><div>状態</div></div>
+        <div class="order-row">
+          <div class="img">👟</div>
+          <div><strong>Air Jordan 1 "Bred"</strong><div style="color:var(--text-mute);font-size:11px">US 10 · 1 足</div></div>
+          <div>#JK-20260708-001</div>
+          <div>2026-07-08</div>
+          <div>¥34,560</div>
+          <div><span class="tag shipped">発送済み</span></div>
+        </div>
+        <div class="order-row">
+          <div class="img">👕</div>
+          <div><strong>SUPREME ANNOUNCING T-SHIRT</strong><div style="color:var(--text-mute);font-size:11px">M · 1 枚</div></div>
+          <div>#JK-20260629-014</div>
+          <div>2026-06-29</div>
+          <div>¥9,290</div>
+          <div><span class="tag delivered">配達済み</span></div>
+        </div>
+        <a href="orders.html" class="btn btn-outline btn-sm" style="margin-top:14px">すべての注文を見る →</a>
+      </div>
+
+      <div class="panel" style="margin-top:20px">
+        <h2 style="font-size:18px">おすすめ商品</h2>
+        <p class="sub">あなたの閲覧履歴に基づいて</p>
+        <div class="products" id="rec-grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  window.JK.renderProducts('#rec-grid', window.JK_DATA.products.slice(0, 4));
+</script>
+</body>
+</html>

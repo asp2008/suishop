@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品一覧 — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<section class="list-hero">
+  <div class="container">
+    <nav class="crumb">
+      <a href="index.html">HOME</a>
+      <span class="sep">/</span>
+      <span id="crumb-cat">すべての商品</span>
+    </nav>
+    <h1 id="cat-title">すべての商品</h1>
+    <p>シュプリーム・クロムハーツなど世界人気ブランドの authentic 商品</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="list-layout">
+    <aside class="filter-box">
+      <h4>絞り込み</h4>
+
+      <div class="filter-group" id="filter-brand">
+        <h5>ブランド</h5>
+        <ul class="filter-list">
+          <li><input type="checkbox" data-brand="SUPREME" id="b1"><label for="b1">SUPREME</label></li>
+          <li><input type="checkbox" data-brand="CHROME HEARTS" id="b2"><label for="b2">CHROME HEARTS</label></li>
+          <li><input type="checkbox" data-brand="RICK OWENS" id="b3"><label for="b3">RICK OWENS</label></li>
+          <li><input type="checkbox" data-brand="ACNE STUDIOS" id="b4"><label for="b4">ACNE STUDIOS</label></li>
+          <li><input type="checkbox" data-brand="BALENCIAGA" id="b5"><label for="b5">BALENCIAGA</label></li>
+          <li><input type="checkbox" data-brand="CELINE" id="b6"><label for="b6">CELINE</label></li>
+          <li><input type="checkbox" data-brand="MONCLER" id="b7"><label for="b7">MONCLER</label></li>
+          <li><input type="checkbox" data-brand="AMIRI" id="b8"><label for="b8">AMIRI</label></li>
+          <li><input type="checkbox" data-brand="NIKE" id="b9"><label for="b9">NIKE</label></li>
+          <li><input type="checkbox" data-brand="TRAVIS SCOTT × NIKE" id="b10"><label for="b10">TRAVIS SCOTT</label></li>
+        </ul>
+      </div>
+
+      <div class="filter-group">
+        <h5>価格 <span id="filter-price-val" style="color:var(--red)">¥100,000</span></h5>
+        <input type="range" min="1000" max="200000" value="200000" step="1000" id="filter-price" style="width:100%;accent-color:var(--red);margin-top:8px">
+      </div>
+
+      <div class="filter-group">
+        <h5>カラー</h5>
+        <div class="color-list">
+          <div class="c active" style="background:#000"></div>
+          <div class="c" style="background:#fff;border-color:#bbb"></div>
+          <div class="c" style="background:#c8102e"></div>
+          <div class="c" style="background:#2ecc71"></div>
+          <div class="c" style="background:#c8a25a"></div>
+          <div class="c" style="background:#3498db"></div>
+          <div class="c" style="background:#888"></div>
+        </div>
+      </div>
+
+      <button class="btn btn-outline btn-block btn-sm" style="margin-top:14px" onclick="JK.toast('フィルターをリセットしました')">リセット</button>
+    </aside>
+
+    <div>
+      <div class="list-toolbar">
+        <div class="count">共 0 件商品</div>
+        <div class="right">
+          <select id="sort-select">
+            <option value="featured">おすすめ順</option>
+            <option value="newest">新着順</option>
+            <option value="price-asc">価格: 安い順</option>
+            <option value="price-desc">価格: 高い順</option>
+            <option value="rating">評価順</option>
+          </select>
+        </div>
+      </div>
+      <div class="products" id="product-grid"></div>
+      <div class="pagination">
+        <a href="#">‹</a>
+        <span class="active">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">…</a>
+        <a href="#">12</a>
+        <a href="#">›</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // 读取 ?cat= 参数显示分类标题
+  const cat = new URLSearchParams(location.search).get('cat');
+  const catNames = {
+    supreme: 'シュプリーム (SUPREME)',
+    chromehearts: 'クロムハーツ (CHROME HEARTS)',
+    rickowens: 'リック オーウェンス (RICK OWENS)',
+    sneaker: '人気スニーカー',
+    tshirt: '人気 T シャツ',
+    streetwear: '人気ストリートウェア',
+    belt: '人気ベルト',
+    balenciaga: 'バレンシアガ (BALENCIAGA)',
+    acne: 'アクネ ストゥディオズ (ACNE STUDIOS)',
+    new: 'NEW ARRIVAL',
+  };
+  if (cat && catNames[cat]) {
+    document.getElementById('cat-title').textContent = catNames[cat];
+    document.getElementById('crumb-cat').textContent = catNames[cat];
+    document.title = catNames[cat] + ' — JOJOKICKS';
+  }
+</script>
+</body>
+</html>

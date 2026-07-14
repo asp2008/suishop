@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ユーザーレビュー — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<section class="list-hero"><div class="container"><nav class="crumb"><a href="../index.html">HOME</a><span class="sep">/</span><span>ユーザーレビュー</span></nav><h1>ユーザーレビュー</h1><p>実際にご購入いただいたお客様からのレビュー</p></div></section>
+<div class="container" style="padding:36px 20px 60px">
+  <div class="reviews-head" style="margin-bottom:20px"><h2>4.8 <span class="stars">★★★★★</span></h2></div>
+  <div class="reviews-grid" id="reviews-grid"></div>
+  <div class="pagination" style="margin-top:30px"><a href="#">‹</a><span class="active">1</span><a href="#">2</a><a href="#">3</a><a href="#">›</a></div>
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  const rev = window.JK_DATA.reviews;
+  document.getElementById('reviews-grid').innerHTML = rev.map(r => `
+    <div class="review-card">
+      <div class="img">${r.emoji}<span class="lang">${r.lang}</span><span class="badge">${r.source}</span><span class="stars">${'★'.repeat(r.rating)}</span></div>
+      <div class="body">
+        <div class="top"><span class="author"><span class="name">${r.user}</span></span><span>${r.date}</span></div>
+        <div class="text">${r.text}</div>
+        <div class="product-name">${r.product}</div>
+      </div>
+    </div>
+  `).join('');
+</script>
+</body>
+</html>

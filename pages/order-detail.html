@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>注文詳細 — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<div class="container">
+  <nav class="crumb" style="margin-top:16px"><a href="../index.html">HOME</a><span class="sep">/</span><a href="orders.html">注文履歴</a><span class="sep">/</span><span>#JK-20260708-001</span></nav>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0 20px;flex-wrap:wrap;gap:10px">
+    <h1 style="font-size:24px;margin:0">注文 #JK-20260708-001</h1>
+    <span class="tag shipped" style="font-size:11px;padding:6px 12px">📦 発送済み</span>
+  </div>
+  <div class="panel" style="margin-bottom:20px">
+    <h3 style="margin:0 0 18px">配送状況</h3>
+    <div style="display:flex;justify-content:space-between;position:relative">
+      <div style="position:absolute;top:18px;left:18px;right:18px;height:2px;background:var(--line)"><div style="height:100%;width:75%;background:var(--red)"></div></div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1"><div style="width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;margin:0 auto 6px;font-weight:800">✓</div><div style="font-size:12px;font-weight:600">注文確認</div><div style="font-size:10px;color:var(--text-mute)">07-08</div></div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1"><div style="width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;margin:0 auto 6px;font-weight:800">✓</div><div style="font-size:12px;font-weight:600">発送済み</div><div style="font-size:10px;color:var(--text-mute)">07-09</div></div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1"><div style="width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;margin:0 auto 6px;font-weight:800">📍</div><div style="font-size:12px;font-weight:600">輸送中</div><div style="font-size:10px;color:var(--text-mute)">07-12</div></div>
+      <div style="position:relative;z-index:2;text-align:center;flex:1"><div style="width:36px;height:36px;border-radius:50%;background:var(--bg-gray);color:var(--text-mute);display:grid;place-items:center;margin:0 auto 6px;font-weight:800;border:1px solid var(--line)">4</div><div style="font-size:12px;font-weight:600;color:var(--text-mute)">配達済み</div><div style="font-size:10px;color:var(--text-mute)">07-15 予定</div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:flex-start">
+    <div>
+      <div class="panel">
+        <h3 style="margin:0 0 14px">商品明細</h3>
+        <div style="display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)">
+          <div style="width:90px;height:90px;background:var(--bg-gray);border-radius:4px;display:grid;place-items:center;font-size:42px;flex-shrink:0">👟</div>
+          <div style="flex:1"><h4 style="margin:0 0 4px;font-size:14px">Air Jordan 1 "Bred"</h4><div style="color:var(--text-soft);font-size:12px">US 10 · 1 足</div></div>
+          <div style="text-align:right"><div style="font-size:18px;font-weight:800;color:var(--red)">¥34,560</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0"><span>配送</span><span style="color:#2ecc71">FREE</span></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid var(--line);font-size:16px;font-weight:800"><span>合計</span><span style="color:var(--red)">¥37,702</span></div>
+      </div>
+      <div class="panel" style="margin-top:20px">
+        <h3 style="margin:0 0 12px">配送先</h3>
+        <div style="color:var(--text-soft);line-height:1.7">
+          <strong style="color:var(--text)">田中 太郎</strong><br>
+          〒150-0001<br>東京都渋谷区神宮前 1-2-3<br>○○マンション 101 号室<br>📞 090-1234-5678
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <a class="btn btn-outline btn-block btn-sm" href="#" style="margin-bottom:8px">📍 配送状況を確認</a>
+        <a class="btn btn-outline btn-block btn-sm" href="#" style="margin-bottom:8px">📄 請求書をダウンロード</a>
+        <a class="btn btn-outline btn-block btn-sm" href="support.html">💬 お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

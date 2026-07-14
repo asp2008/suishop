@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お気に入り — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+<div class="container">
+  <nav class="crumb" style="margin-top:16px"><a href="../index.html">HOME</a><span class="sep">/</span><span>お気に入り</span></nav>
+  <h1 style="font-size:26px;margin:6px 0 20px;font-weight:800">お気に入りリスト</h1>
+  <div class="products" id="wish-grid"></div>
+</div>
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+<script>window.JK.renderProducts('#wish-grid', window.JK_DATA.products.slice(0,12));</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新規登録 — JOJOKICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div id="jk-header"></div>
+
+<div class="auth">
+  <div class="auth-side">
+    <div class="quote">
+      <h2>Join<br><span class="accent">JOJOKICKS</span></h2>
+      <p>新規登録で <strong style="color:var(--red);font-size:18px">¥3,000 OFF</strong> クーポンプレゼント。</p>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <div class="auth-form-inner">
+      <h2>新規登録</h2>
+      <p class="sub">すでにアカウントをお持ちですか？ <a href="login.html" style="color:var(--red);font-weight:600">ログイン →</a></p>
+
+      <form onsubmit="event.preventDefault(); JK.toast('登録完了 · ようこそ JOJOKICKS へ'); setTimeout(()=>location='account.html', 800)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="field"><label>姓 *</label><input placeholder="田中" required></div>
+          <div class="field"><label>名 *</label><input placeholder="太郎" required></div>
+        </div>
+        <div class="field"><label>メールアドレス *</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="field"><label>電話番号</label><input type="tel" placeholder="090-1234-5678"></div>
+        <div class="field"><label>パスワード *</label><input type="password" placeholder="8 文字以上 · 英数字を含む" required></div>
+        <div class="field"><label>パスワード（確認） *</label><input type="password" placeholder="もう一度入力" required></div>
+        <div class="field"><label>生年月日</label><input type="date"></div>
+        <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text-soft);margin:8px 0 14px">
+          <input type="checkbox" required style="accent-color:var(--red);margin-top:2px">
+          <span><a href="terms.html" style="color:var(--red)">利用規約</a> と <a href="privacy.html" style="color:var(--red)">プライバシーポリシー</a> に同意します</span>
+        </label>
+        <button class="btn btn-dark btn-block btn-lg" type="submit">アカウントを作成</button>
+      </form>
+
+      <div class="divider"><span>または</span></div>
+
+      <div class="social-btns">
+        <button>🟦 LINE</button>
+        <button>📧 Google</button>
+        <button>🍎 Apple</button>
+        <button>📘 Facebook</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="jk-footer"></div>
+<script src="../js/data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
